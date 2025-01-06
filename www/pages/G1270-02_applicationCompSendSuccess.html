@@ -1,0 +1,32 @@
+<div id="G1270-02" ng-init="init()">
+
+    <!--ヘッダー-->
+    <header ng-include="'pages/common/header.html'"></header>
+
+    <main class="mainArea">
+
+        <!--担当者専用画面注意喚起-->
+        <div class="staffOnly">
+            <div class="staffOnly_caution"></div>
+            <span class="staffOnly_text">この画面は担当者専用の画面です</span>
+        </div>
+
+        <div class="mainArea_mainText">
+            <span>
+                <!--サーバへの登録完了のメッセージタイトル-->
+                データを送信しました。<br>
+                <!--サーバへの登録完了のメッセージ内容-->
+                <p class="mainArea_subText">
+                    「ホームへ戻る」ボタンを押下するとホーム画面へ遷移することができます。
+                </p>
+            </span>
+        </div>
+
+        <!--ホームへ戻る-->
+        <button class="mainArea_backHomeBtn" ng-click="returnHome()" id="btnHome">ホームへ戻る</button>
+
+    </main>
+</div>
+
+<!--ホーム遷移確認-->
+<div ng-include="'pages/G1270-04_applicationCompReturnHomeModal.html'"></div>

@@ -1,0 +1,98 @@
+<!-- 
+    画面名：ホームメニュー画面
+    画面id：G1040-01
+-->
+
+<div id="G1040-01" ng-init="init()">
+    <!-- 共通ヘッダーinclude用-->
+    <header class="fixedHeader" ng-include src="'pages/common/header.html'" ng-init="headerType =2 ">
+    </header>
+    <!-- メイン-->
+    <main class="main">
+        <!--行員専用ブロック-->
+        <div class="staffOnly">
+            <div class="staffOnly_caution"></div>
+            <span class="staffOnly_text">この画面は担当者専用の画面です</span>
+        </div>
+
+        <!--メインメニュー ブロック-->
+        <div ng-class="(slsKeys.length > 0) ? 'mainMenu' : 'mainMenu-NoAlarm'">
+
+            <!--事務手続きボタン　ブロック-->
+            <button ng-class="(slsKeys.length == 0) ? 'createAccountButton' : 'createAccountButton_NoAlarm'" id="btnCreateAccount" ng-click="toJimuTetsuduki()">
+                <div class="createAccountButton_arrow"></div>
+                <span class="createAccountButton_text" id="lblCreateAccount">事務手続き</span>
+            </button>
+
+            <!-- <button class="createAccountButton" id="btnCreateAccount" ng-click="toCamera()">
+                <span class="createAccountButton_text" id="lblCreateAccount">カメラ起動</span>
+            </button>
+
+            <div>{{text}}</div> -->
+
+            <!--電子帳票ボタン　ブロック-->
+            <!-- 01-2020-12-010 【Pluto】スマート帳票導入対応 開始 20210526 -->
+            <!--
+            <button ng-class="(slsKeys.length == 0) ? 'createAccountButton' : 'createAccountButton_NoAlarm'" id="btnSign" ng-click="toDenshiChohyo()">
+                <div class="createAccountButton_arrow"></div>
+                <span class="createAccountButton_text" id="lblSign">電子帳票</span>
+            </button>
+            -->
+            <!-- 01-2020-12-010 【Pluto】スマート帳票導入対応 終了 20210526 -->
+
+            <!--未送信案件表示　ブロック-->
+            <div class="alarmArea" ng-show="slsKeys.length > 0">
+                <div class="alarmArea_icon"></div>
+                <span class="alarmArea_text" id="lblUnsentData"></span>
+                <button class="alarmArea_sendBtn" id="btnSendUnsentData" ng-click="sendUnsentData()">未送信案件を再送信</button>
+            </div>
+
+        </div>
+
+        <!-- キャッシュテンプレート（G1080-01事務手続き画面 ディレクティブ事前ロード処理） -->
+        <div ng-show="false" class="pankuzuRow-single" ng-include="'pages/common/pankuzu.html'" ng-init="pankuzuType = 1"></div>
+        <blockarea ng-show="false" id="preload">
+            <base-area> 
+                <row title="" info=""></row>
+            </base-area>             
+        </blockarea>
+        <!-- キャッシュテンプレート -->
+    </main>
+</div>
+
+<!--
+    画面名：未送信案件送信時の送信状況表示画面
+    画面id：G1040-02
+-->
+<div class="modal fade" data-backdrop="static" id="G1040-02">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!--未送信案件送信時の送信状況表示画面（モーダル）のメイン要素-->
+            <div class="modal-body sendUnsentData_textArea" ng-class="(isSendComp && failedDataCnt > 0) ? 'sendUnsentData_AlarmText_Height' : 'sendUnsentData_textArea_Height'">
+
+                <!--送信状況の表示-->
+                <span ng-show="!isSendComp" id="lblSendStatus">未送信案件の申込データを送信中（{{sendDataNum}}/{{slsKeys.length}}）</span>
+                <span ng-show="isSendComp && failedDataCnt == 0">未送信案件の申込データ送信が完了しました</span>
+
+                <!--送信状況のプログレスバー-->
+                <div class="progress sendUnsentData_sendBar" ng-hide="isSendComp && failedDataCnt > 0">
+                    <div class="progress-bar progress-bar-success" role="progressbar" id="sendStatus" ng-style="{width: sendProgress + '%'}"></div>
+                </div>
+                <span class="" ng-show="isSendComp && failedDataCnt > 0">
+                    <br>＊未送信案件はホーム画面より再送信してください。
+                    <br>
+                    <br>
+                    送信済み：{{successDataCnt}}件<br>
+                    未送信：{{failedDataCnt}}件
+                </span>
+            </div>
+
+            <!--未送信案件送信時の送信状況表示画面（モーダル）のフッター-->
+            <div class="modal-footer" ng-show="isSendComp">
+                <button class="sendUnsentData_closeButton" id="btnCloseSendUnsentData" data-dismiss="modal" ng-click="closeModal()">閉じる</button>
+            </div>
+
+        </div>
+    </div>
+</div>

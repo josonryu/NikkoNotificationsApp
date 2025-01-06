@@ -1,0 +1,57 @@
+<!-- G1510-01:入力補助（手書き文字認識/キーボード）画面 -->
+<div id="modal-assistant" class="assistant">
+    <div class="assistant_row-top">
+        <div class="col-xs-8 col-xs-offset-2 col-sm-8 col-sm-offset-2 text-center">
+            <button id="tabHandWriteMode" class="handwriteModeBtn"><div id="signModeIcon" class="signModeIcon"></div>手書きモード</button>
+            <button id="tabKeyboardMode" class="keyboardModeBtn"><div id="keyModeIcon" class="keyModeIcon"></div>キーボードモード</button>
+        </div>
+    </div>
+
+    <div class="assistant_row-center keyboardItem">
+        <div class="col-xs-9 col-sm-9">
+            <div id="lblKeyboardInputDescript" class="assistant_label">キーボードで<span class="dispTargetName"></span>をご入力ください。</div>
+        </div>
+        <div class="col-xs-3 col-sm-3 text-right">
+            <button id="btnComHwpClose" class="assistant_btn assistant_closeBtn">閉じる</button>
+        </div>
+    </div>
+
+    <div class="assistant_row-center handwriteItem">
+        <div class="col-xs-12 col-sm-12">
+            <div id="lblHandWriteInputDescript" class="assistant_label">タッチペンで<span class="dispTargetName"></span>をご記入ください。</div>
+        </div>
+    </div>
+
+    <div class="handwriteBox">
+        <div class="handwriteBox_titleRow">
+            <div class="handwriteBox_btnArea">
+                <button class="handwriteBox_inputBtn handwriteBox_numBtn" id="btnComHwpNumInput1" value="1">１</button>
+                <button class="handwriteBox_inputBtn handwriteBox_numBtn" id="btnComHwpNumInput2" value="2">２</button>
+                <button class="handwriteBox_inputBtn handwriteBox_numBtn" id="btnComHwpNumInput3" value="3">３</button>
+                <button class="handwriteBox_inputBtn handwriteBox_numBtn" id="btnComHwpNumInput4" value="4">４</button>
+                <button class="handwriteBox_inputBtn handwriteBox_numBtn" id="btnComHwpNumInput5" value="5">５</button>
+                <button class="handwriteBox_inputBtn handwriteBox_numBtn" id="btnComHwpNumInput6" value="6">６</button>
+                <button class="handwriteBox_inputBtn handwriteBox_numBtn" id="btnComHwpNumInput7" value="7">７</button>
+                <button class="handwriteBox_inputBtn handwriteBox_numBtn" id="btnComHwpNumInput8" value="8">８</button>
+                <button class="handwriteBox_inputBtn handwriteBox_numBtn" id="btnComHwpNumInput9" value="9">９</button>
+                <button class="handwriteBox_inputBtn handwriteBox_numBtn" id="btnComHwpNumInput0" value="0">０</button>
+                <button class="handwriteBox_inputBtn handwriteBox_hyphenBtn" id="btnComHwpInputHyphen" value="-">ﾊｲﾌﾝ</button>
+                <button class="handwriteBox_inputBtn handwriteBox_vowelBtn" id="btnComHwpInputVowel" value="ｰ">長音</button>
+                <button class="handwriteBox_deleteBtn" id="btnComHwpOneCharDelete"><div class="handwriteBox_deleteIcon handwriteBox_backspaceIcon"></div>１文字削除</button>
+                <button class="handwriteBox_deleteBtn" id="btnComHwpAllCharDelete"><div class="handwriteBox_deleteIcon handwriteBox_allclearIcon"></div>すべて削除</button>
+            </div>
+        </div>
+        <div class="handwriteBox_startLine"></div>
+        <div class="handwriteBox_showArea"></div>
+        <div id="areaHandWriteInput" class="handwriteBox_inputArea"></div>
+    </div>
+
+    <div class="assistant_row-bottom">
+        <div class="col-xs-8 col-xs-offset-2 col-sm-8 col-sm-offset-2 text-center">
+            <button id="btnComHwpBack" class="assistant_btn assistant_backBtn">戻る</button>
+            <button id="btnComHwpEnter" class="assistant_btn assistant_confirmBtn">確定</button>
+        </div>
+    </div>
+
+    <div id="modal-overlay" class="modal-key-overlay"></div>
+</div>

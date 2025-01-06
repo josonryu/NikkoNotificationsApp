@@ -1,0 +1,127 @@
+<!-- 
+    画面名：電子帳票対象書面選択画面
+    画面id：G1400-01
+-->
+<div id="G1400-01" ng-init="init();">
+
+    <!-- 固定ヘッダー ブロック -->
+    <header ng-include="'pages/common/header.html'" ng-init="headerType = 2"></header>
+
+    <!--スクロールメインブロック-->
+    <main class="scrollArea main" id="G1400-01-main">
+        <div class="mainSpace">
+
+            <!--画面タイトル-->
+            <div class="pageTitle">
+                <span>電子帳票対象の書面を選択してください</span>
+            </div>
+
+            <!--対象書面タイトル-->
+            <div class="blockTitle firstTitle">
+                <span class="text">対象書面の選択</span>
+            </div>
+
+            <!--対象書面エラーメッセージ表示領域-->
+            <div class="input-check-area">
+                <div class="blockArea">
+
+                    <!--対象書面説明文-->
+                    <div class="blockArea_description">いずれかひとつを選択してください。</div>
+
+                    <div class="blockRow input-check-row pullStyleErr">
+
+                        <!--対象書面ラベル-->
+                        <label class="rowLabel">対象書面</label>
+                        <div class="requiredMark">必須</div>
+
+                        <!--対象書面プルダウン-->
+                        <div class="dropdownArea_field signDocPulldownArea">
+                            <pulldown data-id="signDocType" data="MODEL.CHOHYO_ID" list="signDocTypes" width="709px" ng-click="changeDoc()"></pulldown>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!--メールアドレスタイトル-->
+            <div class="blockTitle firstTitle" ng-show="MODEL.CHOHYO_ID == '870'">
+                <span class="text">E-mailアドレスの入力</span>
+            </div>
+
+            <!--メールアドレス入力欄表示枠-->
+            <div class="input-check-area" ng-show="MODEL.CHOHYO_ID == '870'">
+                <div class="blockArea">
+
+                    <!--メールアドレス説明文-->
+                    <div class="blockRow">
+                        <div class="description withoutTitleAndMark">
+                            当社のドメインからのメールが受信できるよう、あらかじめご設定ください。
+                            <br>・ mail.smbcnikko.co.jp
+                            <br>・ smbcnikko.co.jp
+                        </div>
+                    </div>
+
+                    <div class="blockRow input-check-row">
+
+                        <!--メールアドレスラベル-->
+                        <label class="rowLabel">E-mailアドレス</label>
+                        <div class="requiredMark">必須</div>
+
+                        <!--メールアドレスアカウント入力欄-->
+                        <input type="text" class="mailAddressArea_inputLocal" placeholder="nikko.taro"  id="mailAddress1"  maxlength="45"
+                            ng-model="MODEL.MAIL_ACCOUNT" input-data="input.MAIL_ACCOUNT" spellcheck="false" autocapitalize="off" 
+                            autocorrect="off" autocomplete="off">
+
+                        <label class="marginleft">＠</label>
+
+                        <!--メールアドレスドメイン入力欄-->
+                        <input type="text" class="mailAddressArea_inputDomain" ng-show="MODEL.MAIL_DOMAIN_FLAG == '1'" placeholder="mail.smbcnikko.co.jp"
+                            maxlength="48" id="mailAddress2" ng-model="MODEL.MAIL_DOMAIN" input-data="input.MAIL_DOMAIN" data="MODEL.MAIL_DOMAIN" spellcheck="false" autocapitalize="off" 
+                            autocorrect="off" autocomplete="off">
+
+                        <!--メールアドレスドメインプルダウン-->
+                        <div class="dropdownArea_field marginRight0" ng-show="MODEL.MAIL_DOMAIN_FLAG != '1'">
+                            <pulldown data-id="domainType" data="MODEL.MAIL_DOMAIN_C" list="domainTypes" width="260px" ng-click="domainSelect()"></pulldown>
+                        </div>
+                        <div class="groupCheckRow"><div id="mailAddress1-mailAddress2-domainType"></div></div>
+                    </div>
+                    <!--入力モード切替リンク-->
+                    <div class="blockRow input-check-row marginTop mailModeLinkArea">
+                        <a class="linkText right">
+                            <span ng-show="MODEL.MAIL_DOMAIN_FLAG != '1'" ng-click="changeMailInputMode()">直接入力をする場合はこちら</span>
+                            <span ng-show="MODEL.MAIL_DOMAIN_FLAG == '1'" ng-click="changeMailInputMode()">選択肢から選ぶ場合はこちら</span>
+                        </a>
+                     </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<!-- 固定フッター ブロック -->
+<footer class="fixedFooter">
+    <!--中止する-->
+    <button class="backBtn" id="btnStop" ng-click="stopBtnClick()">中止する</button>
+    <!--次へ-->
+    <button class="nextBtn" id="btnNext" ng-click="nextBtnClick()">次へ</button>
+</footer>
+
+<!-- G1400-03：申込中止画面（電子帳票） -->
+<div class="modal fade" data-backdrop="static" id="G1400-03">
+    <div class="modal-dialog modalStop_main">
+        <div class="modal-content modalStop_content">
+            <div class="modalStop_body modal-body">
+                申し込みを中止します。よろしいですか？
+            </div>
+            <div class="modal-footer">
+                <button class="modalStop_noBtn" data-dismiss="modal" id="btnCancel" ng-click="stopBtnNoClick()">いいえ</button>
+                <button class="modalStop_yesBtn" data-dismiss="modal" id="btnOK" ng-click="stopBtnYesClick()">はい</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- エラー項目表示ダイアログ -->
+<div ng-include="'pages/common/errItemModal.html'"></div>
+<!-- G0520-01:入力補助（類似文字確認）画面 -->
+<div ng-include="'pages/G1520-01_similarCharModal.html'"></div>

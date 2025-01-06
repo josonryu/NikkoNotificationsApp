@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="jp">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="format-detection" content="telephone=no">
+    <!-- wk移行 start-->
+    <meta name="viewport" content="width=1024,user-scalable=0">
+    <!-- wk移行 end-->
+
+    <title>事務手続きアプリ</title>
+    <link rel="stylesheet" href="./css/bootstrap.css">
+    <link rel="stylesheet" href="./css/bootstrap-theme.css">
+    <link rel="stylesheet" href="./css/swiper.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+    
+    <script src="./app/common/handleOpenURL.js"></script>
+    <script src="cordova.js"></script>
+    
+    <script src="./js/angular.js"></script>
+    <script src="./js/angular-route.js"></script>
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/swiper.min.js"></script>
+    <script src="./js/bootstrap.js"></script>
+    <script src="./js/aes.js"></script>
+    <script src="./js/mode-ecb.js"></script>
+    <script src="./js/pad-nopadding.js"></script>
+    <script src="./js/emojiBase.js"></script>
+    <script src="./js/emojiUtil.js"></script>
+    <script src="./js/InkTool.js"></script>
+
+    <script src="./app/common/appBizExceptionHandler.js"></script>
+    <script src="./app/common/handWritePanel.js"></script>
+    <script src="./app/common/handWritePanelNew.js"></script>
+    <script src="./app/common/numKeyboard.js"></script>
+    <script src="./app/app.js"></script>
+    <script src="./app/common/directive/inputData.js"></script>
+    <script src="./app/common/directive/handwrite.js"></script>
+    <script src="./app/common/directive/numpad.js"></script>
+    <script src="./app/common/directive/blockArea.js"></script>
+    <script src="./app/common/directive/blockRow.js"></script>
+    <script src="./app/common/directive/checkBlock.js"></script>
+    <script src="./app/common/directive/checkBox.js"></script>
+    <script src="./app/common/directive/pulldown.js"></script>
+    <script src="./app/common/directive/radio.js"></script>
+    <script src="./app/common/directive/radioBlock.js"></script>
+    <!-- wk移行 start-->
+    <script src="./app/common/directive/dataUrl.js"></script>
+    <!-- wk移行 end-->
+
+    <script src="./app/common/appCommon.js"></script>
+    <script src="./app/common/appBizCamera.js"></script>
+    <script src="./app/common/appBizCommon.js"></script>
+    <script src="./app/common/appBizImageFillMask.js"></script>
+    <script src="./app/common/appConstDefine.js"></script>
+    <script src="./app/common/appLogicCommon.js"></script>
+    <script src="./app/common/errorInfoModalCtrl.js"></script>
+    <script src="./app/common/logFileSend.js"></script>
+    <script src="./app/common/msgDefine.js"></script>
+    <script src="./app/common/offerDetailData.js"></script>
+    <script src="./app/common/slsDataDelete.js"></script>
+    <script src="./app/common/timeOutCheckFactory.js"></script>
+    
+    <script src="./app/controller/detailModal.js"></script>
+    <script src="./app/controller/G1030-01_splash.js"></script>
+    <script src="./app/controller/G1040-01_homeMenu.js"></script>
+    <script src="./app/controller/G1050-01_selectPlace.js"></script>
+    <script src="./app/controller/G1060-01_selectCustomer.js"></script>
+    <script src="./app/controller/G1060-02_resultCustomer.js"></script>
+	<script src="./app/controller/G1070-01_inputOperationStart.js"></script>
+    <script src="./app/controller/G1080-01_inputNotifications.js"></script>
+    <script src="./app/controller/G1080-03_addressSearchModal.js"></script>
+    <script src="./app/controller/G1080-04_bankSearchModal.js"></script>
+    <script src="./app/controller/G1090-01_selectIdentificationDescription.js"></script>
+    <script src="./app/controller/G1100-01_selectNecessaryDocController.js"></script>
+    <script src="./app/controller/G1110-01_mynumberInput.js"></script>
+    <script src="./app/controller/G1140-01_selectIdentificationDoc.js"></script>
+    <script src="./app/controller/G1150-01_cameraDescription.js"></script>
+    <script src="./app/controller/G1160_startCameraId.js"></script>
+    <script src="./app/controller/G1180-01_cameraIdFrontResult.js"></script>
+    <script src="./app/controller/G1180-02_cameraIdBackResult.js"></script>
+    <script src="./app/controller/G1180-03_cameraIdThirdResult.js"></script>
+    <script src="./app/controller/G1190-01_ocrIdResult.js"></script>
+    <script src="./app/controller/G1190-02_ocrId2Result.js"></script>
+    <script src="./app/controller/G1210-01_cameraIdFill.js"></script>
+    <script src="./app/controller/G1220-01_applicationConfirmStart.js"></script>
+    <script src="./app/controller/G1230-01_customerFinalInput.js"></script>
+    <script src="./app/controller/confirmCommon.js"></script>
+    <script src="./app/controller/G1240-01_applicationConfirm.js"></script>
+    <script src="./app/controller/G1250-01_finalConfirmDescription.js"></script>
+    <script src="./app/controller/G1260-01_finalConfirm.js"></script>
+    <script src="./app/controller/G1270-01_applicationComp.js"></script>
+    <script src="./app/controller/G1270-02_applicationCompSendSuccess.js"></script>
+    <script src="./app/controller/G1270-03_applicationCompSendFailed.js"></script>
+    <script src="./app/controller/G1270-04_applicationCompReturnHomeModal.js"></script>
+    <script src="./app/controller/G1400-01_selectSignDoc.js"></script>
+    <script src="./app/controller/G1410-01_signDoc.js"></script>
+    <script src="./app/controller/G1520-01_similarModal.js"></script>    
+</head>
+
+<body class="body" id="main-page" ondragstart="return false;" ondrop="return false;" oncontextmenu="return false;" ontouchstart="">
+    <div id="main-div-area" ng-model-options="{allowInvalid: true}" ng-view>
+    </div>
+    <div ng-include="'pages/G1510-01_inputAssistant.html'" id="G1510"></div>
+    <div ng-include="'pages/G1500-01_numKeyboard.html'" id="G1500"></div>
+    <div ng-include="'pages/G1020-00_errorInfoModal.html'"></div>
+</body>
+
+</html>

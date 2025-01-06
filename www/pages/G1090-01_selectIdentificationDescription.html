@@ -1,0 +1,29 @@
+<!-- 
+    画面名：本人確認書類撮影開始画面
+    画面id：G1090-01
+-->
+<div id="G1090-01" ng-init="init()">
+
+    <!--固定ヘッダー ブロック-->
+    <header ng-include="'pages/common/header.html'"></header>
+
+    <main>
+        <!--mainBody メインブロック-->
+        <div class="mainBody">
+            <div class="mainBody_sentence">
+                お客さまの本人確認書類の撮影を行います<br>
+                お持ちいただいた本人確認書類およびタブレットを担当者にお渡しください<br>
+            </div>
+            <!--descript 説明ブロック-->
+            <div class="mainBody_descript">
+                <div class="mainBody_descript_image"></div>
+            </div>
+        </div>
+    </main>
+
+    <!--固定フッター ブロック-->
+    <footer class="fixedFooter">
+        <button class="backBtn" ng-click="backBtnClick()">戻る</button>
+        <button class="nextBtn" ng-click="nextBtnClick()">次へ</button>
+    </footer>
+</div>

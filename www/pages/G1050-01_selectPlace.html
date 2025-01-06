@@ -1,0 +1,52 @@
+<!-- 
+    画面名：受付場所の入力画面
+    画面id：G1050-01
+-->
+
+<div id="G1050-01">
+    <!--固定ヘッダー ブロック-->
+    <header ng-include="'pages/common/header.html'" ng-init="headerType = 2" >
+    </header>
+
+    <!--メインブロック-->
+    <main class="main">
+        <!--行員専用ブロック-->
+        <div class="staffOnly">
+            <div class="staffOnly_caution"></div>
+            <span class="staffOnly_text">この画面は行員専用の画面です</span>
+        </div>
+        <div class="pageTitle">受付場所と行員情報を入力してください</div>
+        <div class="placeBtnArea">
+            <div class="placeBtnArea01_img">
+                <div class="placeBtnArea01" ng-click="btnStoreClick()" ng-class="{placeBtnArea01_active: ukeJoho.UKTKBASY_K == 1}">
+                    <div class="placeBtnArea01_text">店頭</div>
+                </div>
+            </div>
+            <div class="placeBtnArea02_img">
+                <div class="placeBtnArea02" ng-click="btnVisitClick()" ng-class="{placeBtnArea02_active: ukeJoho.UKTKBASY_K == 2}">
+                    <div class="placeBtnArea02_text">訪問</div>
+                </div>
+            </div>
+        </div>
+        <div class="staffInputArea">
+            <input-area> 
+                <row title="受付店番">
+                    <row-info>
+                        <pulldown data-id="pldTenbukaC" data="MODEL.TEN_BUKA_C" list="tBKList" placeholder="受付店番"></pulldown>
+                    </row-info>
+                </row>
+                <row title="行員番号">
+                    <row-info>
+                        <input type="text" class="nameInput" id="txtSyainID" ng-model="MODEL.SYAIN_ID" placeholder="行員番号" maxlength="20" input-data="inputData.SYAIN_ID" ng-trim="false">
+                    </row-info>
+                </row>
+            </input-area>
+        </div>
+    </main>
+ 
+    <footer class="fixedFooter">
+        <button class="backBtn" ng-click="btnBackClick()">戻る</button>
+        <button class="nextBtn" id="btnNext" ng-click="nextBtnClick()" ng-disabled="btnNextDisabled">次へ</button>
+    </footer>
+</div>
+

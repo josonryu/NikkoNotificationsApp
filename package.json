@@ -1,0 +1,45 @@
+{
+  "name": "tablet.app.connect.nikko.co.jp.jimuapp",
+  "displayName": "NikkoNotificationsApp",
+  "version": "1.0.0",
+  "description": "A sample Apache Cordova application that responds to the deviceready event.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "ecosystem:cordova"
+  ],
+  "author": "Apache Cordova Team",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "cordova-plugin-badge": "0.8.9",
+    "cordova-plugin-device": "1.1.6",
+    "cordova-plugin-file": "8.1.0",
+    "cordova-plugin-geolocation": "4.1.0",
+    "cordova-plugin-network-information": "1.3.3",
+    "cordova-plugin-screen-orientation": "2.0.1",
+    "cordova-plugin-splashscreen": "4.0.3",
+    "cordova-sqlite-storage": "4.0.0",
+    "ionic-plugin-keyboard": "2.0.1"
+  },
+  "cordova": {
+    "plugins": {
+      "cordova-plugin-badge": {},
+      "cordova-plugin-file": {},
+      "cordova-plugin-device": {},
+      "cordova-plugin-screen-orientation": {},
+      "cordova-plugin-splashscreen": {},
+      "cordova-plugin-network-information": {},
+      "cordova-sqlite-storage": {},
+      "cordova-plugin-geolocation": {},
+      "ionic-plugin-keyboard": {}
+    },
+    "platforms": [
+      "windows"
+    ]
+  },
+  "devDependencies": {
+    "cordova-windows": "^7.0.1"
+  }
+}

@@ -1,0 +1,19 @@
+<!-- 画像拡大モーダル -->
+<div id="G1200-01">
+    <div class="modal fade" data-backdrop="static" id="expansionModal">
+        <header class="container-fluid header">
+            <div class="modal-title">{{title}}{{side}}</div>
+        </header>
+        <main class="container-fluid main-space">
+            <div class="expansionImg">
+                <img id="expansion" ng-src="{{expansionImg}}" class="img-responsive center-block" alt="拡大イメージ">
+                <img ng-show="exAutoFillImage" id="exImageFill" ng-src="{{exImageFill}}" class="fillImg-responsive center-block" alt="" />
+            </div>
+        </main>
+        <footer>
+            <div class="fixedFooter">
+                <button class="btn_close" ng-click="closeBtnClick()">閉じる</button>
+            </div>
+        </footer>
+    </div>
+</div>

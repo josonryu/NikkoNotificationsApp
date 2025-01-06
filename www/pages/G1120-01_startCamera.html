@@ -1,0 +1,25 @@
+<!--
+    画面名：撮影書面表示（番号確認書類）画面
+    画面id：G1120-01
+-->
+<!-- 表面 -->
+<div class="modal-dialog">
+    <div class="modal-content G1120-modal">
+        <!-- modal メインブロック -->
+        <div class="modal-body">
+            
+            <div class="G1120-modal-title">
+                <p class="plarge" id="G1120Title"></p>
+            </div>
+            <div class="form-group">
+                <div ng-show="popupMode == 'FRONT'"  class="{{imgClass}}"></div>
+                <div ng-show="popupMode == 'BACK'" class="{{imgClass}}-back"></div>
+            </div>
+        </div>
+        <!-- modal フッターブロック -->
+        <div class="modal-footer">
+            <button class="modal-cancel-btn" ng-click="G1120BtnBackClick()">戻る</button>
+            <button class="modal-confirm-btn" id="btnTakePictStart" ng-disabled="noneInitCamFlg" ng-click="btnTakePictStartClick()">読取開始</button>
+        </div>
+    </div>
+</div>

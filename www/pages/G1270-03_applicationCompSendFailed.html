@@ -1,0 +1,38 @@
+<div id="G1270-03" ng-init="init()">
+
+    <!--ヘッダー-->
+    <header ng-include="'pages/common/header.html'"></header>
+
+    <main class="mainArea">
+
+        <!--担当者専用画面注意喚起-->
+        <div class="staffOnly">
+            <div class="staffOnly_caution"></div>
+            <span class="staffOnly_text">この画面は担当者専用の画面です</span>
+        </div>
+
+        <div class="mainArea_mainText">
+
+            <!--未送信案件ありのメッセージタイトル-->
+            <div>
+                <span class="mainArea_cautionIcon"></span>
+                {{getMsg("KKAP-SFJ19-03I")}}
+            </div>
+
+            <!--未送信案件ありのメッセージ内容-->
+            <span class="mainArea_subText mainArea_subText-accent">
+                {{getMsg("KKAP-SFJ19-04I")}}<br>
+            </span>
+            <span class="mainArea_subText mainArea_subText-accent">
+                {{getMsg("KKAP-SFJ19-05I", [LOGIN_SYRY_ZKK])}}
+            </span>
+
+        </div>
+
+        <button class="mainArea_backHomeBtn mainArea_backHomeBtn_error" id="btnHome" ng-click="returnHome()">ホームへ戻る</button>
+    </main>
+
+</div>
+
+<!--ホーム遷移確認-->
+<div ng-include="'pages/G1270-04_applicationCompReturnHomeModal.html'"></div>

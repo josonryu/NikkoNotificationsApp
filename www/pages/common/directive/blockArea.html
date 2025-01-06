@@ -1,0 +1,16 @@
+
+<div class="blockTitle directive" ng-if="title !== undefined" ng-class="{'firstTitle': firstArea !== undefined && firstArea !== false, 'confrimBefore': confrimBefore !== undefined && confrimBefore !== false, 'confrimAfter': confrimAfter !== undefined && confrimAfter !== false, 'noBorder': noBorder !== undefined && noBorder !== false}">
+    <span class="text">{{title}}</span>
+    <a ng-if="(noLink === undefined || noLink === false) && link" class="link" data-toggle="modal" data-target="#modalDetail" ng-click="link()">{{linkText}}</a>
+</div>
+<div class="blockArea directive" ng-class="{'firstArea': !title && (firstArea !== undefined && firstArea !== false), 'confrimBefore': confrimBefore !== undefined && confrimBefore !== false, 'confrimAfter': confrimAfter !== undefined && confrimAfter !== false, 'normal': (confrimBefore === undefined || confrimBefore === false) && (confrimAfter === undefined || confrimAfter === false)}">
+    <div class="baseArea input-check-area">
+        <div ng-transclude="baseArea" class="specialErrArea"></div>
+        <div class="groupCheckRow input-check-row"><div id="{{errItemId}}"></div></div>
+        <button class="btn_m modifyButton" ng-show="(noBtn === undefined || noBtn === false) && (confrimBefore === undefined || confrimBefore === false)" ng-class="{'cancel': isInputShow == '1'}" ng-click="btnClick($event)">{{btnName}}</button>
+    </div>
+
+    <div class="inputArea input-check-area" ng-show="(noBtn === undefined || noBtn === false) && isInputShow == '1'">
+        <div ng-transclude="inputArea"></div>
+    </div>
+</div>

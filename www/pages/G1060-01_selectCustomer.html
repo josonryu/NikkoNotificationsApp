@@ -1,0 +1,63 @@
+<!-- 
+    画面名：お客様検索/結果画面
+    画面id：G1060-01
+-->
+<div id="G1060-01" ng-init="init()">
+
+    <!-- 固定ヘッダー ブロック -->
+    <header ng-include="'pages/common/header.html'" ng-init="headerType = 2" >
+    </header>
+    
+    <!--スクロールメインブロック-->
+    <main class="main" id="G1060-01-main">
+
+        <!--担当者専用ブロック-->
+        <div class="staffOnly">
+            <div class="staffOnly_caution"></div>
+            <span class="staffOnly_text">この画面は担当者専用の画面です</span>
+        </div>
+
+        <div class="mainSpace">
+            <!--タイトル-->
+            <div class="pageTitle">
+                <span>お客さまの証券口座番号を入力して検索してください</span>
+            </div>
+
+            <!-- お客さま検索ブロック -->
+            <div class="blockTitle firstTitle">
+                <span class="text">お客さま検索</span>
+            </div>
+            <div class="blockArea input-check-area notMargin" id=errAreaAccountNum>
+                <div class="blockArea_row input-check-row" id=errMsgAccountNum>
+                    <label class="blockArea_label">証券口座番号</label>
+                        <pulldown class="blockArea_inputReq4 marginleft50" data-id="pldShiten" data="MODEL.MISE_C" list="tBKList" placeholder=""></pulldown>
+                        <label class="hyphen">－</label>
+                        <input
+                            type="text"
+                            class="blockArea_inputReq7"
+                            id="txtBango"
+                            placeholder='0000000'
+                            size="7"
+                            pattern="\d*"
+                            maxlength="7"
+                            ng-model="MODEL.KYAK_CIF_C"
+                            input-data="input.KYAK_CIF_C"
+                            ng-trim="false">
+                        <button
+                            ng-click="search(MODEL.MISE_C, MODEL.KYAK_CIF_C)"
+                            id="searchBtn"
+                            class="searchButton marginleft50"
+                            data-toggle="modal">
+                            検索
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <!-- 固定フッター ブロック -->
+    <footer class="fixedFooter">
+        <!-- <button class="backBtn" ng-click="backBtnClick()">戻る</button> -->
+    </footer>
+</div>

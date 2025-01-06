@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="tablet.app.connect.nikko.co.jp.jimuapp" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>SMBC日興証券（金融商品仲介）変更手続アプリ</name>
+    <description>Sample Apache Cordova App</description>
+    <author email="dev@cordova.apache.org" href="https://cordova.apache.org">
+        Apache Cordova Team
+    </author>
+    <content src="index.html" />
+    <access origin="*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+    <platform name="windows">
+        <icon src="res/windows/StoreLogo.png" target="StoreLogo" />
+        <icon src="res/windows/Square30x30Logo.png" target="Square30x30Logo" />
+        <icon src="res/windows/Square44x44Logo.png" target="Square44x44Logo" />
+        <icon src="res/windows/Square70x70Logo.png" target="Square70x70Logo" />
+        <icon src="res/windows/Square71x71Logo.png" target="Square71x71Logo" />
+        <icon src="res/windows/Square150x150Logo.png" target="Square150x150Logo" />
+        <icon src="res/windows/Square310x310Logo.png" target="Square310x310Logo" />
+        <icon src="res/windows/Wide310x150Logo.png" target="Wide310x150Logo" />
+        <splash src="res/windows/SplashScreen.png" target="SplashScreen"/>
+        <preference name="windows-target-version" value="10.0" />
+        <preference name="BackgroundColor" value="0xFFFFFF"/>
+        <preference name="Orientation" value="landscape" />
+        <preference name="SplashScreenDelay" value="0" />
+        <preference name="FadeSplashScreen" value="false" />
+        <preference name="FadeSplashScreenDuration" value="0" />
+        <preference name="ShowSplashScreenSpinner" value="false" />
+        <preference name="DisallowOverscroll" value="true" />
+    </platform>
+</widget>

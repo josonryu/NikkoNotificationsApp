@@ -1,0 +1,67 @@
+<!-- 
+    画面名：番号確認書類のご説明・ご選択画面
+    画面id：G1100-01
+-->
+<div id="G1100" ng-init="init()">
+    <!-- ヘッダー部 -->
+    <header ng-include="'pages/common/header.html'"></header>
+
+    <!-- コンテンツ部 -->
+    <main id="G1100-main" class="main">
+
+        <!--パンくず ブロック-->
+        <div class="pankuzu" ng-include="'pages/common/pankuzu.html'" ng-init="pankuzuType = pankuzuPatten"></div>
+
+        <!-- 本文 -->
+        <div class="mainSpace">
+            <!-- ページタイトル -->
+            <div class="pageTitle">
+                <span>番号確認書類を選択してください</span>
+            </div>
+
+            <!-- サブテキスト -->
+            <div class="main-text-area">
+                <p class="sub-text">所得税法、租税特別措置法その他の関係法令に基づく告知として、個人番号を告知します。<br>
+                                    ※告知頂いた個人番号は「金融商品取引に関する口座開設の申請・届出事務」および<br>「金融商品取引に関する法定書類の作成・提供事務」に限り利用されます。</p>
+            </div>
+
+            <!-- 番号確認書類選択 ブロック -->
+            <div class="checkArea">
+                <!-- 個人番号カード選択 ブロック -->
+                <div class="checkArea_myNumberCard" ng-class="{'checkArea-active':chkMyNumberCard}" ng-click="checkAreaClick('myNumberCard')">
+                    <input type="radio" name="radioMynumber" value="1" ng-checked="chkMyNumberCard">
+                    <span class="checkArea_card_title">個人番号カード</span>
+                </div>
+                <!-- 通知カード選択 ブロック -->
+                <div class="checkArea_noticeCard" ng-class="{'checkArea-active':chkNoticeCard}" ng-click="checkAreaClick('noticeCard')">
+                    <input type="radio" name="radioMynumber" value="2" ng-checked="chkNoticeCard">
+                    <span class="checkArea_card_title">通知カード</span>
+                </div>
+                <!-- 住民票の写し選択 ブロック -->
+                <div class="checkArea_residence" ng-class="{'checkArea_residence-tall checkArea-active':chkResidence}" ng-click="checkAreaClick('residence')">
+                    <input type="radio" name="radioMynumber" value="0" ng-checked="chkResidence">
+                    <span class="checkArea_card_title">住民票の写し</span>
+                    <span class="checkArea_residence_text">（個人番号あり）</span>
+                    <span class="checkArea_residence_text2"><span class="alarmArea_icon"></span>{{msgExpirationDate}}</span>
+                    <!-- 住民票の写し選択時表示 ブロック -->
+                    <div ng-if="chkResidence">
+                        <span class="checkArea_residence_text3">どちらをお持ちか選択ください。</span>
+                        <!-- 住民票の写し/住民票の記載事項証明書選択　ブロック -->
+                        <div class="checkArea">
+                            <radio list="[{label: '住民票の写し', value: '3', id:'residenceCopy'},{label: '住民票の記載事項証明書', value: '4', id:'residenceCertificate'}]"
+                                data="selectResidence.val" click="residenceTypeClick($event)"></radio>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!--フッター部-->
+    <footer>
+        <div class="fixedFooter">
+            <button id="btnBack" class="backBtn" ng-if="!editMode" ng-click="btnBackClick()">戻る</button>
+            <button id="btnNext" class="nextBtn" ng-disabled="btnNextDisabled" ng-click="btnNextClick()">次へ</button>
+        </div>
+    </footer>
+</div>

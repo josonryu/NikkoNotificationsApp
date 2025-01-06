@@ -1,0 +1,95 @@
+<!-- 
+    画面名：暗証番号確認画面
+    画面id：G1230-01
+-->
+<div id="G1230-01">
+    <header ng-include="'pages/common/header.html'"></header>
+
+    <main class="main" id="G1230-01-main">
+        <!--パンくず画面位置調整ブロック-->
+        <div class="pankuzu" ng-include="'pages/common/pankuzu.html'" ng-init="pankuzuType = 4"></div>
+
+        <div class="mainBody" ng-cloak>
+            <!--日興カードタイトル-->
+            <div class="blockTitle firstTitle">
+                <span class="text">日興カード暗証番号</span>
+            </div>
+
+            <!--暗証番号-->
+            <div class="confirmDataArea_row">
+                <label class="confirmDataArea_label">暗証番号</label>
+                <div class="confirmDataArea_data">
+                    <!--暗証番号-->
+                    <span ng-if="finishedPassword" class="pincode">＊＊＊＊</span>
+                    <!--設定ボタン-->
+                    <button class="confirmDataArea_btn" data-toggle="modal" ng-click="showPinModal()">暗証番号の設定</button>
+                </div>
+            </div>
+
+            <div ng-if="finishedPassword" class="confrimInfo">私は上記の暗証番号で日興カードを申し込みます。</div>
+
+            <div class="confirmCheckbox" ng-if="finishedPassword">
+                <checkbox label="はい" value="'1'" data="MODEL.NIKKO_CARD_MSKM_K"></checkbox>
+            </div>
+        </div>
+    </main>
+
+    <!--固定フッター ブロック-->
+    <footer>
+        <div class="fixedFooter">
+            <button ng-if="!editMode" id="btnBack" class="backBtn" ng-click="backBtnClick()">戻る</button>
+            <button ng-if="editMode" id="btnNext" class="nextBtn" ng-click="confirmBtnClick()" ng-disabled="!MODEL.NIKKO_CARD_MSKM_K">確認画面へ</button>
+            <button ng-if="!editMode" id="btnNext" class="nextBtn" ng-click="nextBtnClick()" ng-disabled="!MODEL.NIKKO_CARD_MSKM_K">次へ</button>
+        </div>
+    </footer>
+</div>
+
+<!-- 
+    画面名：暗証番号入力画面
+    画面id：G1230-02
+-->
+<div class="modal fade" data-backdrop="static" id="G1230-02">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!--暗証番号入力画面（モーダル）のメイン要素-->
+            <div class="modal-body pinConfirm_mainArea">
+                <!--画面タイトル-->
+                <p class="pinConfirm_title">暗証番号入力</p>
+
+                <div class="input-check-area">
+                    <!--暗証番号入力欄-->
+                    <div class="input-check-row">
+                        <label class="pinConfirm_inputLabel">暗証番号を4桁の数字でご入力ください</label>
+                        <input type="text" class="pinConfirm_input" id="txtPassword" input-data="input.NIKKO_CARD_PIN" placeholder="0000" maxlength="4" ng-model="MODEL.password" ng-change="changePass()" ng-trim="false">
+                    </div>
+                    <!--暗証番号確認欄-->
+                    <div class="input-check-row">
+                        <label class="pinConfirm_inputLabel">確認のため、もう一度ご入力ください</label>
+                        <input type="text" class="pinConfirm_input" id="txtCheckPassword" input-data="input.NIKKO_CARD_PINCHECK" placeholder="0000" maxlength="4" ng-model="MODEL.checkPassword" ng-change="changeCheckPass()" ng-trim="false">
+                    </div>
+                </div>
+
+                <!--禁止番号説明-->
+                <p class="pinConfirm_notes">
+                    4桁のお取引用の暗証番号をご入力ください。<br>
+                    「0000」「9999」は登録できません。<br>
+                    また生年月日や電話番号など、他人に容易に<br>
+                    知られやすい番号はご入力しないでください。<br>
+                </p>
+
+                <div>
+                    <!--暗証番号を表示ボタン-->
+                    <button ng-show="displayType == 1" ng-click="unmask()" class="passwordChange">暗証番号を表示</button>
+                    <!--暗証番号を隠すボタン-->
+                    <button ng-show="displayType == 0" ng-click="mask(3)" class="passwordChange">暗証番号を隠す</button>
+                </div>
+            </div>
+
+            <!--暗証番号入力画面（モーダル）のフッター-->
+            <div class="modal-footer">
+                <button class="footer_cancelBtn" ng-click="cancel()">キャンセル</button>
+                <button class="footer_confirmBtn" ng-click="confirm()">確定</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,1057 @@
+<!-- 
+    画面名：行員確認画面
+    画面id：G1260-01
+-->
+<div id="G1260-01">
+    <header ng-include="'pages/common/header.html'"></header>
+
+    <main id="G1260-01-main" class="scrollArea main">
+
+        <!--行員専用ブロック-->
+        <div class="staffOnly">
+            <div class="staffOnly_caution"></div>
+            <span class="staffOnly_text">この画面は行員専用の画面です</span>
+        </div>
+
+        <!--申込内容確認-->
+        <div class="confirmArea">
+
+            <!--変更前：おなまえ-->
+            <blockarea confrim-before first-area no-border title="おなまえ" ng-if="'1' == pageShow.KYAKNM_F">
+                <base-area>
+                    <row title="おなまえ（漢字）">
+                        <row-info>{{dataBefore.KYAKNM_KNJ}}</row-info>
+                    </row>
+                    <row title="おなまえ（カナ）">
+                        <row-info>{{dataBefore.KYAKNM_KANA}}</row-info>
+                    </row>
+                </base-area>
+            </blockarea>
+            <!--変更後：おなまえ-->
+            <div class="blockArea after" ng-if="'1' == pageShow.KYAKNM_F">
+                <div class="confirmCheckArea_withWarn">
+                    <div ng-if="showMaruyuKMsg" class="warningText">
+                        <span class="warningText_icon"></span>
+                        <span class="warningText_msg">{{getMsg("KKAP-SFJ16-01I")}}</span>
+                    </div>
+                    <div class="warningText">
+                        <span class="warningText_icon"></span>
+                        <span class="warningText_msg">{{getMsg("KKAP-SFJ16-02I")}}</span>
+                    </div>
+                    <div class="warningText">
+                        <span class="warningText_icon"></span>
+                        <span class="warningText_msg">{{getMsg("KKAP-SFJ16-03I")}}</span>
+                    </div>
+                    <div ng-if="showHireiHaiBunMsg" class="warningText">
+                        <span class="warningText_icon"></span>
+                        <span class="warningText_msg">{{getMsg("KKAP-SFJ16-04I")}}</span>
+                    </div>
+                    <div ng-if="showKakuKyakMsg" class="warningText">
+                        <span class="warningText_icon"></span>
+                        <span class="warningText_msg">{{getMsg("KKAP-SFJ16-05I")}}</span>
+                    </div>
+                    <div class="warningText">
+                        <span class="warningText_icon"></span>
+                        <span class="warningText_msg">{{getMsg("KKAP-SFJ16-06I")}}</span>
+                    </div>
+                    <div class="confirmBox">
+                        <checkbox label="確認済" id="checkName" value="1" data="MODEL.checkName"></checkbox>
+                    </div>
+                </div>
+                <div class="confirmCheckArea">
+                    <row title="おなまえ（漢字）">
+                        <row-info class="editFont">{{dataAfter.KYAKNM_KNJ}}</row-info>
+                    </row>
+                    <row title="おなまえ（カナ）">
+                        <row-info class="editFont">{{dataAfter.KYAKNM_KANA}}</row-info>
+                    </row>
+                </div>
+            </div>
+
+            <!--変更前：ご住所-->
+            <blockarea confrim-before no-border title="ご住所" ng-if="'1' == pageShow.KYAK_ADDR_F">
+                <base-area>
+                    <row title="郵便番号">
+                        <row-info>{{dataBefore.YUBINNO}}</row-info>
+                    </row>
+                    <row title="ご住所①">
+                        <row-info>{{dataBefore.KYAK_ADDR_KNJ}}</row-info>
+                    </row>
+                    <row title="ご住所①のフリガナ">
+                        <row-info>{{dataBefore.KYAK_ADDR_KANA}}</row-info>
+                    </row>
+                    <row title="ご住所②">
+                        <row-info>{{dataBefore.KYAK_HOSK_ADDR_KNJ}}</row-info>
+                    </row>
+                    <row title="ご住所②のフリガナ">
+                        <row-info>{{dataBefore.KYAK_HOSK_ADDR_KANA}}</row-info>
+                    </row>
+                    <row title="ご住所③">
+                        <row-info>{{dataBefore.KYAK_HOUSENM_KNJ}}</row-info>
+                    </row>
+                    <row title="ご住所③のフリガナ">
+                        <row-info>{{dataBefore.KYAK_HOUSENM_KANA}}</row-info>
+                    </row>
+                    <row title="送付先郵便番号">
+                        <row-info>{{dataBefore.SOUHUSAKI_YBN_BNG}}</row-info>
+                    </row>
+                    <row title="送付先住所">
+                        <row-info>{{dataBefore.SOUHUSAKI_JYSY_KNJ}}</row-info>
+                    </row>
+                    <row title="送付先フリガナ">
+                        <row-info>{{dataBefore.SOUHUSAKI_JYSY_KN}}</row-info>
+                    </row>
+                </base-area>
+            </blockarea>
+            <!--変更後：ご住所-->
+            <div class="blockArea after" ng-if="'1' == pageShow.KYAK_ADDR_F">
+                <div ng-if="showCheckAdd" class="confirmCheckArea_withWarn">
+                    <div ng-if="showMaruyuKMsg" class="warningText">
+                        <span class="warningText_icon"></span>
+                        <span class="warningText_msg">{{getMsg("KKAP-SFJ16-01I")}}</span>
+                    </div>
+                    <div ng-if="showSouHuSaKiMsg" class="warningText">
+                        <span class="warningText_icon"></span>
+                        <span class="warningText_msg">{{getMsg("KKAP-SFJ16-08I")}}</span>
+                    </div>
+                    <div ng-if="showKakuKyakMsg" class="warningText">
+                        <span class="warningText_icon"></span>
+                        <span class="warningText_msg">{{getMsg("KKAP-SFJ16-05I")}}</span>
+                    </div>
+                    <div class="confirmBox">
+                        <checkbox label="確認済" id="checkAdd" value="1" data="MODEL.checkAdd"></checkbox>
+                    </div>
+                </div>
+                <div class="confirmCheckArea">
+                    <row title="郵便番号">
+                        <row-info class="editFont">{{dataAfter.YUBINNO}}</row-info>
+                    </row>
+                    <row title="ご住所①">
+                        <row-info class="editFont">{{dataAfter.KYAK_ADDR_KNJ}}</row-info>
+                    </row>
+                    <row title="ご住所①のフリガナ">
+                        <row-info class="editFont">{{dataAfter.KYAK_ADDR_KANA}}</row-info>
+                    </row>
+                    <row title="ご住所②">
+                        <row-info class="editFont">{{dataAfter.KYAK_HOSK_ADDR_KNJ}}</row-info>
+                    </row>
+                    <row title="ご住所②のフリガナ">
+                        <row-info class="editFont">{{dataAfter.KYAK_HOSK_ADDR_KANA}}</row-info>
+                    </row>
+                    <row title="ご住所③">
+                        <row-info class="editFont">{{dataAfter.KYAK_HOUSENM_KNJ}}</row-info>
+                    </row>
+                    <row title="ご住所③のフリガナ">
+                        <row-info class="editFont">{{dataAfter.KYAK_HOUSENM_KANA}}</row-info>
+                    </row>
+                    <row ng-show ="pageShow.showTkteiKozaGnsn" title="転居日">
+                        <row-info class="editFont">{{dataAfter.TNKDAY}}</row-info>
+                    </row>
+                    <row ng-show ="pageShow.showTkteiKozaGnsn" title="年初住所">
+                        <row-info class="editFont">{{dataAfter.NENSY_JSY}}</row-info>
+                    </row>
+                </div>
+            </div>
+
+            <!--変更前：電話番号-->
+            <blockarea confrim-before no-border title="電話番号" ng-if="'1' == pageShow.TELNO_F">
+                <base-area>
+                    <row title="ご自宅電話番号">
+                        <row-info>{{dataBefore.TELNO}}</row-info>
+                    </row>
+                    <row title="携帯電話番号">
+                        <row-info>{{dataBefore.MOBILE_TELNO}}</row-info>
+                    </row>
+                    <row title="FAX番号">
+                        <row-info>{{dataBefore.FAXNO}}</row-info>
+                    </row>
+                </base-area>
+            </blockarea>
+            <!--変更後：電話番号-->
+            <blockarea confrim-after no-border no-btn="true" ng-if="'1' == pageShow.TELNO_F">
+                <base-area>
+                    <row title="ご自宅電話番号">
+                        <row-info class="editFont">{{dataAfter.TELNO}}</row-info>
+                    </row>
+                    <row title="携帯電話番号">
+                        <row-info class="editFont">{{dataAfter.MOBILE_TELNO}}</row-info>
+                    </row>
+                    <row title="FAX番号">
+                        <row-info class="editFont">{{dataAfter.FAXNO}}</row-info>
+                    </row>
+                </base-area>
+            </blockarea>
+
+            <!--変更前：証券総合口座取引-->
+            <!-- <blockarea confrim-before no-border title="日興MRF累積投資口座申込（証券総合口座取引）" ng-if="'1' == pageShow.NIKKO_MRF_F">
+                <base-area>
+                    <row title="">
+                        <row-info>{{dataBefore.NIKKO_MRF}}</row-info>
+                    </row>
+                </base-area>
+            </blockarea> -->
+            <!--変更後：証券総合口座取引-->
+            <!-- <blockarea confrim-after no-border no-btn="true" ng-if="'1' == pageShow.NIKKO_MRF_F">
+                <base-area>
+                    <row class="block2Rows">
+                        <row-info class="editFont" ng-if="'1' == dataAfter.NIKKO_MRF">「証券取引約款の証券総合口座に関する規定」および「日興MRF自動けいぞく投資約款」を承認のうえ、自動買付・自動換金を申し込みます。</row-info>
+                        <row-title>日興MRF累積投資<br>口座申込</row-title>
+                    </row>
+                </base-area>
+            </blockarea> -->
+
+            <!--変更前：日興カード-->
+            <blockarea confrim-before no-border title="日興カード" ng-if="'1' == pageShow.NIKKO_CARD_F">
+                <base-area>
+                    <row title="カード発行日">
+                        <row-info>{{dataBefore.NIKKO_CARD}}</row-info>
+                    </row>
+                </base-area>
+            </blockarea>
+            <!--変更後：日興カード-->
+            <blockarea confrim-after no-border no-btn="true" ng-if="'1' == pageShow.NIKKO_CARD_F">
+                <base-area>
+                    <row title="申込区分">
+                        <row-info class="editFont">{{dataAfter.NIKKO_CARD}}</row-info>
+                    </row>
+                    <row ng-if="pageShow.showNikoPin && !clearPinJoho" title="日興カード暗証番号">
+                        <row-info class="editFont">＊＊＊＊</row-info>
+                    </row>
+                </base-area>
+            </blockarea>
+
+            <!--変更前：日興イージートレード-->
+            <blockarea confrim-before no-border title="日興イージートレード" ng-if="'1' == pageShow.NIKKO_EZ_F">
+                <base-area>
+                    <row title="申込日">
+                        <row-info>{{dataBefore.NIKKO_EZ}}</row-info>
+                    </row>
+                    <row title="電子交付サービス">
+                        <row-info>{{dataBefore.DNS_KOFU_SRV}}</row-info>
+                    </row>
+                </base-area>
+            </blockarea>
+            <!--変更後：日興イージートレード-->
+            <blockarea confrim-after no-border no-btn="true" ng-if="'1' == pageShow.NIKKO_EZ_F">
+                <base-area>
+                    <row title="申込区分">
+                        <row-info class="editFont" ng-if="'1' == dataAfter.NIKKO_EZ">「証券取引約款の日興イージートレードに関する規定」を承認のうえ、日興イージートレードを申し込みます。</row-info>
+                        <row-info class="editFont" ng-if="'2' == dataAfter.NIKKO_EZ">解除</row-info>
+                        <row-info class="editFont" ng-if="'3' == dataAfter.NIKKO_EZ">パスワード再発行</row-info>
+                    </row>
+                </base-area>
+            </blockarea>
+
+            <!--変更前：外国証券取引口座-->
+            <!-- <blockarea confrim-before no-border title="外国証券取引口座" ng-if="'1' == pageShow.GAIK_SYKN_KOZA_F">
+                <base-area>
+                    <row title="開設日">
+                        <row-info>{{dataBefore.GAIK_SYKN_KOZA_OPENYMD}}</row-info>
+                    </row>
+                </base-area>
+            </blockarea> -->
+            <!--変更後：外国証券取引口座-->
+            <!-- <blockarea confrim-after no-border no-btn="true" ng-if="'1' == pageShow.GAIK_SYKN_KOZA_F">
+                <base-area>
+                    <row title="外国証券取引口座申込">
+                        <row-info class="editFont" ng-if="'1' == dataAfter.GAIK_SYKN_KOZA">
+                            「外国証券取引口座約款」および「証券取引約款の国内外貨建て債券取引に関する規定」を承認のうえ、外国証券取引、国内外貨建債券取引を申し込みます。
+                        </row-info>
+                    </row>
+                </base-area>
+            </blockarea> -->
+
+            <!--変更前：特定口座-->
+            <blockarea confrim-before no-border title="特定口座" ng-if="'1' == pageShow.TKTEI_KOZA_F">
+                <base-area>
+                    <row title="開設日">
+                        <row-info>{{dataBefore.TKTEI_KOZA_OPENYMD}}</row-info>
+                    </row>
+                    <row title="勘定区分">
+                        <row-info>{{dataBefore.TKTEI_KOZA_AC}}</row-info>
+                    </row>
+                    <row title="源泉徴収区分">
+                        <row-info>{{dataBefore.TKTEI_KOZA_GNSN}}</row-info>
+                    </row>
+                    <row title="予約情報">
+                        <row-info>{{dataBefore.TKTEI_KOZA_YYK}}</row-info>
+                    </row>
+                    <row title="年初取引">
+                        <row-info>{{dataBefore.TKTEI_KOZA_NENSY_TORIHIKIYMD}}</row-info>
+                    </row>
+                </base-area>
+            </blockarea>
+            <!--変更後：特定口座-->
+            <blockarea confrim-after no-border no-btn="true" ng-if="'1' == pageShow.TKTEI_KOZA_F">
+                <base-area>
+                    <row title="申込区分">
+                        <row-info class="editFont">{{dataAfter.TKTEI_KOZA_MSKM}}</row-info>
+                    </row>
+                    <row title="勘定区分" ng-if="!pageShow.showTkteiKozaHisi">
+                        <row-info class="editFont">{{dataAfter.TKTEI_KOZA_AC}}</row-info>
+                    </row>
+                    <row class="editFont block2Rows blockRowCenter" ng-if="!pageShow.showTkteiKozaHisi"
+                        info="{{dataAfter.TKTEI_KOZA_GNSN}}">
+                        <row-title>特定口座源泉徴収<br>選択・配当等受入</row-title>
+                    </row>
+                    <row title=""
+                        ng-if="!pageShow.showTkteiKozaHisi && ('1' == pageShow.showTkteiKozaGnsnMsg || '0' == pageShow.showTkteiKozaGnsnMsg)">
+                        <row-info class="rowMsg" ng-if="'1' == pageShow.showTkteiKozaGnsnMsg">
+                            （特定保管・特定信用取引等・特定上場株式配当等勘定の設定）<br>
+                            租税特別措置法第37条の11の3第1項および第2項、第37条の11の4第1項ならびに第37条の11の6<br>
+                            第1項の適用を受けたいので、第37条の11の6第2項、同法施行令第25条の10の2第5項および<br>
+                            第25条の10の11第1項の規定により、「特定口座約款」を承認のうえ、この旨を届け出ます。<br>
+                            （注）源泉徴収ありでお申し込みされた場合、特定上場株式配当等勘定をお申し込みいただいた<br>
+                            ものとしてお取扱いいたします。申し込みを希望されない場合はその旨お申し出ください。
+                        </row-info>
+                        <row-info class="rowMsg" ng-if="'0' == pageShow.showTkteiKozaGnsnMsg">
+                            （特定保管・特定信用取引等勘定の設定）<br>
+                            租税特別措置法第37条の11の3第1項および第2項の適用を受けたいので、同法施行令第25条<br>
+                            の10の2第5項の規定により、「特定口座約款」を承認のうえ、この旨を届け出ます。
+                        </row-info>
+                    </row>
+                    <row title="源泉徴収変更予約" ng-if="!pageShow.showTkteiKozaHisi && pageShow.showTkteiKozaYyk">
+                        <row-info class="editFont">{{dataAfter.TKTEI_KOZA_YYK}}</row-info>
+                    </row>
+                    <row title="年初住所" ng-if="!pageShow.showTkteiKozaHisi">
+                        <row-info class="editFont">{{dataAfter.TKTEI_KOZA_NENSY_JSY}}</row-info>
+                    </row>
+                </base-area>
+            </blockarea>
+
+            <!--変更前：特定管理口座-->
+            <blockarea confrim-before no-border title="特定管理口座" ng-if="'1' == pageShow.TKTEI_KANRI_KOZA_F">
+                <base-area>
+                    <row title="開設日">
+                        <row-info>{{dataBefore.TKTEI_KANRI_KOZA_OPENYMD}}</row-info>
+                    </row>
+                </base-area>
+            </blockarea>
+            <!--変更後：特定管理口座-->
+            <blockarea confrim-after no-border no-btn="true" ng-if="'1' == pageShow.TKTEI_KANRI_KOZA_F">
+                <base-area>
+                    <row title="開設">
+                        <row-info class="editFont">{{dataAfter.TKTEI_KANRI_KOZA_MSKM}}</row-info>
+                    </row>
+                    <row title="">
+                        <row-info class="rowMsg">
+                            租税特別措置法第37条の11の2第1項又は第2項の規定の適用を受けたいので、租税特別措置法施行<br>
+                            令第25条の9の2第8項の規定により、「特定口座約款」を承認のうえ、この旨を届け出ます。
+                        </row-info>
+                    </row>
+                </base-area>
+            </blockarea>
+
+            <!--変更前：加入者情報拡張登録-->
+            <!-- <blockarea confrim-before no-border title="加入者情報拡張登録" ng-if="'1' == pageShow.KANYUSY_EXP_F">
+                <base-area>
+                    <row title="拡張情報">
+                        <row-info>
+                            <div>
+                                <span ng-if="::dataBefore.KAKU_KYAKNM_KNJ.trim()">{{::dataBefore.KAKU_KYAKNM_KNJ}} <br/></span>
+                                <span ng-if="::dataBefore.KAKU_YUBINNO.trim()">〒{{::dataBefore.KAKU_YUBINNO | substr :0:3 }}－{{::dataBefore.KAKU_YUBINNO | substr :3 }}<br/></span>
+                                <span ng-if="::dataBefore.KAKU_ADDR.trim()">{{::dataBefore.KAKU_ADDR}}</span>
+                            </div>
+                        </row-info>
+                    </row>
+                </base-area>
+            </blockarea> -->
+            <!--変更後：加入者情報拡張登録-->
+            <!-- <blockarea confrim-after no-border no-btn="true" ng-if="'1' == pageShow.KANYUSY_EXP_F">
+                <base-area>
+                    <row title="拡張情報">
+                        <row-info class="editFont">{{dataAfter.KANYUSY_EXP_TORK_K}}</row-info>
+                    </row>
+                </base-area>
+            </blockarea> -->
+
+            <!--変更前：NISA口座開設-->
+            <blockarea confrim-before no-border title="NISA口座開設" ng-if="'1' == pageShow.NISA_KOZA_F">
+                <base-area>
+                    <row title="開設年">
+                        <row-info>{{dataBefore.NISA_KOZA_OPENYMD}}</row-info>
+                    </row>
+                </base-area>
+            </blockarea>
+            <!--変更後：NISA口座開設-->
+            <blockarea confrim-after no-border no-btn="true" ng-if="'1' == pageShow.NISA_KOZA_F">
+                <base-area>
+                    <row title="NISA口座開設">
+                        <row-info class="editFont">{{dataAfter.NISA_KOZA_MSKM}}</row-info>
+                    </row>
+                    <!-- 01-2022-12-147 総合ＮＩＳＡ対応 開始 20231222 -->
+                    <row title="" ng-if="'3' == pageShow.showNisaKozaMskmMsg">
+                        <row-info class="rowMsg">
+                            租税特別措置法第9条の8及び同法第37条の14第1項から第4項までの規定の適用を受けたいので、<br>
+                            「非課税上場株式等管理、非課税累積投資及び特定非課税累積投資に関する約款」を承認のうえ、<br>
+                            同条第5項第1号の規定により、この旨届け出ます。<br>
+                            <br>
+                            非課税口座を設定しようとする日の属する年：{{dataAfter.NISA_MOSIKOMI_YEAR}}年（申込み日の属する年）<br>
+                            ※ただし、非課税口座の開設が上記の年を経過した場合、開設した日の属する年といたします。
+                        </row-info>
+                    </row>
+                    <!-- 01-2022-12-147 総合ＮＩＳＡ対応 終了 20231222 -->
+                    <row title="株式数比例配分方式" class="blockRowCenter">
+                        <row-info class="editFont" ng-if="'1' == dataAfter.HIREIHAIBUN">
+                            「株式数比例配分方式のお申し込みについてのご留意事項」を確認<br>
+                            しましたので、株式数比例配分方式（証券口座経由で配当受取）を<br>
+                            申し込みます。
+                        </row-info>
+                        <row-info class="editFont" ng-if="'1' != dataAfter.HIREIHAIBUN">申し込まない</row-info>
+                    </row>
+                </base-area>
+            </blockarea>
+
+            <!--変更前：個人番号告知-->
+            <blockarea confrim-before no-border title="個人番号告知" ng-if="'1' == pageShow.MYNO_KOKUCHI_F">
+                <base-area>
+                    <row title="告知状態">
+                        <row-info>{{dataBefore.MYNO_KKC}}</row-info>
+                    </row>
+                </base-area>
+            </blockarea>
+            <!--変更後：個人番号告知-->
+            <blockarea confrim-after no-border no-btn="true" ng-if="'1' == pageShow.MYNO_KOKUCHI_F">
+                <base-area>
+                    <row title="個人番号の登録">
+                        <row-info class="editFont">{{dataAfter.MYNO_KOKUCHI}}</row-info>
+                    </row>
+                </base-area>
+            </blockarea>
+
+            <!--変更前：当社から送金する際のお受取口座-->
+            <div ng-if="'1' == pageShow.KOZA_DEL_F || '1' == pageShow.BK_KOZA_ADD_F || '1' == pageShow.YUCH_KOZA_ADD_F">
+                <div class="blockTitle noBorder">
+                    <span class="text">当社から送金する際のお受取口座</span>
+                </div>
+                <div class="blockArea before">
+                    <div class="confirmDataArea nullHeight" ng-if="0 == dataBefore.FURIKOMI_KOZA.length">
+                        <div class="confirmDataArea_row">
+                            <label class="confirmDataArea_label"></label>
+                            <div class="confirmDataArea_beforeData"><span></span></div>
+                        </div>
+                    </div>
+                    <div class="confirmDataArea" ng-repeat="kz in dataBefore.FURIKOMI_KOZA">
+                        <div class="confirmDataArea_row">
+                            <label class="confirmDataArea_label">登録銀行No</label>
+                            <div class="confirmDataArea_beforeData"><span>{{kz.KOZA_TRKNO}}</span></div>
+                        </div>
+                        <div class="confirmDataArea_row" ng-if="1 == kz.KOZA_UKTRKZ">
+                            <label class="confirmDataArea_label">金融機関コード</label>
+                            <div class="confirmDataArea_beforeData"><span>{{kz.KOZA_BK_CODE}}</span></div>
+                        </div>
+                        <div class="confirmDataArea_row">
+                            <label class="confirmDataArea_label">銀行名</label>
+                            <div class="confirmDataArea_beforeData"><span>{{kz.KOZA_BK_NM}}</span></div>
+                        </div>
+                        <div class="confirmDataArea_row" ng-if="1 == kz.KOZA_UKTRKZ">
+                            <label class="confirmDataArea_label">支店名</label>
+                            <div class="confirmDataArea_beforeData"><span>{{kz.KOZA_BK_MISE_NM}}</span></div>
+                        </div>
+                        <div class="confirmDataArea_row" ng-if="1 == kz.KOZA_UKTRKZ">
+                            <label class="confirmDataArea_label">口座番号</label>
+                            <div class="confirmDataArea_beforeData"><span>{{kz.KOZA_BANGO}}</span></div>
+                        </div>
+                        <div class="confirmDataArea_row" ng-if="1 == kz.KOZA_UKTRKZ">
+                            <label class="confirmDataArea_label">口座名義</label>
+                            <div class="confirmDataArea_beforeData"><span>{{kz.BK_KOZA_KANA}}</span></div>
+                        </div>
+                        <div class="confirmDataArea_row" ng-if="0 == kz.KOZA_UKTRKZ">
+                            <label class="confirmDataArea_label">記号</label>
+                            <div class="confirmDataArea_beforeData"><span>{{kz.YUCH_BK_C}}</span></div>
+                        </div>
+                        <div class="confirmDataArea_row" ng-if="0 == kz.KOZA_UKTRKZ">
+                            <label class="confirmDataArea_label">通帳番号</label>
+                            <div class="confirmDataArea_beforeData"><span>{{kz.YUCH_BK_KOZA_CD}}</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--変更後：当社から送金する際のお受取口座-->
+            <div ng-if="'1' == pageShow.KOZA_DEL_F || '1' == pageShow.BK_KOZA_ADD_F || '1' == pageShow.YUCH_KOZA_ADD_F">
+                <div class="blockArea after">
+                    <div class="confirmDataArea nullHeight" ng-if="0 == dataAfter.FURIKOMI_KOZA.length">
+                        <div class="confirmDataArea_row">
+                            <label class="confirmDataArea_label"></label>
+                            <div class="confirmDataArea_beforeData"><span></span></div>
+                        </div>
+                    </div>
+                    <div class="confirmDataArea" ng-repeat="kz in dataAfter.FURIKOMI_KOZA">
+                        <div class="confirmDataArea_row">
+                            <label class="confirmDataArea_label">登録情報</label>
+                            <div class="confirmDataArea_afterData"><span>{{kz.KOZA_TORK_K}}</span></div>
+                        </div>
+                        <div class="confirmDataArea_row">
+                            <label class="confirmDataArea_label">登録銀行No</label>
+                            <div class="confirmDataArea_afterData"><span>{{kz.KOZA_TRKNO}}</span></div>
+                        </div>
+                        <div class="confirmDataArea_row" ng-if="1 == kz.KOZA_UKTRKZ">
+                            <label class="confirmDataArea_label">金融機関コード</label>
+                            <div class="confirmDataArea_afterData"><span>{{kz.KOZA_BK_CODE}}</span></div>
+                        </div>
+                        <div class="confirmDataArea_row">
+                            <label class="confirmDataArea_label">銀行名</label>
+                            <div class="confirmDataArea_afterData"><span>{{kz.KOZA_BK_NM}}</span></div>
+                        </div>
+                        <div class="confirmDataArea_row" ng-if="1 == kz.KOZA_UKTRKZ">
+                            <label class="confirmDataArea_label">支店名</label>
+                            <div class="confirmDataArea_afterData"><span>{{kz.KOZA_BK_MISE_NM}}</span></div>
+                        </div>
+                        <div class="confirmDataArea_row" ng-if="1 == kz.KOZA_UKTRKZ">
+                            <label class="confirmDataArea_label">口座番号</label>
+                            <div class="confirmDataArea_afterData"><span>{{kz.KOZA_BANGO}}</span></div>
+                        </div>
+                        <div class="confirmDataArea_row" ng-if="0 == kz.KOZA_UKTRKZ">
+                            <label class="confirmDataArea_label">記号</label>
+                            <div class="confirmDataArea_afterData"><span>{{kz.YUCH_BK_C}}</span></div>
+                        </div>
+                        <div class="confirmDataArea_row" ng-if="0 == kz.KOZA_UKTRKZ">
+                            <label class="confirmDataArea_label">通帳番号</label>
+                            <div class="confirmDataArea_afterData"><span>{{kz.YUCH_BK_KOZA_CD}}</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--変更前：利金・分配金支払方法（包括）-->
+            <blockarea confrim-before no-border title="利金・分配金支払方法（包括）" ng-if="'1' == pageShow.SUKN_HKT_F">
+                <base-area>
+                    <row title="包括">
+                        <row-info>{{dataBefore.SUKN}}</row-info>
+                    </row>
+                </base-area>
+            </blockarea>
+            <!--変更後：利金・分配金支払方法（包括）-->
+            <blockarea confrim-after no-border no-btn="true" ng-if="'1' == pageShow.SUKN_HKT_F">
+                <base-area>
+                    <row title="支払方法">
+                        <row-info class="editFont">{{dataAfter.SUKN}}</row-info>
+                    </row>
+                </base-area>
+            </blockarea>
+
+            <!--変更前：利金・分配金支払方法（銘柄）-->
+            <!-- <blockarea confrim-before no-border title="利金・分配金支払方法（銘柄）" ng-if="'1' == pageShow.SUKN_HKT_MEIG_F">
+                <base-area>
+                    <row title="銘柄">
+                        <row-info>{{dataBefore.SUKN_SITEI_K}}</row-info>
+                    </row>
+                </base-area>
+            </blockarea> -->
+            <!--変更後：利金・分配金支払方法（銘柄）-->
+            <!-- <blockarea confrim-after no-border no-btn="true" ng-if="'1' == pageShow.SUKN_HKT_MEIG_F">
+                <base-area>
+                <row title="包括へ変更">
+                    <row-info class="editFont" ng-if="'1' == dataAfter.SUKN_HKT_MEIG_K">
+                        銘柄ごとに支払方法を指定している場合、すべての契約が「利金分配金（包括）」にて選択した内容に変更されます。
+                    </row-info>
+                </row>
+                </base-area>
+            </blockarea> -->
+
+            <!--変更前：外国証券の円貨利金分配金振込先-->
+            <blockarea confrim-before no-border title="外国証券の円貨利金分配金振込先" ng-if="'1' == pageShow.GAIK_SYKN_YEN_F">
+                <base-area>
+                    <row title="包括">
+                        <row-info>{{dataBefore.GAIK_SYKN_YEN_SUKN_BK_HKT}}</row-info>
+                    </row>
+                    <row title="銘柄／受取口座" ng-show="pageShow.showMeigKozaNasi">
+                        <row-info>なし</row-info>
+                    </row>
+                    <row title="銘柄／受取口座" ng-repeat="mk in dataBefore.MEIG_KOZA">
+                        <row-info>{{mk.GAIK_SYKN_YEN_SUKN_BK_MEIG}}</row-info>
+                    </row>
+                </base-area>
+            </blockarea>
+            <!--変更後：外国証券の円貨利金分配金振込先-->
+            <blockarea confrim-after no-border no-btn="true" ng-if="'1' == pageShow.GAIK_SYKN_YEN_F">
+                <base-area>
+                    <row title="支払方法">
+                        <row-info class="editFont">{{dataAfter.SUKN_HEN}}</row-info>
+                    </row>
+                </base-area>
+            </blockarea>
+
+            <!--変更前：分配金受取方法指定（累投）-->
+            <blockarea confrim-before no-border title="分配金受取方法指定（累投）" ng-if="'1' == pageShow.RUITOU_SUKN_KAIT_TEIS_F">
+                <base-area>
+                    <div class="ruitouBlockRow">－</div>
+                </base-area>
+            </blockarea>
+            <!--変更後：分配金受取方法指定（累投）-->
+            <blockarea confrim-after no-border no-btn="true" ng-if="'1' == pageShow.RUITOU_SUKN_KAIT_TEIS_F">
+                <base-area>
+                    <row title="支払方法">
+                        <row-info class="editFont">{{dataAfter.RUITOU_SUKN}}</row-info>
+                    </row>
+                </base-area>
+            </blockarea>
+
+            <!--変更前：配当金受領方式-->
+            <!-- <blockarea confrim-before no-border title="配当金受領方式" ng-if="'1' == pageShow.HAITKN_SYKN_UKTR_F">
+                <base-area>
+                    <row title="">
+                        <row-info>{{dataBefore.UKETORI_HOHO}}</row-info>
+                    </row>
+                </base-area>
+            </blockarea> -->
+            <!--変更後：配当金受領方式-->
+            <!-- <blockarea confrim-after no-border no-btn="true" ng-if="'1' == pageShow.HAITKN_SYKN_UKTR_F">
+                <base-area>
+                    <row title="申込区分">
+                        <row-info class="editFont">{{dataAfter.HAITKN_SYKN_UKTR_MSKM}}</row-info>
+                    </row>
+                    <row title="受取方法" ng-if="pageShow.showAmeigFurikomi">
+                        <row-info class="editFont">{{dataAfter.AMEIG_FURIKOMI}}</row-info>
+                    </row>
+                </base-area>
+            </blockarea> -->
+
+            <div class="areaTitle" ng-class="{'areaTitle_noEditTitle': pageShow.showNoEditFirstTitle}"
+                ng-if="pageShow.showNoEditLebel">以下については変更が不要かご確認ください</div>
+
+            <!--変更不要：おなまえ-->
+            <blockarea no-btn="true" title="おなまえ" ng-if="'0' == pageShow.KYAKNM_F">
+                <base-area>
+                    <row title="おなまえ（漢字）">
+                        <row-info>{{dataBefore.KYAKNM_KNJ}}</row-info>
+                    </row>
+                    <row title="おなまえ（カナ）">
+                        <row-info>{{dataBefore.KYAKNM_KANA}}</row-info>
+                    </row>
+                </base-area>
+            </blockarea>
+
+            <!--変更不要：ご住所-->
+            <blockarea no-btn="true" title="ご住所" ng-if="'0' == pageShow.KYAK_ADDR_F">
+                <base-area>
+                    <row title="郵便番号">
+                        <row-info>{{dataBefore.YUBINNO}}</row-info>
+                    </row>
+                    <row title="ご住所①">
+                        <row-info>{{dataBefore.KYAK_ADDR_KNJ}}</row-info>
+                    </row>
+                    <row title="ご住所①のフリガナ">
+                        <row-info>{{dataBefore.KYAK_ADDR_KANA}}</row-info>
+                    </row>
+                    <row title="ご住所②">
+                        <row-info>{{dataBefore.KYAK_HOSK_ADDR_KNJ}}</row-info>
+                    </row>
+                    <row title="ご住所②のフリガナ">
+                        <row-info>{{dataBefore.KYAK_HOSK_ADDR_KANA}}</row-info>
+                    </row>
+                    <row title="ご住所③">
+                        <row-info>{{dataBefore.KYAK_HOUSENM_KNJ}}</row-info>
+                    </row>
+                    <row title="ご住所③のフリガナ">
+                        <row-info>{{dataBefore.KYAK_HOUSENM_KANA}}</row-info>
+                    </row>
+                    <row title="送付先郵便番号">
+                        <row-info>{{dataBefore.SOUHUSAKI_YBN_BNG}}</row-info>
+                    </row>
+                    <row title="送付先住所">
+                        <row-info>{{dataBefore.SOUHUSAKI_JYSY_KNJ}}</row-info>
+                    </row>
+                    <row title="送付先フリガナ" class="noBorder">
+                        <row-info>{{dataBefore.SOUHUSAKI_JYSY_KN}}</row-info>
+                    </row>
+                </base-area>
+            </blockarea>
+
+            <!--変更不要：電話番号-->
+            <blockarea no-btn="true" title="電話番号" ng-if="'0' == pageShow.TELNO_F">
+                <base-area>
+                    <row title="ご自宅電話番号">
+                        <row-info>{{dataBefore.TELNO}}</row-info>
+                    </row>
+                    <row title="携帯電話番号">
+                        <row-info>{{dataBefore.MOBILE_TELNO}}</row-info>
+                    </row>
+                    <row title="FAX番号" class="noBorder">
+                        <row-info>{{dataBefore.FAXNO}}</row-info>
+                    </row>
+                </base-area>
+            </blockarea>
+
+            <!--変更不要：証券総合口座取引-->
+            <!-- <blockarea no-btn="true" title="日興MRF累積投資口座申込（証券総合口座取引）" ng-if="'0' == pageShow.NIKKO_MRF_F">
+                <base-area>
+                    <row title="" class="noBorder">
+                        <row-info>{{dataBefore.NIKKO_MRF}}</row-info>
+                    </row>
+                </base-area>
+            </blockarea> -->
+
+            <!--変更不要：日興カード-->
+            <blockarea no-btn="true" title="日興カード" ng-if="'0' == pageShow.NIKKO_CARD_F">
+                <base-area>
+                    <row title="カード発行日" class="noBorder">
+                        <row-info>{{dataBefore.NIKKO_CARD}}</row-info>
+                    </row>
+                </base-area>
+            </blockarea>
+
+            <!--変更不要：日興イージートレード-->
+            <blockarea no-btn="true" title="日興イージートレード" ng-if="'0' == pageShow.NIKKO_EZ_F">
+                <base-area>
+                    <row title="申込日">
+                        <row-info>{{dataBefore.NIKKO_EZ}}</row-info>
+                    </row>
+                    <row title="電子交付サービス" class="noBorder">
+                        <row-info>{{dataBefore.DNS_KOFU_SRV}}</row-info>
+                    </row>
+                </base-area>
+            </blockarea>
+
+            <!--変更不要：外国証券取引口座-->
+            <!-- <blockarea no-btn="true" title="外国証券取引口座" ng-if="'0' == pageShow.GAIK_SYKN_KOZA_F">
+                <base-area>
+                    <row title="開設日" class="noBorder">
+                        <row-info>{{dataBefore.GAIK_SYKN_KOZA_OPENYMD}}</row-info>
+                    </row>
+                </base-area>
+            </blockarea> -->
+
+            <!--変更不要：特定口座-->
+            <blockarea no-btn="true" title="特定口座" ng-if="'0' == pageShow.TKTEI_KOZA_F">
+                <base-area>
+                    <row title="開設日">
+                        <row-info>{{dataBefore.TKTEI_KOZA_OPENYMD}}</row-info>
+                    </row>
+                    <row title="勘定区分">
+                        <row-info>{{dataBefore.TKTEI_KOZA_AC}}</row-info>
+                    </row>
+                    <row title="源泉徴収区分">
+                        <row-info>{{dataBefore.TKTEI_KOZA_GNSN}}</row-info>
+                    </row>
+                    <row title="予約情報">
+                        <row-info>{{dataBefore.TKTEI_KOZA_YYK}}</row-info>
+                    </row>
+                    <row title="年初取引" class="noBorder">
+                        <row-info>{{dataBefore.TKTEI_KOZA_NENSY_TORIHIKIYMD}}</row-info>
+                    </row>
+                </base-area>
+            </blockarea>
+
+            <!--変更不要：特定管理口座-->
+            <blockarea no-btn="true" title="特定管理口座" ng-if="'0' == pageShow.TKTEI_KANRI_KOZA_F">
+                <base-area>
+                    <row title="開設日" class="noBorder">
+                        <row-info>{{dataBefore.TKTEI_KANRI_KOZA_OPENYMD}}</row-info>
+                    </row>
+                </base-area>
+            </blockarea>
+
+            <!--変更不要：加入者情報拡張登録-->
+            <!-- <blockarea no-btn="true" title="加入者情報拡張登録" ng-if="'0' == pageShow.KANYUSY_EXP_F">
+                <base-area>
+                    <row title="拡張情報" class="noBorder">
+                        <row-info>
+                            <div>
+                                <span ng-if="::dataBefore.KAKU_KYAKNM_KNJ.trim()">{{::dataBefore.KAKU_KYAKNM_KNJ}} <br/></span>
+                                <span ng-if="::dataBefore.KAKU_YUBINNO.trim()">〒{{::dataBefore.KAKU_YUBINNO | substr :0:3 }}－{{::dataBefore.KAKU_YUBINNO | substr :3 }}<br/></span>
+                                <span ng-if="::dataBefore.KAKU_ADDR.trim()">{{::dataBefore.KAKU_ADDR}}</span>
+                            </div>
+                        </row-info>
+                    </row>
+                </base-area>
+            </blockarea> -->
+
+            <!--変更不要：NISA口座開設-->
+            <blockarea no-btn="true" title="NISA口座開設" ng-if="'0' == pageShow.NISA_KOZA_F">
+                <base-area>
+                    <row title="開設年" class="noBorder">
+                        <row-info>{{dataBefore.NISA_KOZA_OPENYMD}}</row-info>
+                    </row>
+                </base-area>
+            </blockarea>
+
+            <!--変更不要：個人番号告知-->
+            <blockarea no-btn="true" title="個人番号告知" ng-if="'0' == pageShow.MYNO_KOKUCHI_F">
+                <base-area>
+                    <row title="告知状態" class="noBorder">
+                        <row-info>{{dataBefore.MYNO_KKC}}</row-info>
+                    </row>
+                </base-area>
+            </blockarea>
+
+            <!--変更不要：当社から送金する際のお受取口座-->
+            <blockarea no-btn="true" title="当社から送金する際のお受取口座"
+                ng-if="!('1' == pageShow.KOZA_DEL_F || '1' == pageShow.BK_KOZA_ADD_F || '1' == pageShow.YUCH_KOZA_ADD_F)">
+                <base-area>
+                    <div ng-repeat="kz in dataBefore.FURIKOMI_KOZA">
+                        <row title="登録銀行No" class="noBorder">
+                            <row-info>{{kz.KOZA_TRKNO}}</row-info>
+                        </row>
+                        <row title="金融機関コード" class="noBorder" ng-if="1 == kz.KOZA_UKTRKZ">
+                            <row-info>{{kz.KOZA_BK_CODE}}</row-info>
+                        </row>
+                        <row title="銀行名" class="noBorder">
+                            <row-info>{{kz.KOZA_BK_NM}}</row-info>
+                        </row>
+                        <row title="支店名" class="noBorder" ng-if="1 == kz.KOZA_UKTRKZ">
+                            <row-info>{{kz.KOZA_BK_MISE_NM}}</row-info>
+                        </row>
+                        <row title="口座番号" class="noBorder" ng-if="1 == kz.KOZA_UKTRKZ">
+                            <row-info>{{kz.KOZA_BANGO}}</row-info>
+                        </row>
+                        <row title="口座名義" ng-class="{'noBorder': $last}" ng-if="1 == kz.KOZA_UKTRKZ">
+                            <row-info>{{kz.BK_KOZA_KANA}}</row-info>
+                        </row>
+                        <row title="記号" class="noBorder" ng-if="0 == kz.KOZA_UKTRKZ">
+                            <row-info>{{kz.YUCH_BK_C}}</row-info>
+                        </row>
+                        <row title="通帳番号" ng-class="{'noBorder': $last}" ng-if="0 == kz.KOZA_UKTRKZ">
+                            <row-info>{{kz.YUCH_BK_KOZA_CD}}</row-info>
+                        </row>
+                    </div>
+                </base-area>
+            </blockarea>
+
+            <!--変更不要：利金・分配金支払方法（包括）-->
+            <blockarea no-btn="true" title="利金・分配金支払方法（包括）" ng-if="'0' == pageShow.SUKN_HKT_F">
+                <base-area>
+                    <row title="包括" class="noBorder">
+                        <row-info>{{dataBefore.SUKN}}</row-info>
+                    </row>
+                </base-area>
+            </blockarea>
+
+            <!--変更不要：利金・分配金支払方法（銘柄）-->
+            <!-- <blockarea no-btn="true" title="利金・分配金支払方法（銘柄）" ng-if="'0' == pageShow.SUKN_HKT_MEIG_F">
+                <base-area>
+                    <row title="銘柄" class="noBorder">
+                        <row-info>{{dataBefore.SUKN_SITEI_K}}</row-info>
+                    </row>
+                </base-area>
+            </blockarea> -->
+
+            <!--変更不要：外国証券の円貨利金分配金振込先-->
+            <blockarea no-btn="true" title="外国証券の円貨利金分配金振込先" ng-if="'0' == pageShow.GAIK_SYKN_YEN_F">
+                <base-area>
+                    <row title="包括">
+                        <row-info>{{dataBefore.GAIK_SYKN_YEN_SUKN_BK_HKT}}</row-info>
+                    </row>
+                    <row title="銘柄／受取口座" class="noBorder" ng-show="pageShow.showMeigKozaNasi"><row-info>なし</row-info></row>
+                    <row title="銘柄／受取口座" ng-class="{'noBorder': $last}" ng-repeat="mk in dataBefore.MEIG_KOZA">
+                        <row-info>{{mk.GAIK_SYKN_YEN_SUKN_BK_MEIG}}</row-info>
+                    </row>
+                </base-area>
+            </blockarea>
+
+            <!--変更不要：分配金受取方法指定（累投）-->
+            <blockarea no-btn="true" title="分配金受取方法指定（累投）" ng-if="'0' == pageShow.RUITOU_SUKN_KAIT_TEIS_F">
+                <base-area>
+                    <row title="" class="noBorder">
+                        <row-info>変更なし</row-info>
+                    </row>
+                </base-area>
+            </blockarea>
+
+            <!--変更不要：配当金受領方式-->
+            <!-- <blockarea no-btn="true" title="配当金受領方式" ng-if="'0' == pageShow.HAITKN_SYKN_UKTR_F">
+                <base-area>
+                    <row title="" class="noBorder">
+                        <row-info>{{dataBefore.UKETORI_HOHO}}</row-info>
+                    </row>
+                </base-area>
+            </blockarea> -->
+
+            <!--個人番号-->
+            <blockarea no-btn="true" title="個人番号" ng-if="pageShow.MYNO_KOKUCHI_JISN && !clearMynumberJoho">
+                <base-area>
+                    <row title="番号確認書類">
+                        <row-info>{{dataMosikomi.MNSYSEIRY_K}}</row-info>
+                    </row>
+                    <row title="個人番号" class="noBorder">
+                        <row-info>{{dataMosikomi.MYNO}}</row-info>
+                    </row>
+                </base-area>
+            </blockarea>
+
+            <!-- <div ng-if="pageErrCtl.errSyuruiTitle">
+                <div class="blockTitle">
+                    <span class="text">本人確認書類</span>
+                </div>
+                <div class="confirmDataArea_row">
+                    <div class="err-message">{{pageErrMsg.errSyuruiTitleMsg}}</div>
+                </div>
+            </div>
+            <div ng-if="!pageErrCtl.errSyuruiTitle"> -->
+            <div ng-if="!clearSyuruiJoho">
+                <!--本人確認書類（1種類目）-->
+                <div class="blockTitle">
+                    <span class="text">本人確認書類（{{dataMosikomi.HONIN_KAKNIN_SY_K_1}}）</span>
+                </div>
+                <!-- <div ng-if="pageErrCtl.errMynumberCard" class="confirmDataArea_row">
+                    <div class="err-message">{{pageErrMsg.errMynumberCardMsg}}</div>
+                </div> -->
+                <div class="alarm" ng-if="pageShow.showImageHnKnSyYuK1">
+                    <div class="alarm_icon"></div>
+                    <div class="alarm_msg">コピーした本人確認書類は、行内便で送付してください。</div>
+                </div>
+                <div ng-if="!pageShow.showImageHnKnSyYuK1" class="fillFormTable">
+                    <div ng-show="pageShow.showImageHnKnSy1Gz1" class="fillFormTable_box">
+                        <div class="fillFormTable_label">1枚目</div>
+                        <div class="fillFormImageBox">
+                            <img ng-src="{{dataMosikomi.HONIN_KAKNIN_SY1_GAZO1}}" class="fillFormImageBox_fillImage"
+                                alt="表面" />
+                        </div>
+                    </div>
+                    <div ng-show="pageShow.showImageHnKnSy1Gz2" class="fillFormTable_box">
+                        <div class="fillFormTable_label">2枚目</div>
+                        <div class="fillFormImageBox">
+                            <img ng-src="{{dataMosikomi.HONIN_KAKNIN_SY1_GAZO2}}" class="fillFormImageBox_fillImage"
+                                ng-show="pageShow.imageHnKnSy1Gz2Exist" />
+                            <div class="fillFormImageBox_noImage" ng-show="!pageShow.imageHnKnSy1Gz2Exist">撮影をスキップしました
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div ng-if="!pageShow.showImageHnKnSyYuK1 && pageShow.showImageHnKnSy1Gz3" class="fillFormTable">
+                    <div class="fillFormTable_box fillFormTable_box-left">
+                        <div class="fillFormTable_label">3枚目</div>
+                        <div class="fillFormImageBox">
+                            <img ng-src="{{dataMosikomi.HONIN_KAKNIN_SY1_GAZO3}}" class="fillFormImageBox_fillImage"
+                                ng-show="pageShow.imageHnKnSy1Gz3Exist" />
+                            <div class="fillFormImageBox_noImage" ng-show="!pageShow.imageHnKnSy1Gz3Exist">撮影をスキップしました
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div ng-show="pageShow.showHnKnSy2Title">
+                    <!--本人確認書類（2種類目）-->
+                    <div class="blockTitle">
+                        <span class="text">本人確認書類（{{dataMosikomi.HONIN_KAKNIN_SY_K_2}}）</span>
+                    </div>
+                    <!-- <div ng-if="pageErrCtl.errMynumberCard" class="confirmDataArea_row">
+                        <div class="err-message">{{pageErrMsg.errMynumberCardMsg}}</div>
+                    </div> -->
+                    <div class="alarm" ng-if="pageShow.showImageHnKnSyYuK2">
+                        <div class="alarm_icon"></div>
+                        <div class="alarm_msg">コピーした本人確認書類は、行内便で送付してください。</div>
+                    </div>
+                    <div ng-if="!pageShow.showImageHnKnSyYuK2" class="fillFormTable">
+                        <div ng-show="pageShow.showImageHnKnSy2Gz1" class="fillFormTable_box">
+                            <div class="fillFormTable_label">1枚目</div>
+                            <div class="fillFormImageBox">
+                                <img ng-src="{{dataMosikomi.HONIN_KAKNIN_SY2_GAZO1}}" class="fillFormImageBox_fillImage"
+                                    alt="表面" />
+                            </div>
+                        </div>
+                        <div ng-show="pageShow.showImageHnKnSy2Gz2" class="fillFormTable_box">
+                            <div class="fillFormTable_label">2枚目</div>
+                            <div class="fillFormImageBox">
+                                <img ng-src="{{dataMosikomi.HONIN_KAKNIN_SY2_GAZO2}}" class="fillFormImageBox_fillImage"
+                                    ng-show="pageShow.imageHnKnSy2Gz2Exist" />
+                                <div class="fillFormImageBox_noImage" ng-show="!pageShow.imageHnKnSy2Gz2Exist">
+                                    撮影をスキップしました
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-if="!pageShow.showImageHnKnSyYuK2 && pageShow.showImageHnKnSy2Gz3" class="fillFormTable">
+                        <div class="fillFormTable_box">
+                            <div class="fillFormTable_label">3枚目</div>
+                            <div class="fillFormImageBox">
+                                <img ng-src="{{dataMosikomi.HONIN_KAKNIN_SY2_GAZO3}}" class="fillFormImageBox_fillImage"
+                                    ng-show="pageShow.imageHnKnSy2Gz3Exist" />
+                                <div class="fillFormImageBox_noImage" ng-show="!pageShow.imageHnKnSy2Gz3Exist">
+                                    撮影をスキップしました
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--署名タイトル-->
+            <div class="blockTitle">
+                <span class="text">ご署名</span>
+            </div>
+            <!--署名確認-->
+            <div class="sign_row">
+                <img ng-if="showSignViewData" class="sign_data" ng-src="{{signViewData}}" alt="署名">
+            </div>
+
+            <!-- <div ng-if="showKofuHsk">
+                <div class="blockTitle">
+                    <span class="text">MRF目論見書の交付方式</span>
+                    <a class="link" data-toggle="modal" data-target="#modalDetail"
+                        ng-click="detailModalReset('G1260-01','G1260-02','MRF目論見書の交付方式')">くわしくはこちら</a>
+                </div>
+                <div class="input-check-area">
+                    <div class="confirm-input-row input-check-row">
+                        <label class="confirmDataArea_label"></label>
+                        <div class="requiredMark">必須</div>
+                        <div class="checkArea">
+                            <radio id="radioMRFDelivery" list="[{label: '店頭', value: '1'}, {label: '持参', value: '2'}]"
+                                input-data="input.KOFU_HSK" data="MODEL.KOFU_HSK" ng-model="MODEL.KOFU_HSK"></radio>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+
+            <div class="blockTitle">
+                <span class="text">備考</span>
+            </div>
+            <div class="input-check-area">
+                <div class="confirm-input-row input-check-row">
+                    <label class="confirmDataArea_label"></label>
+                    <div class="checkArea marginLeft70">
+                        <input type="text" class="bikoArea_input noMargin input-check-row" id="txtTanBiko"
+                            placeholder='備考があればご入力ください' maxlength="30" input-data="input.EIGYOIN_BIKO"
+                            ng-model="MODEL.EIGYOIN_BIKO">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!--固定フッター -->
+    <footer class="fixedFooter">
+        <button class="backBtn" ng-click="return.showModal()">戻る</button>
+        <button class="nextBtn" ng-click="confirm.showModal()" ng-disabled="canConfirm()">次へ</button>
+    </footer>
+</div>
+
+<!-- G1260-03 営業員確認完了画面 -->
+<div class="modal fade" data-backdrop="static" id="G1260-03">
+    <div class="modal-dialog modalBack_main">
+        <div class="modal-content modalBack_content">
+            <div class="modalBack_body modal-body">
+                以上の内容で登録してもよろしいですか？
+            </div>
+            <div class="modal-footer">
+                <button class="modalBack_noBtn" data-dismiss="modal" ng-click="confirm.no()">いいえ</button>
+                <button class="modalBack_yesBtn" data-dismiss="modal" ng-click="confirm.yes()">はい</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- G1260-05 お客様確認への遷移確認画面 -->
+<div class="modal fade" data-backdrop="static" id="G1260-05">
+    <div class="modal-dialog modalBack_main">
+        <div class="modal-content modalBack_content">
+            <div class="modalBack_body modal-body">
+                お客さま用確認画面に遷移します。
+                <br>お客さまにお申し込み内容の変更と
+                <br>再度ご署名をいただきます。
+                <br>よろしいですか？
+            </div>
+            <div class="modal-footer">
+                <button class="modalBack_noBtn" data-dismiss="modal" ng-click="return.no()">いいえ</button>
+                <button class="modalBack_yesBtn" data-dismiss="modal" ng-click="return.yes()">はい</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- G1260-02:詳細リンク(MRF目論見書の交付方式)画面 -->
+<div ng-include="'pages/detailModal.html'"></div>
+<!-- G1520-01:入力補助（類似文字確認）画面 -->
+<div ng-include="'pages/G1520-01_similarCharModal.html'"></div>
+<!-- G1260-04:営業員確認のエラー項目表示画面 -->
+<div ng-include="'pages/common/errItemModal.html'"></div>

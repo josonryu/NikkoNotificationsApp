@@ -1,0 +1,25 @@
+<!--撮影結果確認画面（種類別／確認チェック）※個人番号カード-->
+<div id="G1190-02" ng-init="init()">
+    <!--固定ヘッダー ブロック-->
+    <header ng-include="'pages/common/header.html'"></header>
+
+    <!--スクロールメインブロック-->
+    <main class="scrollArea main" ng-cloak ng-include src="'pages/G1190_ocrResultMain.html'" ng-init=""></main>
+
+    <!--固定フッター ブロック-->
+    <footer>
+        <div class="fixedFooter">
+                <button class="backBtn" ng-click="backBtnClick()">{{btnBackDisplay?"戻る":"書類選択へ戻る"}}</button>
+                <button class="nextBtn" ng-click="nextBtnClick()" ng-disabled="btnNextDisabled">{{btnDisplay?"確認画面へ":"次へ"}}</button>
+        </div>
+    </footer>
+</div>
+
+<!-- 画像拡大モーダル -->
+<div ng-include src="'pages/G1200-01_expansion.html'" ng-init=""></div>
+
+<!--書類選択へ戻る 確認ポップアップ-->
+<div ng-include src="'pages/G1190-03_backConfirm.html'" ng-init=""></div>
+
+<!-- G1170 カメラ撮影画面 -->
+<div id="G1170-01" class="bodyPart" ng-include="'pages/G1170-01_cameraShooting.html'"></div>

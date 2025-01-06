@@ -1,0 +1,52 @@
+<!-- 
+    画面名：撮影開始説明画面
+    画面id：G1150-01
+-->
+<div id="G1150-01" ng-init="init()">
+    <!-- ヘッダー部 -->
+    <header ng-include="'pages/common/header.html'"></header>
+
+    <!-- コンテンツ部 -->
+    <main class="main">
+
+        <!--パンくず ブロック-->
+        <div class="pankuzu" ng-include="'pages/common/pankuzu.html'" ng-init="pankuzuType = pankuzuPatten"></div>
+
+        <!-- mainBody メインブロック -->
+        <div class="mainBody">
+            <div class="mainBody_sentence">
+                タブレットの背面のカメラで本人確認書類の撮影を行います
+                <!-- 01-2022-02-303 個人番号カード利用時の文言表示追加対応 開始 20220415 -->
+                <div class="mainBody_sentenceAnnotation" ng-show="isMynumCard">
+                    ※個人番号カードをご用意ください。その他確認書類での撮影は不可です。
+                </div>
+                <!-- 01-2022-02-303 個人番号カード利用時の文言表示追加対応 終了 20220415 -->
+            </div>
+
+            <!--descript 説明ブロック-->
+            <div class="mainBody_descript">
+                <div class="mainBody_descript_image"></div>
+            </div>
+        </div>
+    </main>
+
+    <!--固定フッター ブロック-->
+    <footer>
+        <div class="fixedFooter"-->
+            <button class="backBtn" ng-click="btnBackClick()" ng-if="isShowBack">戻る</button>
+            <button class="nextBtn" ng-click="nextBtnClick()">次へ</button>
+        </div>
+    </footer>
+</div>
+
+<!-- 「G1160-01:撮影書面表示画面」 -->
+<div id="G1160-01" class="modal fade" data-backdrop="static" ng-include="'pages/G1160_startCameraId.html'" ng-init="popupMode = 'FRONT'"></div>
+
+<!-- 「G1170-01:カメラ撮影画面」 -->
+<div id="G1170-01" class="bodyPart" ng-include="'pages/G1170-01_cameraShooting.html'"></div>
+
+
+
+
+
+

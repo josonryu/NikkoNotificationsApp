@@ -1,0 +1,26 @@
+<!--
+    画面名：カメラ撮影画面
+    画面id：G1170-01
+-->
+    <header class="container-fluid residece-header">
+        <div class="col-xs-1 col-sm-1"></div>
+        <div class="col-xs-10 col-sm-10">
+            <div class="residece-title">{{cameraTitle}}</div>
+        </div>
+        <div class="col-xs-1 col-sm-1">
+        </div>
+    </header>
+    <main>
+        <div class="residece-main">
+            <div class="residece-divcamera">
+                <div ng-if="guideType === '01' && popupMode == 'FRONT'" class="residece-guide_mynumber"></div>
+                <div ng-if="guideType === '02' && popupMode == 'FRONT'" class="residece-guide_driver"></div>
+                <div ng-if="guideType === '03' && popupMode == 'FRONT'" class="residece-guide_passport"></div>
+                <div ng-if="guideType === '04' && popupMode == 'FRONT'" class="residece-guide_residence"></div>
+                <div ng-if="guideType === '05' && popupMode == 'FRONT'" class="residece-guide_special"></div>
+                <div class="residece-description">
+                    枠内に書面をあわせてください
+                </div>
+            </div>
+        </div>
+    </main>

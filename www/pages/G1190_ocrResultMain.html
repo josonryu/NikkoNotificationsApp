@@ -1,0 +1,187 @@
+<!--パンくず ブロック-->
+<div class="pankuzu" ng-include="'pages/common/pankuzu.html'" ng-init="pankuzuType = pankuzuPatten"></div>
+
+<!--スクロールメインブロック-->
+<div class="fillFormArea">
+    <!--タイトル-->
+    <div class="pageTitle">
+        <span>撮影内容の確認</span>
+    </div>
+    <!-- ブロックタイトル -->
+    <div class="blockTitle firstTitle">
+        <span class="text">{{title}}</span>
+        <!-- 自動マスク表示スイッチ -->
+        <a ng-show="isAutoFillImage && !showSwitch" class="link" ng-click="addSwitchClick()">記載内容が塗りつぶされている場合はこちら</a>
+        <div ng-show="isAutoFillImage && showSwitch" class="switch_wrapper">
+            <div class="switch_box">
+                <span class="switch_label">塗りつぶし</span>
+                <label class="form-switch">
+                    <input class="fakeInput" ng-click="maskBtnClick()" type="checkbox" ng-model="$parent.switch">
+                    <i class="separetor"></i>
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <div class="fillFormTable">
+        <!-- 左メインコンテナ -->
+        <div ng-if="!isSwiperMode" class="fillFormTable_box fillFormTable_box-left">
+            <div class="fillFormImageBox">
+                <div class="fillFormImageBox_frame">
+                    <img ng-src="{{idDocFrontimg}}" id="G1190-leftOcrImage" ng-if="frontImageExist" class="fillFormImageBox_fillImage" alt="{{title}} {{appConst.CAM_TITLE_SUFF.FACE_NAME}}" />
+                    <img ng-show="showAutoFillFrontImage" id="frontImageFill" ng-src="{{frontImageFill}}" class="fillFormImageBox_fillImage" alt="" />
+                    <div class="fillFormImageBox_frame_noImage" ng-if="!frontImageExist">認識できません。書類をご確認のうえ、再度撮影してください。</div>
+                </div>
+                <div class="fillFormImageBox_borderBottom" ng-show="frontImageExist">
+                    <button type="button" class="fillFormImageBox_borderBottom-retake" ng-disabled="noneInitCamFlg || noneInitCamOcrFlg" ng-click="takeRetry('front')">再撮影</button>
+                    <button type="button" class="fillFormImageBox_borderBottom-img-big" ng-click="imgExpansion('front')">画像拡大</button>
+                </div>
+                <div class="fillFormImageBox_borderBottom" ng-show="!frontImageExist">
+                    <button type="button" class="fillFormImageBox_borderBottom-retake" ng-disabled="noneInitCamFlg || noneInitCamOcrFlg" ng-click="takeRetry('front')">再撮影</button>
+                </div>
+            </div>
+        </div>
+        <!-- 右メインコンテナ -->
+        <div ng-if="!isSwiperMode" class="fillFormTable_box fillFormTable_box-right">
+            <div class="fillFormImageBox">
+                <div class="fillFormImageBox_frame">
+                    <img ng-src="{{idDocBackimg}}" id="G1190-rightOcrImage" class="fillFormImageBox_fillImage" alt="{{title}} {{appConst.CAM_TITLE_SUFF.BACK_NAME}}"  ng-if="backImageExist" />
+                    <img ng-show="showAutoFillBackImage" id="backImageFill" ng-src="{{backImageFill}}" class="fillFormImageBox_fillImage" alt="" ng-if="backImageExist" />
+                    <div class="fillFormImageBox_frame_noImage" ng-if="!backImageExist && !isMynumber">撮影をスキップしました</div>
+                </div>
+                <div class="fillFormImageBox_borderBottom"  ng-show="backImageExist">
+                    <button style="vertical-align: top;" type="button" class="fillFormImageBox_borderBottom-retake" ng-disabled="noneInitCamFlg || noneInitCamOcrFlg" ng-click="takeRetry('back')">再撮影</button>
+                    <button style="vertical-align: top;" type="button" class="fillFormImageBox_borderBottom-img-big" ng-click="imgExpansion('back')">画像拡大</button>
+                </div>
+                <div class="fillFormImageBox_borderBottom" ng-show="!backImageExist && !isMynumber">
+                    <button type="button" class="fillFormImageBox_borderBottom-retake" ng-disabled="noneInitCamFlg || noneInitCamOcrFlg" ng-click="takeRetry('back')">再撮影</button>
+                </div>
+            </div>
+        </div>
+        <!-- 横スクロールメインコンテナ -->
+        <div ng-if="isSwiperMode" class="swiper-container gallery-top">
+            <div class="swiper-wrapper">
+                <!--■■■■　1枚目　■■■■-->
+                <div class="swiper-slide">
+                    <!-- 撮影枚数表示ラベル -->
+                    <span class="fillFormPieceLabel">{{appConst.CAM_DISPLAY_MODAL.FIRST_NAME}}</span>
+                    <!-- 選択画像表示ブロック -->
+                    <div class="fillFormImageBox_frame">
+                        <img ng-src="{{idDocFrontimg}}" id="G1190-leftOcrImage" ng-if="frontImageExist" class="fillFormImageBox_fillImage" alt="{{title}} {{appConst.CAM_TITLE_SUFF.FIRST_NAME}}" />
+                        <img ng-show="showAutoFillFrontImage" id="frontImageFill" ng-src="{{frontImageFill}}" class="fillFormImageBox_fillImage" alt="" />
+                        <div class="fillFormImageBox_frame_noImage" ng-if="!frontImageExist">認識できません。書類をご確認のうえ、再度撮影してください。</div>
+                    </div>
+                    <!-- サイドコンテナ（撮影画像あり） -->
+                    <div class="fillFormImageBox_sideContainer" ng-show="frontImageExist">
+                        <span>再撮影</span>
+                        <button type="button" class=" fillFormImageBox_sideContainer-retake" ng-disabled="noneInitCamFlg || noneInitCamOcrFlg" ng-click="takeRetry('front')"></button>
+                        <span>画像拡大</span>
+                        <button type="button" class="fillFormImageBox_sideContainer-img-big" ng-click="imgExpansion('front')"></button>
+                    </div>
+                    <!-- サイドコンテナ（撮影画像なし） -->
+                    <div class="fillFormImageBox_sideContainer" ng-show="!frontImageExist">
+                        <span>再撮影</span>
+                        <button type="button" class="fillFormImageBox_sideContainer-retake" ng-disabled="noneInitCamFlg || noneInitCamOcrFlg" ng-click="takeRetry('front')"></button>
+                    </div>
+                </div>
+                <!--■■■■　2枚目　■■■■-->
+                <div class="swiper-slide">
+                    <!-- 撮影枚数表示ラベル -->
+                    <span class="fillFormPieceLabel">{{appConst.CAM_DISPLAY_MODAL.SECOND_NAME}}</span>
+                    <!-- 選択画像表示ブロック -->
+                    <div class="fillFormImageBox_frame">
+                        <img ng-src="{{idDocBackimg}}" id="G1190-rightOcrImage" class="fillFormImageBox_fillImage" alt="{{title}} {{appConst.CAM_TITLE_SUFF.SECOND_NAME}}"  ng-if="backImageExist" />
+                        <img ng-show="showAutoFillBackImage" id="backImageFill" ng-src="{{backImageFill}}" class="fillFormImageBox_fillImage" alt="" ng-if="backImageExist" />
+                        <div class="fillFormImageBox_frame_noImage" ng-if="!backImageExist">撮影をスキップしました</div>
+                    </div>
+                    <!-- サイドコンテナ（撮影画像あり） -->
+                    <div class="fillFormImageBox_sideContainer" ng-show="backImageExist">
+                        <span>再撮影</span>
+                        <button type="button" class="fillFormImageBox_sideContainer-retake" ng-disabled="noneInitCamFlg || noneInitCamOcrFlg" ng-click="takeRetry('back')"></button>
+                        <span>画像拡大</span>
+                        <button type="button" class="fillFormImageBox_sideContainer-img-big" ng-click="imgExpansion('back')"></button>
+                    </div>
+                    <!-- サイドコンテナ（撮影画像なし） -->
+                    <div class="fillFormImageBox_sideContainer" ng-show="!backImageExist">
+                        <span>再撮影</span>
+                        <button type="button" class="fillFormImageBox_sideContainer-retake" ng-disabled="noneInitCamFlg || noneInitCamOcrFlg" ng-click="takeRetry('back')"></button>
+                    </div>
+                </div>
+                <!--■■■■　3枚目　■■■■-->
+                <div class="swiper-slide">
+                    <!-- 撮影枚数表示ラベル -->
+                    <span class="fillFormPieceLabel">{{appConst.CAM_DISPLAY_MODAL.THIRD_NAME}}</span>
+                    <!-- 選択画像表示ブロック -->
+                    <div class="fillFormImageBox_frame">
+                        <img ng-src="{{idDocThirdimg}}" id="G1190-rightOcrImage" class="fillFormImageBox_fillImage" alt="{{title}} {{appConst.CAM_TITLE_SUFF.THIRD_NAME}}"  ng-if="thirdImageExist" />
+                        <div class="fillFormImageBox_frame_noImage" ng-if="!thirdImageExist">撮影をスキップしました</div>
+                    </div>
+                    <!-- サイドコンテナ（撮影画像あり） -->
+                    <div class="fillFormImageBox_sideContainer"  ng-show="thirdImageExist">
+                        <span>再撮影</span>
+                        <button type="button" class="fillFormImageBox_sideContainer-retake" ng-disabled="noneInitCamFlg || noneInitCamOcrFlg" ng-click="takeRetry('third')"></button>
+                        <span>画像拡大</span>
+                        <button type="button" class="fillFormImageBox_sideContainer-img-big" ng-click="imgExpansion('third')"></button>
+                    </div>
+                    <!-- サイドコンテナ（撮影画像なし） -->
+                    <div class="fillFormImageBox_sideContainer" ng-show="!thirdImageExist && backImageExist">
+                        <span>再撮影</span>
+                        <button type="button" class="fillFormImageBox_sideContainer-retake" ng-disabled="noneInitCamFlg || noneInitCamOcrFlg" ng-click="takeRetry('third')"></button>
+                    </div>
+                </div>
+            </div>
+            <!-- ガイド -->
+            <div class="swiper-button-next swiper-button-white"></div>
+            <div class="swiper-button-prev swiper-button-white"></div>
+        </div>
+
+        <!-- サムネイルコンテナ -->
+        <div ng-if="isSwiperMode" class="swiper-container gallery-thumbs">
+            <div ng-if="frontImageExist && !backImageExist && !thirdImageExist" class="swiper_label">全1枚</div>
+            <div ng-if="frontImageExist && backImageExist && !thirdImageExist" class="swiper_label">全2枚</div>
+            <div ng-if="frontImageExist && backImageExist && thirdImageExist" class="swiper_label">全3枚</div>
+            <div class="swiper-wrapper">
+                <!--■■■■　1枚目　■■■■-->
+                <div class="swiper-slide">
+                    <div class="thumbsImageBox_frame">
+                        <img ng-src="{{idDocFrontimg}}" id="G1190-leftOcrImage" ng-if="frontImageExist" class="thumbsImageBox_fillImage" alt="{{title}} {{appConst.CAM_TITLE_SUFF.FIRST_NAME}}" />
+                        <img ng-show="showAutoFillFrontImage" id="frontImageFill" ng-src="{{frontImageFill}}" class="thumbsImageBox_fillImage" alt="" />
+                        <div class="thumbsImageBox_frame_noImage" ng-if="!frontImageExist"></div>
+                    </div>
+                </div>
+                <!--■■■■　2枚目　■■■■-->
+                <div class="swiper-slide">
+                    <div class="thumbsImageBox_frame">
+                        <img ng-src="{{idDocBackimg}}" id="G1190-rightOcrImage" class="thumbsImageBox_fillImage" alt="{{title}} {{appConst.CAM_TITLE_SUFF.SECOND_NAME}}"  ng-if="backImageExist" />
+                        <img ng-show="showAutoFillBackImage" id="backImageFill" ng-src="{{backImageFill}}" class="thumbsImageBox_fillImage" alt="" ng-if="backImageExist" />
+                        <div class="thumbsImageBox_frame_noImage" ng-if="!backImageExist"></div>
+                    </div>
+                </div>
+                <!--■■■■　3枚目　■■■■-->
+                <div class="swiper-slide">
+                    <div class="thumbsImageBox_frame">
+                        <img ng-src="{{idDocThirdimg}}" id="G1190-rightOcrImage" class="thumbsImageBox_fillImage" alt="{{title}} {{appConst.CAM_TITLE_SUFF.THIRD_NAME}}"  ng-if="thirdImageExist" />
+                        <img ng-show="showAutoFillThirdImage" id="thirdImageFill" ng-src="{{thirdImageFill}}" class="thumbsImageBox_fillImage" alt="" ng-if="thirdImageExist" />
+                        <div class="thumbsImageBox_frame_noImage" ng-if="!thirdImageExist"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="fillFormTable_checkBox">
+            <div class="checkBoxForm">
+                <div class="checkBoxForm_title">以下の内容を確認のうえチェックしてください</div>
+                <div class="checkArea">
+                    <checkbox label="記載内容を読み取ることができる" id="G1190-checkboxConfirm1" value="1" data="$parent.checkboxConfirm1"></checkbox>
+                </div>
+                <div class="checkArea">
+                    <checkbox label="記載内容、顔写真に「光の反射」や「指などの写り込み」がない" id="G1190-checkboxConfirm2" value="1" data="$parent.checkboxConfirm2"></checkbox>
+                </div>
+                <div ng-show="isAutoFillImage" class="checkArea">
+                    <checkbox label="記載内容が塗りつぶされていない" id="G1190-checkboxConfirm3" value="1" data="$parent.checkboxConfirm3"></checkbox>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

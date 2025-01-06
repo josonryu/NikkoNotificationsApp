@@ -1,0 +1,62 @@
+<div id="G1410-01" ng-init="init()">
+    <header  ng-include="'pages/common/header.html'" ng-init="headerType = 3">
+    </header>
+
+    <!--スクロールメイン-->
+    <main id="G1410-01-main" class="scrollArea">
+        <div class="mainBody">
+            <div class="imageArea ng-cloak" id="imageArea">
+                <canvas class="canvas_main" id="canvas_main"></canvas>
+                <!--メール電子交付サービス仮登録申込書（新規・変更）-->
+                <div ng-show="(docCode ==='870' && showCheckBox)">
+                    <input id="consentCheck1" type="radio" name="consentCheck" class="consentCheck consentCheck_870_1" ng-model="consentCheck" value="1">
+                    <input id="consentCheck2" type="radio" name="consentCheck" class="consentCheck consentCheck_870_2" ng-model="consentCheck" value="2">
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 固定フッター ブロック -->
+    <footer class="fixedFooter">
+        <button class="backBtn" ng-click="backBtnClick()">戻る</button>
+        <button ng-show="!isSign" class="nextBtn" id="signBtn" data-target="#G1410-02" ng-disabled="!isActiveSyomei()" ng-click="inputSignBtnClick()">署名する</button>
+        <button ng-show="isSign" class="nextBtn" id="btnNext" ng-click="nextBtnClick()">確定</button>
+    </footer>
+</div>
+
+<!--署名モーダル-->
+<div class="signModal" id="G1410-02">
+    <div class="signModal_row-center">
+        <div class="col-xs-12 col-sm-12">
+            <div class="signModal_label">楷書でご署名ください</div>
+        </div>
+    </div>
+    <div class="signModal_handwriteTabelBox">
+        <div class="signModal_titleRow">
+            <div class="signModal_BtnArea">
+                <button type="button" ng-click="canvasclear()" class="signModal_allDeleteBtn"><div class="signModal_allclearIcon"></div>すべて削除</button>
+            </div>
+        </div>
+        <canvas id="canvas" width="924" height="230"></canvas>
+    </div>
+    <div class="signModal_row-bottom">
+        <div class="col-xs-8 col-xs-offset-2 col-sm-8 col-sm-offset-2 text-center">
+            <button type="button" ng-click="modalBackBtnClick()" class="signModal_backBtn">戻る</button>
+            <button type="button" ng-click="modalConfirmBtnClick()" ng-class="(isShowSubmit == true) ? 'signModal_confirmBtn' : 'signModal_confirmBtn_disabled'">確定</button>
+        </div>
+    </div>
+</div>
+<!-- 登録確認モーダルのブロック -->
+<div class="modal fade" data-backdrop="static" id="G1410-03">
+    <div class="modal-dialog modalBack_main">
+        <div class="modal-content modalBack_content">
+            <div class="modalBack_body modal-body">
+                以上で登録してもよろしいですか？
+            </div>
+            <div class="modal-footer">
+                <button class="modalBack_noBtn" data-dismiss="modal" ng-click="confirmNo()">いいえ</button>
+                <button class="modalBack_yesBtn" data-dismiss="modal" ng-click="confirmYes()">はい</button>
+            </div>
+        </div>
+    </div>
+</div>

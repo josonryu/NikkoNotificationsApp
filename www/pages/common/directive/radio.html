@@ -1,0 +1,8 @@
+
+<!-- <div class="checkArea_div" ng-repeat="e in list" ng-style="{'width':width}"> -->
+    <div class="checkArea_div" ng-repeat="e in list">
+        <label class="checkArea_labelJust radio" ng-class="[{'selected': e.value == $parent.data}, {'disabled': $parent.disabled}]">
+            <span ng-bind-html="e.label |chgLine"></span>
+            <input type="radio" class="checkArea_radio" ng-model="$parent.data" ng-value="e.value" name="{{name}}"  ng-disabled="$parent.disabled" ng-change="$parent.radioChg()" ng-click="$parent.radioClick($event)">
+        </label>
+    </div>

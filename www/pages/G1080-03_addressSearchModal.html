@@ -1,0 +1,36 @@
+<!-- 
+    画面名：住所検索画面
+    画面id：G1080-03
+-->
+<div id="G1080-03">
+    <div class="zipCodeModal modal fade" data-backdrop="static" id="zipCodeModal">
+        <div class="modal-dialog zipCodeModal_dialog">
+            <div class="modal-content zipCodeModal_content" id="zipCodeModalContent">
+                <div class="modal-body zipCodeModal_body">
+                    <div class="zipCodeModal_title">
+                        <p id="modalZipCode" ng-show="zipCodeModalSuccess || (zipCodeModalError && zipCodeModalError_noResult)">{{zipCode}}</p>
+                        <p ng-show="zipCodeModalSuccess">の検索結果は以下のとおりです</p>
+                        <p ng-show="zipCodeModalError && zipCodeModalError_noResult">の検索結果は存在しません</p>
+                        <p ng-show="zipCodeModalError && zipCodeModalError_excess">検索結果が100件を超えました</p>
+                        <p ng-show="zipCodeModalError && zipCodeModalError_excess">郵便番号を7桁で入力して再検索してください。</p>
+                    </div>
+                    <div id="zipCodeModal_overflowScroll" class="zipCodeModal_overflowScroll" ng-show="zipCodeModalSuccess">
+                        <div class="zipCodeModal_address" ng-repeat="d in addressArr">
+                            <span class="zipCodeModal_zipcodeText">{{d.zipcode}}</span>
+                            <span class="zipCodeModal_addressText">{{d.address}}</span>
+                            <button class="zipCodeModal_selectBtn" data-dismiss="modal"
+                                ng-click="zipcodeSelect($index)">選択</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer zipCodeModal_footer">
+                    <button class="zipCodeModal_cancelBtn" data-dismiss="modal"
+                        ng-click="zipCancelBtnClick(); scrollUnlock()" ng-show="zipCodeModalSuccess">キャンセル</button>
+                    <button class="zipCodeModal_closeBtn" data-dismiss="modal"
+                        ng-click="zipCloseBtnClick(); scrollUnlock()" ng-show="zipCodeModalError">閉じる</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

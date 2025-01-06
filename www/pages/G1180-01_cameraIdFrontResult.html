@@ -1,0 +1,44 @@
+<!--
+    画面名：撮影結果表示画面(本人確認書類撮影機能)（表面）
+    画面id：G1180-01
+-->
+<div id="G1180-01" ng-init="init()">
+    <header class="container-fluid G1180-header">
+        <div class="G1180-title">{{docName}}</div>
+    </header>
+
+    <main class="container-fluid G1180-main-space">
+        <div class="row">
+<!-- 01-2022-06-224 本人確認書類撮影画面のガード対応 開始 20221031 -->
+            <div class="G1180-confirm-title" ng-class="{'matcherr': isAutoandCardTypeErr}" ng-bind-html="pictureConfirm"></div>
+<!-- 01-2022-06-224 本人確認書類撮影画面のガード対応 終了 20221031 -->
+        </div>
+        <div class="row">
+            <img id="imgFront" ng-src="{{cardFrontimg}}" class="img-responsive center-block G1180-divimg G1180-divimg_frame" ng-show="frontImageExist" alt="{{docName}}イメージ"></img>
+        </div>
+    </main>
+    
+    <footer>
+<!-- 01-2022-06-224 本人確認書類撮影画面のガード対応 開始 20221031 -->
+        <div class="fixedFooter" ng-show="!isAutoandCardTypeErr">
+<!-- 01-2022-06-224 本人確認書類撮影画面のガード対応 終了 20221031 -->
+            <button class="backBtn" id="btnTakeRetry" ng-click="btnTakeRetryClick()">再撮影</button>
+            <button class="nextBtn" ng-click="btnNextClick()" ng-show="frontImageExist">次へ</button>
+        </div>
+<!-- 01-2022-06-224 本人確認書類撮影画面のガード対応 開始 20221031 -->
+        <div class="fixedFooter" ng-show="isAutoandCardTypeErr">
+            <button class="backBtn" id="btnTakeRetry" ng-click="backBtnClick()">書類選択へ戻る</button>
+            <button class="nextBtn" id="btnTakeRetry_matcherr" ng-click="btnTakeRetryClick()">再撮影</button>
+        </div>
+<!-- 01-2022-06-224 本人確認書類撮影画面のガード対応 終了 20221031 -->
+    </footer>
+</div>
+
+<!-- 「G1160-01:撮影書面表示画面」 -->
+<div id="G1160-01" class="modal fade" data-backdrop="static" ng-include="'pages/G1160_startCameraId.html'"></div>
+
+<!-- 「G1160-02:撮影書面表示（スキップ時）画面」 -->
+<div id="G1160-02" class="modal fade" data-backdrop="static" ng-include="'pages/G1160_startCameraId.html'"></div>
+
+<!-- 「G1170-01:カメラ撮影画面」 -->
+<div id="G1170-01" class="bodyPart" ng-include="'pages/G1170-01_cameraShooting.html'"></div>
