@@ -1,0 +1,133 @@
+/* 
+    画面名：電子帳票対象書面選択画面
+    画面id：G1400-01
+*/
+#G1400-01{
+
+    .pullStyleErr + .err-message {
+        margin-left: 215px;
+    }
+    //独自スタイル
+    .err-message{
+        margin-left: 228px;
+    }
+
+    .scrollArea{
+        height: 620px;
+        margin-top: 60px;
+    }
+
+    .mainSpace{
+        border-bottom: none;
+        text-align: left;
+        width: 100%;
+        height: 600px;
+    }
+
+
+    //入力ブロック
+    .blockArea{
+        &_description{
+            padding-left: 210px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        &_row{
+            margin-top: 0;
+            font-size: 14px;
+            font-weight: normal;
+        }
+        &_requiredMark{
+          background-color: $color-accent;
+            border-radius: 11px;
+            color: $color-white;
+            display: inline-block;
+            font-size: $fontsize-small;
+            height: 22px;
+            margin-top: -3px;
+            margin-left: 10px;
+            padding-top: 3px;
+            text-align: center;
+            width: 46px;
+        }
+    }
+
+    .mailAddressArea{
+
+        &_pulldown{
+            width: 260px;
+        }
+
+        &_inputLocal{
+            width: 413px;
+            margin-left: unset;
+        }
+        &_inputDomain{
+            width: 260px;
+        }
+    }
+
+    .linkText{
+        color: $color-link;
+        float: right;
+        font-size: $fontsize-middle;
+        font-weight: bold;
+        margin-top: 15px;
+        margin-left: 22px;
+        margin-right: 0;
+        text-decoration: none;
+
+        &.right {
+            position: absolute;
+            margin-left: 0px;
+            margin-top: -5px;
+            right: 0;
+        }
+    }
+
+    .mailModeLinkArea {
+        height: 15px;
+    }
+
+    .signDocPulldownArea {
+        margin: unset;
+    }
+  
+    .marginleft {
+        margin-left: 10px;
+    }
+    .marginTop{
+        margin-top: 15px;
+    }
+    .marginRight0 {
+        margin-right: unset;
+    }
+}
+
+
+/* 
+    画面名：申込中止画面（電子帳票）
+    画面id：G1400-03
+*/
+#G1400-03 {
+    @include modal(s);
+
+    .modalStop {
+
+        &_body {
+            $f: $fontsize-large;
+            text-align: center;
+            font-size: $fontsize-large;
+            font-weight: bold;
+        }
+        
+        &_yesBtn {
+            @extend .btn_yes;
+        }
+
+        &_noBtn {
+            @extend .btn_no;
+        }
+    }
+}

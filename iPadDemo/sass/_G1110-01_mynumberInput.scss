@@ -1,0 +1,185 @@
+/*
+G1110-01_mynumberInput.scss
+個人番号入力画面
+*/
+
+#G1110-01{
+
+    input {
+        user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        -webkit-user-select: none;
+        outline-style: none;
+    }
+
+    // 進捗率スタイル
+    .progressCircle{
+        @include progressCircle(25);
+    }
+
+    .subText{
+        margin: 20px 0;
+        color: $color-gray900;
+        font-size: $fontsize-large;
+        text-align: center;
+    }
+
+    .margintop100{
+        margin-top: 100px;
+    }
+
+    // OCR結果適応注意喚起
+    .basicInfoTitle{
+        &_warn{
+            height: 60px;
+            background-color: $color-white;
+            color: $color-accent;
+            font-size: $fontsize-large;
+            font-weight: bold;
+            margin-left: 60px;
+            display: flex;
+            align-items: center;
+            margin: 20px 0;
+
+            &_icon {
+                background: {
+                    image: url("../images/icon_alert.svg");
+                    repeat: no-repeat;
+                    size: contain;
+                }
+                display: block;
+                margin-top: 4px;
+                margin-left: 22px;
+                margin-right: 13px;
+                width: 30px;
+                height: 30px;
+            }
+        }
+    }
+
+    //OCR読み取り結果共通
+    .ocr{
+        &_label{
+            justify-content: center;
+            align-items: center;
+            display: inline-flex;
+            height: 45px;
+            position: relative;
+            margin-left: 70px;
+    
+            background-color: $color-blueGray50;
+            text-align: center;
+            color: #212121;
+            font-size: 12px;
+            width: 135px;
+            font-weight: bold;
+            border-radius: 5px 0 0 5px;
+        }
+    
+        &_result{
+            align-items: center;
+            display: inline-flex;
+            height: 45px;
+            position: relative;
+            width: 170px;
+            background-color: $color-blueGray50;
+    
+            color: $color-gray900;
+            font-size: $fontsize-large;
+            text-align: center;
+            margin-left: 20px;
+    
+            &.last{
+                border-radius: 0 5px 5px 0;
+                width: auto;
+                padding: 0 10px;
+            }
+        }
+    
+        &_right{
+            height: 45px;
+            border-left: 22.5px solid #eceff1;
+            border-top: 22.5px solid transparent;
+            border-bottom: 22.5px solid transparent;
+            display: inline-block;
+            position: absolute;
+            top: 0px;
+            right: -22.5px;
+        }
+    
+        &_Left{
+            height: 45px;
+            border-top: 22.5px solid #eceff1;
+            border-bottom: 22.5px solid #eceff1;
+            display: inline-block;
+            position: absolute;
+            top: 0px;
+            border-left: 22.5px solid #eceff1;
+            left: -35px;
+            width: 35px;
+        }
+        
+        &_arrow{
+            height: auto;
+            margin: auto;
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            right: 0;
+            width: 20px;
+        }
+
+        &_btnArea{
+            margin-left: 50px;
+        }
+
+        &_btnInputOcr{
+            background-color: $color-baseColor1;
+            border-style: none;
+            border-radius: 5px;
+            color: $color-white;
+            font-size: $fontsize-small;
+            font-weight: bold;
+            height: 30px;
+            width: 175px;
+
+            &:active{
+                @extend .button-active;
+            }
+
+            background-repeat: no-repeat;
+            background-size: auto 15px;
+            background-position: 15px center;
+            background-image: url(../images/icon_check.svg);
+        }
+    }
+
+    .withoutMark{
+        width: 180px;
+    }
+
+    .btnOcr{
+        background-color: $button-search-color-bg;
+        border-style: none;
+        border-radius: 5px;
+        color: $color-white;
+        font-size: $fontsize-middle;
+        height: 40px;
+        margin-left: 50px;
+        padding-left: 40px;
+        min-width: 140px;
+        background-image: url(../images/icon_photo.svg);
+        background-repeat: no-repeat;
+        background-size: auto 45%;
+        background-position: 15px 10px;
+
+        &:active{
+            @extend .button-active;
+        }
+    }
+
+    .txtMynumber{
+        padding-left: 220px;
+    }
+}

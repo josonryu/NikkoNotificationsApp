@@ -1,0 +1,580 @@
+/*
+    画面名：事務手続き画面
+    画面id：G1080-01
+*/
+#G1080-01 {
+
+    a.anchor {
+        display: block;
+        top: 60px;
+    }
+
+    a.anchor.anchorFirst {
+        top: -60px;
+    }
+   
+    .main{
+        padding-bottom: 200px;
+        height: 658px;
+    }
+    .kozaInfoTitle{
+        .blockArea.confrimBefore::before{
+            content: 'お客さまの口座情報';
+        }
+    }
+    .noAfter {
+        .blockArea.confrimBefore::after {
+            content: '';
+            background: none;
+        }
+    }
+
+    .noBaseArea .baseArea {
+        padding-bottom: 0 !important;
+    }
+
+    .pageTitle{
+        margin-top: 70px;
+    }
+
+    .alarmArea {
+        $imageWidht: 24px;
+
+        display: block;
+        margin-top: 45px;
+
+        background-image: url(../images/icon_alert.svg);
+        background-size: auto $imageWidht;
+        background-repeat: no-repeat;
+        background-position: top 0 left (60px - $imageWidht) / 2;
+
+        text-align: left;
+        font-size: $fontsize-middle-two;
+        color: $color-accent;
+
+        padding: 4px (60px - $imageWidht)/2 0px 60px;
+        font-weight: bold;
+
+        +.alarmArea{
+            margin-top: 5px;
+        }
+    }
+
+    .areaTitle45{
+        .blockTitle {
+            margin-top: 45px;
+        }
+    }
+
+    .warningText{
+        font-size: $font-size-accent;
+        color: $color-accent;
+        margin-left: 2px;
+
+        ul {
+            list-style: none;
+            margin-bottom: 0;
+            padding-left: 0px;
+
+            li {
+                display: flex;
+                margin-bottom: 5px;
+
+                &::before {
+                    content: ('');
+                    background-image: url(../images/icon_alert.svg);
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    background-size: contain;
+                    display: inline-block;
+                    height: 15px;
+                    width: 15px;
+                    margin-right: 5px;
+                    margin-top: 3px;
+                    flex-shrink: 0;
+                }
+
+                &:last-child{
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
+
+    .link {
+        color: $title-link-color-font;
+        font-size: $title-link-fontsize;
+        font-weight: bold;
+        text-decoration: none;
+    }
+
+    .lfef0{
+        margin-left: 0;
+    }
+
+    .left10{
+        margin-left: 10px;
+    }
+
+    .left32 {
+        margin-left: 32px;
+    }
+
+    .right40{
+        margin-right: 40px;
+    }
+
+    .top20{
+        margin-top: 20px;
+    }
+
+    .noMarginTop{
+        .blockRow{
+            margin-top: 5px;
+        }
+    }
+    
+    .err-message{
+        margin-top: 5px;
+        margin-left: $row-label-width + $norequired-width;
+    }
+
+    base-area {
+        + .err-message{
+            margin-left: $row-label-width + $norequired-width + 20px;
+            margin-right: 20px;
+            margin-top: 10px;
+        }
+
+        &.err{
+            display: block;
+            border: none;
+            background-color: rgba(197, 17, 98, 0.1);
+        }
+    }
+
+    .baseArea.err {
+        background-color: unset;
+    }
+
+    .baseArea.err .specialErrArea {
+        background-color: rgba(197, 17, 98, 0.1);
+        border-radius: unset;
+    }
+
+    .baseArea.err .err-message {
+        margin: 0;
+        margin-left: 235px;
+        height: 0;
+        // text-align: center;
+        text-align: left;
+        position: relative;
+        top: 20px;
+    }
+
+    .groupCheckRow + .err-message{
+        margin-top: 20px;
+    }
+
+    .rowMarginTop0{
+        .blockRow{
+            margin-top: 0px;
+        }
+    }
+
+    .rowBolder{
+        .blockRow{
+            margin-top: $row-padding-bottom;
+            padding-top: $row-padding-top;
+            border-top: $row-border-bottom;
+        }
+    }
+
+    .titleTop{
+        .blockRow{
+            .rowLabel{
+                padding-top: 5px;
+                align-self: flex-start;
+            }
+        }
+    }
+
+    .btnRow{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 15px;
+
+        &.top20{
+            margin-top: 20px;
+        }
+
+        &.kozaDel{
+            justify-content: flex-end;
+            margin: 30px 10px 10px 0;
+        }
+
+        .btnDiv{
+            color: $color-baseColor1;
+            font-size: $fontsize-small;
+            font-weight: bold;
+            display: flex;
+            height: 20px;
+            align-items: center;
+        
+            background-repeat: no-repeat;
+            background-size: auto 18px;
+            background-position: left center;
+            padding-left: 21px;
+
+            &.add{
+                background-image: url(../images/icon_add.svg);
+            }
+
+            &.Del{
+                background-image: url(../images/icon_delete.svg);
+            }
+
+            +.btnDiv{
+                margin-left: 30px;
+            }
+        }
+    }
+
+    .name{
+
+        &SubTitle{
+            font-size: 12px;
+        }
+
+        &Input{
+            width: 230px;
+
+            +.nameInput{
+                margin-left: 10px;
+            }
+        }
+        
+        &Link{
+            margin-left: 10px;
+        }
+    }
+    
+    .hyphen{
+        margin: 0 10px;
+        font-size: $fontsize-middle;
+        font-weight: bold;
+    }
+
+    .addr{
+        &ZipCodeFirst{
+            width: 80px;
+        }
+
+        &ZipCodeLast{
+            width: 90px;
+        }
+
+        &srhBotton{
+            margin-left: 30px;
+        }
+
+        &ModeChgLink{
+            font-weight: bold;
+            text-decoration: none;
+            position: absolute;
+            margin-left: 0px;
+            right: 0;
+            z-index: 1;
+        }
+
+        &FirstLabel{
+            border-bottom: 1px solid $color-gray400;
+            color: $color-gray400;
+            font-size: $fontsize-large;
+            min-height: 30px;
+            font-weight: normal;
+            width: 100%;
+
+            &FontSmall{
+                font-size: 17px;
+                color: $color-black;
+                padding-top: 5px;
+            }
+        }
+
+        &Description{
+            .blockRow{
+                margin-bottom: 2px;
+                font-weight: bold;
+                .rowInfo{
+                    font-size: $fontsize-middle;
+                    margin-left: 72px;
+                }
+            }
+        }
+
+        &Input{
+            width: 100%
+        }
+
+        &TnkyNumInput{
+            width: 65px;
+        }
+
+        &InkyNumInputLabel{
+            font-size: $fontsize-middle;
+            font-weight: bold;
+            margin: 0 10px 0 5px;
+            text-align: left;
+        }
+    }
+
+    .tel{
+        &Input{
+            width: 110px;
+        }
+    }
+
+    .titleHeight25{
+        > .blockRow > .rowLabel{
+            height: 25px;
+        }
+    }
+
+    .kozaDelInfo{
+        color: $color-gray900;
+        font-size: $fontsize-middle;
+        font-weight: normal;
+        line-height: 1.8em;
+    }
+
+    .kozaBlock{
+
+        .baseArea.err .specialErrArea {
+            padding-bottom: 25px;
+        }
+
+        .baseArea.err .err-message {
+            margin-left: 235px;
+            margin-top: 0px;
+            height: unset;
+            text-align: left;
+            position: unset;
+        }
+
+        .baseArea{
+            padding-top: 0;
+            padding-bottom: 25px;
+            .blockRow{
+                margin-top: 20px;
+                padding: 0;
+            }
+            
+            row:first-child .blockRow{
+                margin-top: 0;
+            }
+        }
+
+        .blockTitle{
+            margin-top: 0;
+        }
+
+        &.noBorder{
+            .blockRow{
+                border-bottom: none;
+            }
+        }
+
+        .yuchoLabel{
+            color: $color-gray900;
+            font-size: $fontsize-large;
+            font-weight: unset;
+            text-align: left;
+            margin-right: 10px;
+        }
+
+        .yuchoNo{
+            width: 150px;
+        }
+
+        .yuchoCode{
+            width: 110px;
+        }
+
+        .finInput{
+            &LabelDiv{
+                display: block;
+                width: 460px;
+                text-align: left;
+            }
+
+            &NameLabel{
+                display: block;
+                font-size: $fontsize-large;
+                font-weight: normal;
+            }
+
+            &CodeLabel{
+                display: block;
+                font-size: $fontsize-middle;
+            }
+            
+            &SrhButton{
+                width: 180px;
+                margin-left: 0px;
+            }
+
+            &Num{
+                width: 260px;
+            }
+        }
+    }
+
+    .ginKouInput{
+        width: 70px;
+        margin: 0 5px;
+    }
+
+    .spInfo {
+        color: $color-nikko-14;
+        font-weight: normal;
+
+        &_selected {
+            color: $color-baseColor1;
+            font-weight: bold;
+        }
+    }
+
+    .ruisekiArea {
+        font-size: $fontsize-large;
+        font-weight: bold;
+        text-align: center;
+        margin: 0 $row-margin-top;
+        padding: $row-padding 0;
+        border-bottom: $row-border-bottom;
+    }
+
+    .rowTop13{
+        .blockRow{
+            margin-top: 13px;
+        }
+    }
+
+    .rowTop5{
+        .blockRow{
+            margin-top: 5px;
+        }
+    }
+
+    .displayNone{
+        display: none !important;
+    }
+}
+
+/*
+    画面名：ナビケーション画面
+    画面id：G1080-02
+*/
+.navBar {
+    background-color: $color-white;
+    border-radius: 20px;
+    box-shadow: 0px 0px 20px 5px rgba(0, 0 , 0, .3);
+    display: block;
+    position: fixed;
+    right: 25px;
+    top: 35px;
+    z-index: 1001;
+}
+.nav-fixed {
+    height: 570px;
+    padding: 10px;
+
+    .nav > li > a {
+        color: $color-baseColor1;
+        font-size: 13px;
+        padding: 5.5px 20px;
+    }
+    
+    .nav > li > a:hover {
+        background-color: transparent;
+    }
+
+    li.active > a {
+        background-color: $color-nikko-23 !important;
+    }
+
+    .nav-stacked > li + li {
+        margin-top: 0;
+    }
+}
+
+.nav-pills{
+    
+    li.active > a {
+       color: #004831;
+        &:hover{
+            color: #004831;
+        }
+    }
+
+}
+.nav-subinfo{
+    border-bottom: 1px solid $color-gray400;
+    font-size: $fontsize-middle;
+    font-weight: bold;
+    padding: 15px 10px 10px;
+    text-align: center;
+}
+.nav-toggle {
+    background-image: url(../images/icon_to_bottom.svg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 80px;
+    border-radius: 50%;
+    bottom: 85px;
+    font-weight: bold;
+    height: 40px;
+    right: 25px;
+    padding: 30px;
+    position: fixed;
+    width: 40px;
+    z-index: 1000;
+}
+.nav-footer {
+    height: 50px;
+    padding: 10px 20px 20px;
+    text-align: right;
+}
+.nav-close {
+    background-image: url(../images/icon_close_nav.svg);
+    background-position: right center;
+    background-repeat: no-repeat;
+    background-size: 20px;
+    display: inline-block;
+    height: 100%;
+    width: 20px;
+}
+
+/*
+    画面名：申込中止画面
+    画面id：G1080-23
+*/
+#G1080-23 {
+    
+    @include modal(s);
+
+    .modalStop {
+
+        &_body {
+            $f: $fontsize-large;
+            text-align: center;
+            font-size: $fontsize-large;
+            font-weight: bold;
+        }
+        
+        &_yesBtn {@extend .btn_yes;}
+        &_noBtn {@extend .btn_no;}
+    }
+}

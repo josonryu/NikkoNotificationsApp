@@ -1,0 +1,24 @@
+/*
+G1270-04 applicationCompReturnHomeModal
+申込み内容受付機能
+*/
+#G1270-04{
+    @include modal(s);
+
+    .modalBack {
+        &_body {
+            text-align: center;
+            font-size: $fontsize-large;
+            font-weight: bold;
+            color: $color-gray900;
+        }
+
+        &_yesBtn {
+            @extend .btn_yes;
+        }
+
+        &_noBtn {
+            @extend .btn_no;
+        }
+    }
+}

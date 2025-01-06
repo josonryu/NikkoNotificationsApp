@@ -1,0 +1,87 @@
+/*
+G1080-03_addressSearchModal
+住所検索画面
+*/
+
+#G1080-03 {
+    @include modal(m);
+    .zipCodeModal {
+        &_dialog {
+            display: block;
+            padding-top: 135px;
+        }
+
+        &_content {
+            min-height: 230px;
+            text-align: center;
+        }
+
+        &_body {
+            padding-bottom: 80px;
+        }
+
+        &_title {
+            font-size: $fontsize-large;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        &_overflowScroll {
+            height: 280px;
+            overflow-y: scroll;
+            padding: 1px;
+        }
+
+        &_address {
+            border: solid 1px $color-gray400;
+            border-radius: 10px;
+            margin-top: 5px;
+            padding: 10px;
+            text-align: left;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        &_zipcodeText {
+            font-size: $fontsize-middle;
+            width: 80px;
+            height: 20px;
+            text-align: center;
+        }
+
+        &_addressText {
+            color: $color-gray900;
+            font-size: $fontsize-large;
+            font-weight: bold;
+            margin-right: 40px;
+            width: 500px;
+        }
+
+        &_selectBtn {
+            @extend .btn_middle;
+            background-color: $button-search-color-bg;
+            height: 36px;
+            width: 115px;
+        }
+
+        &_footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        &_cancelBtn {
+            @extend .btn_large;
+            background-color: $color-bluegray;
+        }
+
+        &_closeBtn {
+            @extend .btn_close;
+        }
+    }
+}

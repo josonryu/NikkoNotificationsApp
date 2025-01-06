@@ -1,0 +1,8 @@
+<div class="checkArea_div" ng-repeat="e in list">
+    <label class="checkArea_labelJust radio" ng-class="[{'selected': e.value == $parent.data}, {'disabled': $parent.disabled}]">{{e.label}}
+        <input type="radio" class="checkArea_radio" ng-model="$parent.data" ng-value="e.value" name="{{name}}"  ng-disabled="$parent.disabled" ng-click="$parent.click({$event: $event, value: e.value})">
+    </label>
+</div>
+<div ng-show="{{optionvalue}} == data" ng-class="{{optionvalue}} == 1 ? 'radioBoxOption' : 'radioBoxOption2'">
+    <ng-transclude></ng-transclude>
+</div>

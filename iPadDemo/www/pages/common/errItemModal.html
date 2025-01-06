@@ -1,0 +1,21 @@
+<div class="modal fade errItemModal" data-backdrop="static" id="errItemModal" ng-init="initErrItemModal && initErrItemModal();">
+    <div class="modal-dialog errItemModal_main">
+        <div class="modal-content errItemModal_content">
+            <div class="errItemModal_body">
+                <p class="errItemModal_title">入力チェックエラー項目があります。<br>以下の項目をご確認ください。</p><br>
+                <ul class="errItemModal_supplement">
+                    <li class="errItemModal_supplementList" ng-repeat="errItem in errItemList | orderBy: 'sort'">
+                        {{errItem.name}}
+                    </li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <div class="modal-footer-relative">
+                    <button class="close-btn center-block errItemModal_closeBtn" data-dismiss="modal" ng-click="closeErrItemModal()">
+                        <span class="errItemModal_closeText">閉じる</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

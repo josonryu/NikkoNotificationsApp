@@ -1,0 +1,83 @@
+<!-- 
+    画面名：金融機関名検索画面
+    画面id：G1080-04
+-->
+<div id="G1080-04">
+    <div class="finSearchModal modal fade" data-backdrop="static" id="bankSearchModal">
+        <div class="modal-dialog finSearchModal_dialog">
+            <div class="modal-content finSearchModal_content input-check-area" id="facilitySearchResult">
+                <div class="modal-body finSearchModal_body">
+                    <div class="input-check-row">
+                        <p class="finSearchModal_title">金融機関名の検索キーワードを入力してください</p>
+                        <div class="finSearchModal_inputArea">
+                            <input type="text" class="finSearchModal_input" id="txtSearchWordFacility" placeholder="三井住友銀行" maxlength="15" input-data="bankSearchInput.TXT_ORG_WORD" ng-model="BS_MODAL_MODEL.TXT_ORG_WORD" page-id="G1080-04">
+                            <button id="btnFinOrgResearch" class="searchButton finSearchModal_searchBtn" ng-click="showSearchFacilityResult()">検索</button>
+                        </div>
+                    </div>
+                    <!--検索結果0件-->
+                    <div class="finSearchModal_subTitle" ng-show="bsSearchResultIsShown0ken">
+                        <p>「{{inputSearchFinOrg}}」での</p>
+                        <p>検索結果は存在しませんでした。</p>
+                    </div>
+                    <!--検索結果1件以上-->
+                    <div class="finSearchModal_subTitle" ng-show="bsSearchResultIsShown">
+                        <p>「{{inputSearchFinOrg}}」での</p>
+                        <p>検索結果は以下のとおりです。</p>
+                    </div>
+                    <div class="finSearchModal_overflowScroll" ng-show="bsSearchResultIsShown" id="bankSearchModal_overflowScroll">
+                        <div class="finSearchModal_result" ng-repeat="result in finResult">
+                            <span class="finSearchModal_resultCode">{{result.code}}</span>
+                            <span class="finSearchModal_resultText">{{result.name}}</span>
+                            <button class="finSearchModal_resultSelectBtn" data-dismiss="modal" ng-click="facilityConfirmBtnClick(result.code, result.name)">支店検索</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer finSearchModal_footer">
+                    <button class="finSearchModal_cancelBtn" ng-class="{'finSearchModal_closeBtn' :bsSearchResultIsShown0ken}" data-dismiss="modal" ng-click="cancelFinOrg(); scrollUnlock()">{{bsFooterBtnName}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 
+    画面名：支店名検索画面
+    画面id：G1080-05
+-->
+<div id="G1080-05">
+    <div class="finSearchModal modal fade" data-backdrop="static" id="branchSearchModal">
+        <div class="modal-dialog finSearchModal_dialog">
+            <div class="modal-content finSearchModal_content input-check-area" id="branchSearchResult">
+                <div class="modal-body finSearchModal_body">
+                    <div class="input-check-row">
+                        <p class="finSearchModal_title">支店名の検索キーワードを入力してください</p>
+                        <div class="finSearchModal_inputArea">
+                            <input type="text" class="finSearchModal_input" id="txtSearchWordBranch" placeholder="神保町支店" maxlength="15" input-data="bankSearchInput.TXT_BRANCH_WORD" ng-model="BS_MODAL_MODEL.TXT_BRANCH_WORD" page-id="G1080-05">
+                            <button id="btnBranchSearch" class="searchButton finSearchModal_searchBtn" ng-click="showSearchBranchResult()">検索</button>
+                        </div>
+                    </div>
+                    <!--検索結果0件-->
+                    <div class="finSearchModal_subTitle" ng-show="bsSearchResultIsShown0ken">
+                        <p>「{{inputSearchBranch}}」での</p>
+                        <p>検索結果は存在しませんでした。</p>
+                    </div>
+                    <!--検索結果1件以上-->
+                    <div class="finSearchModal_subTitle" ng-show="bsSearchResultIsShown">
+                        <p>「{{inputSearchBranch}}」での</p>
+                        <p>検索結果は以下のとおりです。</p>
+                    </div>
+                    <div class="finSearchModal_overflowScroll" ng-show="bsSearchResultIsShown" id="branchSearchModal_overflowScroll">
+                        <div class="finSearchModal_result" ng-repeat="result in branchResult">
+                            <span class="finSearchModal_resultCode">{{result.code}}</span>
+                            <span class="finSearchModal_resultText">{{result.name}}</span>
+                            <button class="finSearchModal_resultSelectBtn" data-dismiss="modal" ng-click="branchConfirmBtnClick(result.code, result.name)">確定</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer finSearchModal_footer">
+                    <button class="finSearchModal_cancelBtn" ng-class="{'finSearchModal_closeBtn' :bsSearchResultIsShown0ken}" data-dismiss="modal" ng-click="cancelBranch(); scrollUnlock()">{{bsFooterBtnName}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

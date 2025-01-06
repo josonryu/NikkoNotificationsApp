@@ -1,0 +1,142 @@
+/*
+G1060-02_resultCustomer
+お客さま検索結果画面
+*/
+
+#G1060-02{
+    @extend #G1060-01;
+    
+    .scrollArea{
+        -webkit-overflow-scrolling: touch;
+        overflow-y: scroll;  
+    }
+
+     .mainSpace{
+        margin-bottom: 25px;
+        &_sign {
+            margin-bottom: 0px;
+        }
+    }
+
+    .blockTitle {
+        display: block;
+    }
+
+    // Page Sentence
+    .pageSentence {
+        margin: 20px 0 20px 30px;
+        color: $color-gray900;
+        text-align: center;
+        font-size: $fontsize-middle-two;
+        line-height: $fontsize-28;
+        font-weight: unset;
+    }
+
+    //入力ブロック共通
+    .confirmDataArea {
+        &_row {
+            display: grid;
+            grid-template-columns: 145px 1fr 171px;
+            align-items: center;
+            padding: 13px 0;
+            margin: 0 20px;
+            border-top: solid 0.5px $color-line-4;
+            min-height: 54px;
+            }
+
+        &_firstRow {
+            display: grid;
+            grid-template-columns: 145px 1fr 171px;
+            align-items: center;
+            padding: 13px 0;
+            margin: 0 20px;
+            border-top: none;
+            min-height: 54px;
+            }
+
+        &_label {
+            font-size: $fontsize-middle;
+            font-weight: bold;
+            text-align: right;
+            width: 145px;
+            word-break: break-all;
+            margin-bottom: 0;
+            flex-shrink: 0;
+            letter-spacing: -0.5px;
+        }
+
+        &_data {
+            font-size: $fontsize-large;
+            display: flex;
+            align-items: center;
+            margin-left: 70px;
+        }
+
+    }
+
+    .alarmArea {
+        background-color: $color-white;
+        bottom: 80px;
+        position: fixed;
+        text-align: left;
+        width: 100%;
+        height: 100px;
+        border-top: 0px;
+        border-bottom: 0px;
+        box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.2);
+        
+        &_icon{
+            background-image: url(../images/icon_alert.svg);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: contain;
+            display: inline-block;
+            height: 48px;
+            width: 48px;
+            margin-top: 22px;
+            margin-left: 50px;
+            margin-right: 19px;
+        }
+
+        &_text {
+            font-size: 16.8px;
+            color: $color-accent;
+            display: inline-block;
+            // margin-top: 20px;
+            width: 90%;
+            height: 90px;
+            left: 80px;
+            position: fixed;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            bottom: 80px;
+        }
+
+        &_textRight {
+            font-size: 16.8px;
+            color: $color-accent;
+            display: inline-block;
+            // margin-top: 20px;
+            width: 45%;
+            height: 90px;
+            left: 580px;
+            padding-top: 0;
+            position: fixed;
+            font-weight: bold;
+            display: flex;
+            //align-items: center;
+            bottom: 80px;
+        }
+    }
+    
+    //以下共通部分を上書き
+    // ブロックエリア
+    .blockArea {
+        margin: 0 0px;
+    }
+    
+    p {
+        margin-bottom:0;
+    }
+}

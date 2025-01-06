@@ -1,0 +1,166 @@
+<!-- 
+    画面名：本人確認書類のご説明・ご選択画面
+    画面id：G1140-01
+-->
+<div id="G1140-01" ng-init="init()">
+    <!-- ヘッダー部 -->
+    <header ng-include="'pages/common/header.html'"></header>
+
+    <!-- コンテンツ部 -->
+    <main id="G1140-01-main" class="scrollArea main">
+
+        <!--パンくず ブロック-->
+        <div class="pankuzu" ng-include="'pages/common/pankuzu.html'" ng-init="pankuzuType = pankuzuPatten"></div>
+
+        <!-- 本文 -->
+        <div class="mainSpace" ng-class="{withFixedArea:reNameFlg || addressChangeFlg}">
+            <!-- ページタイトル -->
+            <div class="pageTitle">
+                <span>本人確認書類を選択してください</span>
+            </div>
+
+            <!-- サブテキスト -->
+            <div class="sub-text">本人確認書類は、有効期限の定めのあるものは有効期限内の原本、有効期限の定めのないものは<br>
+                                発行から6カ月以内の原本であることをご確認ください。
+                <a class="link" data-toggle="modal" data-target="#modalDetail" ng-click="detailModalReset('G1140-01','G1140-03','詳しくはこちら')">詳しくはこちら</a>
+            </div>
+
+            <!-- 顔写真あり -->
+            <div class="blockArea">
+                <div class="blockRow">
+                    <label class="rowLabel">{{withFaceLabel}}</label>
+                    <div class="checkArea_option">
+                        <checkbox label="{{define1.firstType1.MSY}}" value="1" data="define1.firstType1.value" id="firstType1" click="selectInfo('firstType1')" disabled="define1.firstType1.disabled"></checkbox>
+                    </div>
+                    <div class="checkArea_option">
+                        <checkbox label="{{define1.firstType4.MSY}}" value="1" data="define1.firstType4.value" id="firstType4" click="selectInfo('firstType4')" disabled="define1.firstType4.disabled"></checkbox>
+                    </div>
+                </div>
+                <div class="blockRow no_Label">
+                    <div class="checkArea_option">
+                        <checkbox label="{{define1.firstType2.MSY}}" value="1" data="define1.firstType2.value" id="firstType2" click="selectInfo('firstType2')" disabled="define1.firstType2.disabled"></checkbox>
+                    </div>
+                    <div class="checkArea_option">
+                        <checkbox label="{{define1.firstType5.MSY}}" value="1" data="define1.firstType5.value" id="firstType5" click="selectInfo('firstType5')" disabled="define1.firstType5.disabled"></checkbox>
+                    </div>
+                </div>
+                <div class="blockRow no_Label">
+                    <div class="checkArea_option">
+                        <checkbox label="{{define1.firstType8.MSY}}" value="1" data="define1.firstType8.value" id="firstType8" click="selectInfo('firstType8')" disabled="define1.firstType8.disabled"></checkbox>
+                    </div>
+                    <div class="checkArea_option">
+                        <checkbox label="{{define1.firstType6.MSY}}" value="1" data="define1.firstType6.value" id="firstType6" click="selectInfo('firstType6')" disabled="define1.firstType6.disabled"></checkbox>
+                    </div>
+                </div>
+                <div class="blockRow no_Label">
+                    <div class="checkArea_option">
+                        <checkbox label="{{define1.firstType3.MSY}}" value="1" data="define1.firstType3.value" id="firstType3" click="selectInfo('firstType3')" disabled="define1.firstType3.disabled"></checkbox>
+                    </div>
+                    <!-- 撮影枚数確認対象書類 -->
+                    <div class="checkArea_option">
+                        <checkbox label="{{define1.firstType7.MSY}}" value="1" data="define1.firstType7.value" id="firstType7" click="selectInfo('firstType7');fourPhotosClick('firstType7')" disabled="define1.firstType7.disabled"></checkbox>
+                    </div>
+                </div>
+                <div class="blockRow no_Label alarmArea" ng-show="isShowFirstType7">
+                    <div ng-show="isShowFirstType7" class="alarmArea_rightArea">
+                        <div class="alarmArea_icon"></div>
+                        <div class="alarmArea_text"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- 顔写真なし -->
+            <div class="blockArea withCheckArea">
+                <div class="blockRow">
+                    <label class="rowLabel">{{noFaceLabel}}</label>
+                    <div class="checkArea_option">
+                        <checkbox label="{{define2.secondType1.MSY}}" value="1" data="define2.secondType1.value" id="secondType1" click="selectInfo('secondType1')" disabled="define2.secondType1.disabled"></checkbox>
+                    </div>
+                    <!-- 撮影枚数確認対象書類 -->
+                    <div class="checkArea_option">
+                        <checkbox label="{{define2.secondType4.MSY}}" value="1" data="define2.secondType4.value" id="secondType4" click="selectInfo('secondType4');fourPhotosClick('secondType4')" disabled="define2.secondType4.disabled"></checkbox>
+                    </div>
+                </div>
+                <div class="blockRow no_Label alarmArea" ng-show="isShowSecondType4">
+                    <div ng-show="isShowSecondType4" class="alarmArea_rightArea">
+                        <div class="alarmArea_icon"></div>
+                        <div class="alarmArea_text"></div>
+                    </div>
+                </div>
+                <div class="blockRow no_Label">
+                    <!-- 撮影枚数確認対象書類 -->
+                    <div class="checkArea_option">
+                        <checkbox label="{{define2.secondType2.MSY}} ※" value="1" data="define2.secondType2.value" id="secondType2" click="selectInfo('secondType2');fourPhotosClick('secondType2')" disabled="define2.secondType2.disabled"></checkbox>
+                    </div>
+                    <!-- 撮影枚数確認対象書類 -->
+                    <div class="checkArea_option">
+                        <checkbox label="{{define2.secondType5.MSY}}" value="1" data="define2.secondType5.value" id="secondType5" click="selectInfo('secondType5');fourPhotosClick('secondType5')" disabled="define2.secondType5.disabled"></checkbox>
+                    </div>
+                </div>
+                <div class="blockRow no_Label alarmArea" ng-show="isShowSecondType2 || isShowSecondType5">
+                    <div ng-show="isShowSecondType2" class="alarmArea_leftArea">
+                        <div class="alarmArea_icon"></div>
+                        <div class="alarmArea_text"></div>
+                    </div>
+                    <div ng-show="isShowSecondType5" ng-class="isShowSecondType2?'alarmArea_rightAreaWithLeftArea':'alarmArea_rightArea'">
+                        <div class="alarmArea_icon"></div>
+                        <div class="alarmArea_text"></div>
+                    </div>
+                </div>
+                <div class="blockRow no_Label">
+                    <div class="checkArea_option">
+                        <checkbox label="{{define2.secondType3.MSY}}" value="1" data="define2.secondType3.value" id="secondType3" click="selectInfo('secondType3')" disabled="define2.secondType3.disabled"></checkbox>
+                    </div>
+                </div>
+                <div class="blockRow detail_block">
+                    <p class="detail_info">＜注意＞　本人確認書類の裏面に記載がある場合は、裏面も撮影してください。</p>
+                    <p class="detail_info">※　番号確認書類が住民票の写しの場合、本人確認書類として兼用できます。</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div class="fixedArea" ng-show="reNameFlg || addressChangeFlg">
+        <div class="fixedArea_icon"></div>
+        <div class="fixedArea_text">
+            <div>
+                <p ng-show="reNameFlg">
+                変更前・変更後の氏名が分かる本人確認書類を選択してください
+                </p>
+                <p ng-show="addressChangeFlg">
+                    当社に届け出済みの旧住所・新住所が確認できる本人確認書類を選択してください
+                </p>
+            </div>
+        </div>
+        
+    </div>
+
+    <!--フッター部-->
+    <footer>
+        <div class="fixedFooter">
+            <button id="btnBack" class="backBtn" ng-click="btnBackClick()" ng-if="!editMode">戻る</button>
+            <button id="btnNext" class="nextBtn" ng-click="btnNextClick()" ng-disabled="!(idType1.key.match('firstType') || (idType1.key.match('secondType') && isSkipMyNumer) ||idType2.CD)">{{btnNextLabel}}</button>
+        </div>
+    </footer>
+</div>
+
+<!-- G1140-02:撮影枚数確認画面 -->
+<div class="modal fade" data-backdrop="static" id="G1140-02" ng-init="initModal()">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modalIdentificationDoc_body modal-body">
+                    {{modalTypeName}}の撮影枚数は、</br>
+                    3枚以内ですか？</br></br>
+                    ※ 撮影枚数が4枚以上の場合、</br>
+                    該当の本人確認書類をコピーのうえ、</br>
+                    別途、社内便で送付してください。
+                </div>
+                <div class="modal-footer">
+                    <button class="modal-cancel-btn" ng-click="btnNoClick()">いいえ</button>
+                    <button class="modal-confirm-btn" ng-click="btnYesClick()">はい</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!-- G1140-03:詳細リンク（本人確認書類）画面-->
+<div ng-include="'pages/detailModal.html'"></div>

@@ -1,0 +1,155 @@
+/*
+    blockArea
+*/
+
+@mixin blockNewBefore {
+    font-size: $fontsize-large;
+    font-weight: bold;
+    text-align: center;
+    color: $color-white; 
+    height: 40px;
+    line-height: 40px;
+    width: calc(100%);
+    border-radius: 6px 6px 0 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.blockArea.directive{
+
+    input {
+        margin-left: 0px;
+    }
+
+    .baseArea{
+        position: relative;
+        width: 100%;
+    }
+    
+    &.firstArea{
+        margin-top: $title-margin-top-first;
+    }
+
+    &.normal{
+        padding: 0;
+        margin: 0;
+
+        .baseArea{
+            padding-bottom: 60px;
+
+            .blockRow{
+                margin: 0 $area-margin-left;
+                padding: $row-padding 0;
+                border-bottom: $row-border-bottom;
+                min-height: 55px;
+            }
+        }
+    }
+
+    &.confrimBefore{
+        position: relative;
+        border-top: none;
+        background-color: $color-nikko-19;
+        box-shadow: none;
+        padding: 40px $area-margin-left $row-margin-top $area-margin-left;
+        border-radius: 6px;
+        margin-left: 0;
+        margin-right: 0;
+
+        &::before {
+            @include blockNewBefore;
+            content: '変更前';
+            background-color: $color-nikko-24;
+        }
+        &::after {
+            content: '';
+            background-image: url(../images/icon_step_down_green.svg);
+            background-repeat: no-repeat;
+            background-size: auto 40px;
+            background-position: center center;
+            width: 40px;
+            height: 40px;
+            position: absolute;
+            bottom: -40px - 15px;
+            left: (1024px - 2 * 30px - 40px) / 2;
+            z-index: 1;
+        }
+    }
+
+    &.confrimAfter{
+        position: relative;
+        border: 1px solid $color-nikko-4;
+        border-top: none;
+        background-color: $color-white;
+        box-shadow: none;
+        padding: 40px $area-margin-left $row-margin-top $area-margin-left;
+        border-radius: 6px;
+        margin: 70px 0 0 0;
+
+        &::before {
+            @include blockNewBefore;
+            content: '変更後';
+            background-color: $color-baseColor2;
+        }
+    }
+
+    .modifyButton{
+        @extend .btn_middle;
+        background-color: $button-color-bg-modify;
+        width: $button-width-modify;
+        height: $button-height-modify;
+        position: absolute;
+        bottom: 0;
+        right: $area-margin-left;
+        z-index: 1;
+
+        &.cancel {
+            background-color: $button-cancel-color-bg;
+        }
+    }
+}
+
+.inputArea{
+    background-color: $inputarea-background-color;
+    margin-top: $inputarea-margin-top;
+    border-radius: $inputarea-border-radius;
+    width: 100%;
+    padding: $inputarea-padding-top $inputarea-padding-right $inputarea-padding-bottom $inputarea-padding-left;
+    position: relative;
+
+    &::after{
+        content: '';
+        position: absolute;
+        top: -31px;
+        border: 16px solid transparent;
+        border-bottom: 16px solid $color-lightgreen;
+        z-index: 1;
+        right: 66px;
+    }
+
+    &.input-check-area.err{
+        &::after{
+            content: '';
+            border-bottom: 16px solid  rgba(197, 17, 98, 0.1);
+            top: -32px;
+        }
+    }
+
+    row:first-child .blockRow{
+        margin-top: 0;
+    }
+}
+
+.rowInfo{
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    width: 100%;
+
+    >row-info{
+        display: flex;
+        align-items: center;
+        width: 100%;
+    }
+}

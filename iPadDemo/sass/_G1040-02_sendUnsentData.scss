@@ -1,0 +1,53 @@
+/*
+G1040-02_sendUnsentData.scss
+未送信案件の送信画面（モーダル）
+*/
+
+#G1040-02 {
+    @include modal(m);
+
+    .sendUnsentData {
+
+        &_textArea {
+            font-weight: bold;
+            font-size: $fontsize-large;
+            text-align: center;
+            &_Height {
+                height: 100px;
+                padding-right: 45px;
+                padding-left: 45px;
+                margin-top: 10px;
+                margin-bottom: 10px;
+            }
+        }
+        &_AlarmText {
+            color: $color-accent;
+            font-size: $fontsize-large;
+            &_Height {
+                height: 175px;
+                font-weight: bold;
+            }
+        }
+        &_closeButton {
+            display: block;
+            margin: auto;
+            // @include btn-close;
+            // background-color: $color-nikko-9;
+            @extend .btn_close;
+        }
+        &_sendBar {
+            margin-top: 20px;
+        }
+    }
+    .progress-bar{
+        background-image: linear-gradient(to bottom, $color-baseColor2 0%, $color-baseColor2 100%);
+        width: 0%;
+    }
+    .modal-content {
+        border-radius: 20px;
+    }
+    .modal-footer {
+        padding: 25px;
+    }
+}
+

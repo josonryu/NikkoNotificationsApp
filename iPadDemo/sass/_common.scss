@@ -1,0 +1,1095 @@
+* {
+    user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-user-select: none;
+    outline-style: none;
+}
+
+input {
+    user-select: auto;
+    -moz-user-select: auto;
+    -ms-user-select: auto;
+    -webkit-user-select: auto;
+
+    &[type="text"]::-webkit-input-placeholder {
+        color: $color-gray400;
+    }
+}
+
+.body {
+    height: 100%;
+    width: 100%;
+    background-color: $main-color-bg;
+}
+.body > div {
+    padding: 0;
+    width: 100%;
+}
+li.dropdown_item-last {
+    border: none !important;
+}
+
+/* iOSデフォルトのテキストボックスシャドウ定義を無効化する */
+input[type=text],
+input[type=email],
+input[type=password] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+/* Bootstrap部品のテキストボックスシャドウ定義を無効化 */
+input.form-control {
+    outline: none;
+    -webkit-box-shadow: none !important;
+    -moz-box-shadow: none !important;
+    box-shadow: none !important;
+}
+
+input::-webkit-input-placeholder {
+    color: $color-gray400;
+}
+input::-moz-placeholder {
+    color: $color-gray400;
+}
+
+a.anchor {
+    display: none;
+    position: relative;
+    top: -60px; // 事務手続きのみ
+    visibility: hidden;
+}
+
+.withoutMark {
+    margin-left: 70px;
+}
+
+.withoutTitleAndMark {
+    margin-left: 215px;
+}
+
+/*
+* モーダル画面背景ぼかし共通
+*/
+body.is-modal-open .fixedHeader {
+    filter: blur(6px);
+}
+body.is-modal-open main {
+    filter: blur(6px);
+}
+body.is-modal-open .fixedFooter {
+    filter: blur(6px);
+}
+body.is-modal-open .alarmArea {
+    filter: blur(6px);
+}
+
+/*
+* 画像コピー、ペースト禁止
+*/
+img {
+    pointer-events: none;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/*
+* ボタン共通
+*/
+
+.button-active {
+    box-shadow: 0 0;
+    transform: translate3d(0, 3px, 0);
+}
+
+.button-disabled {
+    background-color: $button-next-color-bg-disabled;
+    color: $button-color-font-disabled;
+}
+
+/* 
+* ボタン 大 
+*/
+.btn_large {
+    border: none;
+    color: $button-color-font;
+    font-weight: bold;
+    border-radius: 10px;
+    height: 44px;
+    width: 200px;
+    font-size: $button-fontsize-large;
+
+    &:active {
+        @extend .button-active;
+    }
+
+    &:disabled {
+        @extend .button-disabled;
+    }
+}
+
+/* 
+* ボタン 中 
+*/
+.btn_middle {
+    border: none;
+    color: $button-color-font;
+    font-weight: bold;
+    border-radius: 5px;
+    font-size: $button-fontsize-middle;
+
+    &:active {
+        @extend .button-active;
+    }
+
+    &:disabled {
+        @extend .button-disabled;
+    }
+}
+
+/* 
+* ボタン 「閉じる」 
+*/
+.btn_close {
+    @extend .btn_large;
+    background-color: $button-close-color-bg;
+    background-image: url(../images/icon_close.svg);
+    background-repeat: no-repeat;
+    background-position-x: 30px;
+    background-position-y: center;
+    background-size: auto 50%;
+}
+
+/* 
+* ボタン 「はい」 
+*/
+.btn_yes {
+    @extend .btn_large;
+    background-color: $button-yes-color-bg;
+    margin-left: 10px;
+}
+
+/* 
+* ボタン 「いいえ」 
+*/
+.btn_no {
+    @extend .btn_large;
+    background-color: $button-no-color-bg;
+    margin-right: 10px;
+}
+
+/* 
+* ボタン 「検索」 
+*/
+.searchButton {
+    @extend .btn_middle;
+    background-color: $button-search-color-bg;
+    color: $button-search-color-font;
+    height: $button-search-height;
+    margin-left: 10px;
+    min-width: $button-search-width;
+
+    &:active {
+        @extend .button-active;
+    }
+}
+
+/*
+* ヘッダー共通
+*/
+.fixedHeader {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    border-bottom: $header-border-bottom;
+}
+
+/*アプリ名ブロック*/
+.appTitleBar {
+    background: $header-color-bg;
+    height: $header-height;
+    width: 100%;
+    position: relative;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &_icon {
+        background-image: url(../images/icon_head_nikko.svg);
+        background-repeat: no-repeat;
+        background-size: auto $header-icon-height;
+        background-position: left 15px center;
+        display: inline-block;
+        height: 100%;
+        width: 50%;
+    }
+}
+
+/**
+* ページ
+*/
+.pageTitle {
+    margin: $page-title-margin-top $page-title-margin-right $page-title-margin-bottom $page-title-margin-left; // 事務手続きのみ
+    color: $page-tiltle-color-font;
+    text-align: center;
+    font-size: $page-title-fontsize;
+    line-height: $page-title-fontsize;
+    font-weight: bold;
+}
+
+/**
+* メイン
+*/
+.main {
+    height: 620px;
+    padding-left: $main-padding-left;
+    padding-right: $main-padding-right;
+    min-height: $main-height-min;
+    overflow-y: scroll;
+    margin-top: $main-margin-top;
+    overflow-x: hidden;
+    background-color: $main-color-bg;
+}
+
+/*
+* 営業員専用ブロック共通　 
+*/
+.staffOnly {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $staffOnly-color-bg;
+    color: $staffOnly-color-font;
+    width: $staffOnly-width;
+    height: $staffOnly-height;
+    position: relative;
+    font-size: $staffOnly-fontsize;
+    font-weight: bold;
+    left: $staffOnly-left;
+    margin-top: $staffOnly-margin-top;
+
+    &_caution {
+        background: {
+            image: url("../images/icon_confirm.svg");
+            repeat: no-repeat;
+            size: contain;
+        }
+
+        display: inline-flex;
+        width: $staffOnly-icon-width;
+        height: $staffOnly-icon-height;
+        margin-right: $staffOnly-icon-margin-right;
+    }
+
+    &_text {
+        letter-spacing: 2px;
+    }
+}
+
+/*
+* ぱんくず共通　 
+*/
+.pankuzu {
+    position: relative;
+    left: $pakuzu-row-left;
+    background: $color-white;
+    display: flex;
+    font-size: $pakuzu-fontsize;
+    height: $pakuzu-height;
+    letter-spacing: -5px;
+    width: $pakuzu-width;
+    margin-top: $pakuzu-margin-top;
+    overflow: hidden;
+
+    &_icon-done {
+        @include pankuzu-icon("icon_step_check");
+    }
+
+    @for $i from 1 through 4 { // 事務手続きのみ
+        &_icon-active#{$i} {
+            @include pankuzu-icon("icon_step_0#{$i}_current");
+        }
+
+        &_icon-inactive#{$i} {
+            @include pankuzu-icon("icon_step_0#{$i}");
+        }
+
+        &_step#{$i}-active {
+            @include pankuzu-common($i, "active");
+        }
+
+        &_step#{$i}-inactive {
+            @include pankuzu-common($i, "inactive");
+        }
+
+        &_step#{$i}-done {
+            @include pankuzu-common($i, "done");
+        }
+    }
+    &_text {
+        font-weight: bold;
+        height: 100%;
+        line-height: 52px;
+        width: auto;
+    }
+    &_content {
+        display: flex;
+        justify-content: center;
+        padding-left: 10px;
+        width: 100%;
+    }
+    &>div:last-child .pankuzu_content {
+        padding-left: 0;
+    }
+    &>div:last-child::after {
+        background-image: none;
+        width: 0;
+    }
+}
+
+/*
+* フッター共通
+*/
+.fixedFooter {
+    display: grid;
+    align-content: center;
+    padding-left: $footer-padding-left;
+    padding-right: $footer-padding-right;
+    grid-template-columns: 1fr 1fr 1fr;
+    background-color: $footer-color-bg;
+    bottom: 0;
+    height: $footer-height;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+    border-top: $footer-border;
+    align-items: center;
+    justify-items: center;
+
+    /*次へボタン*/
+    .nextBtn {
+        @extend .btn_large;
+        grid-column-start: 2;
+        letter-spacing: 0px;
+        background-color: $button-next-color-bg;
+        background-image: url(../images/arrow_nextBtn.svg);
+        background-repeat: no-repeat;
+        background-position-x: 175px;
+        background-position-y: center;
+        background-size: auto 55%;
+    }
+
+    /*戻るボタン*/
+    .backBtn {
+        @extend .btn_large;
+        grid-column-start: 1;
+        letter-spacing: 0px;
+        justify-self: start;
+        background-color: $button-back-color-bg;
+        background-image: url(../images/arrow_backBtn.svg);
+        background-repeat: no-repeat;
+        background-position-x: 12px;
+        background-position-y: center;
+        background-size: auto 55%;
+    }
+}
+
+/*
+* 進捗率共通
+*/
+.progressCircle_internal {
+    background-color: $footer-progress-color-bg;
+    border-radius: 50%;
+    position: absolute;
+    right: 11.5px;
+    bottom: 11.5px;
+    width: $footer-progress-width;
+    height: $footer-progress-height;
+}
+
+.progressCircle_text {
+    color: $footer-progress-text-color-font;
+    font-size: $footer-progress-text-fontsize;
+    height: $footer-progress-text-height;
+    position: absolute;
+    text-align: center;
+    top: 20px;
+    width: $footer-progress-text-width;
+}
+
+.progressCircle_rate {
+    color: $color-nikko-6;
+    font-size: $footer-progress-rate-fontsize;
+    height: $footer-progress-rate-height;
+    line-height: $footer-progress-rate-lineHeight;
+    position: absolute;
+    text-align: center;
+    top: 34px;
+    width: $footer-progress-rate-width;
+}
+
+.progressCircle_percentage {
+    bottom: 12px;
+    color: $color-nikko-6;
+    font-size: $footer-progress-percentage-fontsize;
+    height: $footer-progress-percentage-height;
+    position: absolute;
+    text-align: center;
+    width: $footer-progress-percentage-width;
+}
+
+/*
+* モーダル共通
+*/
+// モーダル表示時背景スクロール位置修正
+.modal-open {
+    overflow: hidden;
+    position: static !important;
+}
+
+.modal-blur {
+    filter: blur(6px);
+}
+
+// モーダル背景明度
+.modal-backdrop {
+    opacity: 0.85 !important;
+    background-color: $color-white;
+}
+
+// 詳細リンクモーダル　 
+.linkModal {
+
+    @include modal(l);
+
+    .modalBody {
+        height: 530px;
+        margin: 21px 16px 0; // 15px+border6px 10px+border6px 
+        overflow-y: scroll;
+    }
+
+    .modalImage {
+        width: 916px;
+    }
+
+    .modalCloseBtn {
+        @extend .btn_close;
+    }
+}
+
+/*モーダルキャンセルボタン*/
+.modalDialog_cancelBtn {
+    background-color: $button-close-color-bg;
+    width: 185px;
+    @extend .btn_large;
+}
+
+/*
+* エラーメッセージ表示共通
+*/
+
+.input-check-area {
+    .err {
+        border-color: $color-accent;
+        border-width: 1px;
+    }
+
+    &.err {
+        background-color: rgba(197, 17, 98, 0.1);
+        border-color: $color-accent;
+        border-width: 1px;
+
+        .blockArea {
+            background-color: transparent;
+        }
+    }
+}
+
+.err-message {
+    color: $color-accent;
+    font-size: 15px;
+    text-align: left;
+}
+
+/*
+* エラー項目モーダル表示共通　 
+*/
+.errItemModal {
+    @include modal(s);
+
+    &_body {
+        margin: auto $modal-err-body-margin-left;
+        overflow-y: scroll;
+        max-height: $modal-err-body-maxheight;
+    }
+
+    &_title {
+        color: $modal-err-title-color-font;
+        font-size: $modal-err-title-fontsize;
+        font-weight: bold;
+        margin: $modal-err-title-margin-top 0 0 $modal-err-title-margin-bottom;
+    }
+
+    &_supplement {
+        color: $modal-err-supplement-color-font;
+        float: left;
+        font-size: $modal-err-supplement-fontsize;
+        font-weight: bold;
+        margin: 0 0 $modal-err-supplement-margin-bottom 0;
+        max-height: $modal-err-supplement-maxheight;
+        overflow-y: scroll;
+        width: 100%;
+    }
+
+    &_supplementList {
+        margin-bottom: $modal-err-supplementList-margin-bottom;
+    }
+
+    &_closeBtn {
+        @extend .btn_close;
+    }
+}
+
+.numkeyboard {
+    background-color: $color-white !important;
+}
+
+// 「APPBIZ-C001：手書き入力補助機能」handWritePanel.ts START
+// 手書き表示時に、スクロール方式変更(body⇒div)用
+.main-div-area-scroll {
+    height: 678px; // 1024(screen)-20(statusBar)-70(footer)
+    -webkit-overflow-scrolling: touch;
+    overflow-y: scroll;
+}
+
+// 手書き表示時に、スクロールエリアの下部に余白を追加
+.handwrite-pdb {
+    padding-bottom: 500px !important;
+}
+// 「APPBIZ-C001：手書き入力補助機能」END
+
+[ng\:cloak],
+[ng-cloak],
+.ng-cloak {
+    display: none;
+}
+
+.body-trans {
+    background-color: transparent !important;
+}
+
+
+
+
+// Radio / CheckBox　 
+.checkArea {
+    display: inline-block;
+    position: relative;
+    margin-left: 10px;
+    font-size: 0;
+
+    &.withoutMark {
+        @extend .withoutMark;
+    }
+
+    &_option {
+        margin: 0 10px 0 0;
+        display: inline-block;
+    }
+
+    &_center {
+        top: 20px;
+        position: relative;
+    }
+
+    &_all {
+        left: 665px;
+        position: relative;
+    }
+
+    &-newLine {
+        display: block;
+        margin-left: 235px;
+        padding: 4px 0;
+    }
+
+    &_radio {
+        opacity: 0;
+        width: 0;
+    }
+
+    &_hint {
+        font-size: $fontsize-middle;
+    }
+
+    &_noMargin {
+        margin: 0;
+    }
+
+    &_div {
+        display: inline-block;
+        text-align: left;
+        + .checkArea_div {
+            margin-left: 20px; // 事務手続きのみ
+        }
+    }
+
+    &_labelJust {
+        margin: 0;
+        color: $color-nikko-14;
+        position: relative;
+        display: inline-block;
+        padding: 0 0 0 32px; // 事務手続きのみ
+        font-size: $fontsize-large;
+        font-weight: normal;
+        text-align: left;
+
+        background-repeat: no-repeat;
+        background-size: 26px auto;
+        background-position: left top +1px;
+
+        &.selected {
+            color: $color-baseColor1;
+            font-weight: bold
+        }
+
+        &.checkbox {
+            background-image: url(../images/a_icon_checkbox.svg);
+
+            &.selected {
+                background-image: url(../images/icon_checkbox_checked.svg);
+            }
+
+            &.disabled {
+                background-image: url(../images/b_icon_checkbox_disabled.svg);
+                color: $color-gray400;
+            }
+        }
+
+        &.radio {
+            background-image: url(../images/icon_radio.svg);
+
+            &.selected {
+                background-image: url(../images/icon_radio_checked.svg);
+            }
+        }
+
+        &.disabled {
+            background-image: url(../images/icon_radio_disabled.svg);
+            color: $color-gray400;
+        }
+    }
+}
+
+// Input Text
+input[type="text"],
+input[type="email"] {
+    border: 1px solid $color-gray400;
+    border-radius: 8px;
+    color: $color-gray900;
+    font-size: $fontsize-large;
+    height: $text-height;
+    padding: 0 5px 0 10px;
+    text-align: left;
+    margin-left: 10px;
+
+    // フォーカスしたときの色
+    &.onfocus {
+        background-color: rgba($color-accent, 0.1) !important;
+        border: 1px solid $color-accent;
+    }
+}
+
+input + input{
+    margin-left: 10px;
+}
+
+// Input Number　モック留用
+input[type="text"][pattern] {
+    padding: 0 0 0 10px;
+    text-align: left;
+}
+
+input[type="text"][pattern].alignRight {
+    padding: 0 10px 0 0;
+    text-align: right;
+}
+
+input.withoutMark {
+    @extend .withoutMark;
+}
+
+input.withoutTitleAndMark {
+    @extend .withoutTitleAndMark;
+}
+
+// Pull / DropDown / Select  モック留用
+.dropdownArea {
+
+    &_field {
+        display: inline-block;
+        height: $text-height;
+        margin-left: 10px;
+        margin-right: 10px;
+        padding-bottom: 0;
+        position: relative;
+
+        &.withoutMark {
+            @extend .withoutMark;
+        }
+
+        &.withoutTitleAndMark {
+            @extend .withoutTitleAndMark;
+        }
+    }
+
+    &_selectWrap {
+        border: 1px solid #bdbdbd;
+        border-radius: 8px;
+        color: #212121;
+        display: inline-block;
+        font-size: 20px;
+        font-weight: normal;
+        margin-top: 0;
+        position: relative;
+        width: 150px;
+    }
+
+    &_btnGroup {
+        display: flex;
+        position: relative;
+        vertical-align: middle;
+        width: 100%;
+        height: 37px;
+    }
+
+    &_toggle {
+        background: #fff url(../images/icon_select.svg) no-repeat 98% center/auto 12px;
+        border-radius: 10px;
+        border-style: none;
+        color: #bdbdbd;
+        cursor: pointer;
+        height: 37px;
+        padding: 5px 35px 5px 10px;
+        text-align: left;
+        text-shadow: none;
+        white-space: pre;
+        width: 100%;
+    }
+
+    &_menu {
+        max-height: 400px;
+        overflow-y: scroll;
+        width: 100%;
+    }
+
+    &_option {
+        border-bottom: 1px solid #eceff1;
+        font-size: 20px;
+        white-space: normal;
+
+        a {
+            width: 100%;
+        }
+    }
+
+    &_selectedColor {
+        color: $color-gray900 !important;
+    }
+}
+
+/**
+* ブロック
+*/
+// ブロックタイトル
+.blockTitle {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    text-align: left;
+    margin-top: $title-margin-top;
+    padding-bottom: $title-padding-bottom;
+    border-bottom: $title-border-bottom;
+
+    // ブロックタイトル
+    &.firstTitle {
+        margin-top: $title-margin-top-first;
+    }
+
+    &.noBorder{
+        border: none;
+    }
+
+    // タイトルラベル
+    .text {
+        color: $title-text-color-font;
+        font-size: $title-text-fontsize;
+        line-height: $title-text-fontsize;
+        font-weight: bold;
+    }
+
+    // 詳細リンク
+    .link {
+        color: $title-link-color-font;
+        font-size: $title-link-fontsize;
+        font-weight: bold;
+        text-decoration: none;
+    }
+
+    // 修正ボタン
+    .editBtn {
+        @extend .btn_middle;
+        width: $button-modify-width;
+        height: $button-modify-height;
+        border: $button-modify-boder;
+        color: $button-modify-color-font;
+        background-color: $button-modify-color-bg;
+        padding: 0;
+    }
+}
+
+// ブロックマイン
+.blockMain {
+    padding: 0 $bolck-main-padding-left;
+}
+
+// ブロックエリア
+.blockArea {
+    border-top: $area-border-top;
+    background-color: $area-color-bg;
+    padding-bottom: $area-padding-bottom;
+    padding-top: $area-padding-top;
+    margin: 0 $area-margin-left;
+
+    label {
+        margin-bottom: 0px;
+    }
+}
+
+.ocrRow+.blockRow {
+    margin-top: $row-margin-top-ocr;
+}
+
+
+.blockTitle+.blockArea {
+    border-top: none;
+}
+
+.blockTitle+.input-check-area .blockArea:first-child {
+    border-top: none;
+}
+
+// ブロックロー
+.blockRow {
+    display: flex;
+    position: relative;
+    align-items: center;
+    margin-top: $row-margin-top;
+    align-content: flex-start;
+
+    // ロー中ラベル
+    .rowLabel {
+        color: $row-label-color-font;
+        font-size: $row-label-fontsize;
+        line-height: 1.2;
+        font-weight: bold;
+        text-align: right;
+        width: $row-label-width;
+        display: inline-block;
+        flex-shrink: 0;
+        letter-spacing: -0.5px;
+
+        &_sub {
+            font-size: $row-label-sub-fontsize;
+        }
+    }
+
+    .requiredMark {
+        background-color: $required-color-bg;
+        border-radius: 10px;
+        color: $required-color-font;
+        display: inline-flex;
+        font-size: $required-fontsize;
+        height: $required-height;
+        margin-left: $required-margin-left;
+        margin-right: $required-margin-right;
+        width: $required-width;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .description{
+        font-weight: normal;
+        font-size: $row-description-fontsize;
+    }
+
+    &.hasDes {
+        flex-wrap: wrap;
+
+        .description{
+            width: 100%;
+            padding: 0 0 5px 215px;
+        }
+    }
+
+    .withoutMark {
+        @extend .withoutMark;
+    }
+
+    .withoutTitleAndMark {
+        @extend .withoutTitleAndMark;
+    }
+}
+
+// checkBoxOption　 
+.checkBoxOption {
+    padding: 0 30px;
+    border: 1px solid $color-nikko-4;
+    border-radius: 5px;
+    margin-top: 20px;
+    margin-left: 30px;
+    position: relative;
+    width: 100%;
+
+    >ng-transclude {
+        >:first-child {
+            margin-top: 25px;
+        }
+
+        >:last-child {
+            margin-bottom: 25px;
+        }
+    }
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: -30.5px;
+        border: 16px solid transparent;
+        border-bottom: 16px solid #fff;
+        z-index: 2;
+        left: 34px;
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: -32px;
+        border: 16px solid transparent;
+        border-bottom: 16px solid $color-nikko-4;
+        z-index: 1;
+        left: 34px;
+    }
+}
+
+.radioBoxOption {
+    padding: 0 30px;
+    border: 1px solid $color-nikko-4;
+    border-radius: 5px;
+    margin-top: 20px;
+    position: relative;
+
+    >ng-transclude {
+        >:first-child {
+            margin-top: 25px;
+        }
+
+        >:last-child {
+            margin-bottom: 25px;
+        }
+    }
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: -30.5px;
+        border: 16px solid transparent;
+        border-bottom: 16px solid #fff;
+        z-index: 2;
+        left: 34px;
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: -32px;
+        border: 16px solid transparent;
+        border-bottom: 16px solid $color-nikko-4;
+        z-index: 1;
+        left: 34px;
+    }
+}
+
+.radioBoxOption2 {
+    padding: 0 30px;
+    border: 1px solid $color-nikko-4;
+    border-radius: 5px;
+    margin-top: 20px;
+    position: relative;
+
+    >ng-transclude {
+        >:first-child {
+            margin-top: 25px;
+        }
+
+        >:last-child {
+            margin-bottom: 25px;
+        }
+    }
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: -30.5px;
+        border: 16px solid transparent;
+        border-bottom: 16px solid #fff;
+        z-index: 2;
+        left: 130px;
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: -32px;
+        border: 16px solid transparent;
+        border-bottom: 16px solid $color-nikko-4;
+        z-index: 1;
+        left: 130px;
+    }
+}
+
+// インジケータ共通
+.loadingCircle_blur {
+    filter: blur(6px);
+}
+
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    // 手書きキーボード2002,エラーモーダル3000
+    z-index: 2500;
+    .loadingCircle{
+        z-index: 2501;
+        animation: load 1.5s linear 0s 1 forwards;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translateY(-50%) translateX(-50%);
+        -webkit-transform: translateY(-50%) translateX(-50%);
+        width: 38px;
+        height: 38px;
+    }       
+}
+
+// プルダウン共通
+.dropdownArea_selectWrap .dropdown-backdrop {
+    position: unset;
+}

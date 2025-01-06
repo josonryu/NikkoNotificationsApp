@@ -1,0 +1,29 @@
+
+/*
+G1150-01_cameraDescription
+撮影開始説明画面
+*/
+
+#G1150-01 {
+    .progressCircle {
+        @include progressCircle(35);
+    }
+
+    @include illustPage(img02, 560px, 105px, 457px);
+
+    // ぱんくずがある画面、@include illustPageの.mainBodyの設定
+    .mainBody {
+        margin-top: 0px;
+        // mainbody = main(618px) - パンくず(60px)
+        height: 558px;
+        &_sentence {
+            // タイトル = mainbody - イラスト(455px) 
+            height: 103px;
+            // 01-2022-02-303 個人番号カード利用時の文言表示追加対応 開始 20220415
+            &Annotation {
+                color: $color-accent;
+            }
+            // 01-2022-02-303 個人番号カード利用時の文言表示追加対応 終了 20220415
+        }
+    }
+}

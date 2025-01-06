@@ -1,0 +1,160 @@
+/*
+ * G1520-01_similarModal
+ * 入力補助（手書き文字認識/キーボード）画面
+ */
+
+/*
+ * 類似文字提示モーダル共通
+ */
+.charCorrectModal {
+
+    @include modal(m);
+
+    .modal-footer {
+        border-radius: 0 0 4px 4px;
+    }
+
+    &_body {
+        color: $color-gray900;
+        padding: 30px;
+        border-radius: 5px 5px 0 0;
+    }
+
+    &_title {
+        font-size: $fontsize-extraLarge;
+        font-weight: bold;
+        margin-bottom: 30px;
+    }
+
+    &_charTable {
+        font-size: $fontsize-extraLarge;
+        margin: auto;
+
+        th,
+        td {
+            padding: 4px;
+            text-align: center;
+            width: 50px;
+        }
+
+        &_tr2 {
+            border: 2px solid;
+            border-color: $color-gray400;
+
+            td {
+                border-right: 1px dashed;
+                border-color: $color-gray400;
+            }
+
+            .last {
+                border: 2px solid;
+                border-left: 1px dashed;
+                border-color: $color-gray400;
+            }
+
+            .uneditable {
+                background-color: rgba($color-gray400, 0.2);
+            }
+
+            .editable {
+                background-color: $color-white;
+                border: 2px solid;
+                border-color: $color-accent;
+            }
+
+            .active {
+                background-color: rgba($color-accent, 0.5);
+            }
+        }
+    }
+
+    &_editArea {
+        font-size: $fontsize-large;
+        margin-top: 30px;
+    }
+
+    &_confirmLabel {
+        color: $color-accent;
+        font-weight: bold;
+    }
+
+    &_editableList {
+        margin-top: 20px;
+        padding-left: 16px;
+        max-height: 130px;
+        overflow-y: scroll;
+
+        li {
+            margin: 5px;
+
+            a {
+                color: $color-link;
+                font-weight: bold;
+                text-decoration: none;
+                -webkit-text-decoration-skip: none;
+                font-size: $fontsize-middle-two;
+            }
+        }
+    }
+
+    &_closeBtn {
+        @extend .btn_close;
+    }
+
+    &_confirmBtn {
+        @extend .btn_large;
+        background-color: $button-confirm-color-bg;
+    }
+ }
+
+/*
+ * 類似文字リンク表示共通
+ */
+.similar-link {
+    margin-left: 220px;
+    margin-top: 5px;
+    text-align: left;
+}
+
+.similarLink {
+    display: inline-block;
+    color: $color-link;
+    font-size: 15px;
+    font-weight: bold;
+    text-decoration: none;
+    -webkit-text-decoration-skip: none;
+}
+
+.similarLink:hover {
+    color: $color-link;
+    text-decoration: none;
+}
+
+.similarLink:focus {
+    color: $color-link;
+    text-decoration: none;
+}
+
+.similarArea {
+    margin-bottom: 1px;
+}
+
+.linkCharCorrect_label {
+    background-color: $linkChar-color-bg;
+    border-radius: 11px;
+    color: $linkChar-color-font;
+    display: inline-block;
+    font-size: $linkChar-fontsize;
+    font-weight: normal;
+    line-height: 22px;
+    margin-right: 5px;
+    margin-bottom: 3px;
+    text-align: center;
+    width: 100px;
+    vertical-align: middle;
+}
+
+.linkCharCorrect_label_modal {
+    position: relative;
+    top: -3px;
+}

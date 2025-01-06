@@ -1,0 +1,54 @@
+/*
+G1130-01_cameraShooting.scss
+カメラ撮影（番号確認書類）画面
+*/
+
+#G1130-01 {
+
+    .residece-header{
+        top:0;
+        background-color: $color-cameraHeader;
+        width: 100%;                  
+        height: 46px;
+        text-align: center;
+        float: left;
+        z-index: 10;
+    }
+
+    .residece-title{
+        margin-top: 5px;
+        font-weight: bold;
+        color:$color-white;
+        font-size: $fontsize-extraLarge;
+    }
+
+    .residece-main {
+        top:0;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        display: none;
+    }
+
+    .residece-divcamera {
+        position: relative;
+        background-color: rgba($color-black,0);
+        height: 80%;
+        width: 86%;
+        border: 2px solid $color-white;
+        margin-left: 7%;
+        margin-right: 7%;
+        margin-top: 6%;
+        margin-bottom: 14%;
+    }
+
+    .residece-description{
+        position: absolute;
+        width: 100%;
+        margin-top: 580px;
+        text-align: center;
+        font-weight: bold;
+        color:$color-white;
+        font-size: $fontsize-large;
+    }
+}

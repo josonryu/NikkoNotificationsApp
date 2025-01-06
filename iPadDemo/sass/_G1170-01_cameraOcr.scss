@@ -1,0 +1,84 @@
+/*
+G1170-01_cameraOcr.scss
+カメラOCR画面用SCSS
+*/
+@mixin residece-guide($top, $left, $width, $height){
+    position: absolute;
+    top: $top;
+    left: $left;
+    border: solid 1px $color-white;
+    width: $width;
+    height: $height;
+}
+#G1170-01 {
+
+    .bodyPart{
+        height: 688px;
+        display: none;
+    }
+
+    .residece-header{
+        top:0;
+        background-color: $color-cameraHeader;
+        width: 100%;                  
+        height: 46px;
+        text-align: center;
+        float: left;
+        z-index: 10;
+    }
+
+    .residece-title{
+        margin-top: 5px;
+        font-weight: bold;
+        color:$color-white;
+        font-size: $fontsize-extraLarge;
+    }
+
+    .residece-main {
+        top:0;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        display: none;
+    }
+
+    .residece-divcamera {
+        position: relative;
+        background-color: rgba($color-black,0);
+        height: 80%;
+        width: 86%;
+        border: 2px solid $color-white;
+        margin-left: 7%;
+        margin-right: 7%;
+        margin-top: 6%;
+        margin-bottom: 14%;
+    }
+
+    .residece-description{
+        position: absolute;
+        width: 100%;
+        margin-top: 580px;
+        text-align: center;
+        font-weight: bold;
+        color:$color-white;
+        font-size: $fontsize-large;
+    }
+
+    .residece-guide{
+        &_mynumber{
+            @include residece-guide($top: 206px, $left: 35px, $width: 219px, $height: 264px);
+        }
+        &_driver{
+            @include residece-guide($top: 180px, $left:601px, $width: 243px, $height: 298px);
+        }
+        &_passport{
+            @include residece-guide($top: 161px, $left:21px, $width: 241px, $height: 318px);
+        }
+        &_residence{
+            @include residece-guide($top: 187px, $left:625px, $width: 228px, $height: 306px);
+        }
+        &_special{
+            @include residece-guide($top: 191px, $left:627px, $width: 227px, $height: 305px);
+        }
+    }
+}

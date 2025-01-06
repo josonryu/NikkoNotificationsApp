@@ -1,0 +1,163 @@
+/*
+G1100-01_selectNecessaryDoc.scss
+番号確認書類のご説明・ご選択画面
+*/
+
+#G1100 {
+    //共通部品補正
+    .progressCircle{
+        @include progressCircle(20);
+    }
+
+    .alarmArea {
+        &_icon{
+            background-image: url(../images/icon_alert.svg);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: contain;
+            display: inline-block;
+            height: 13px;
+            width: 13px;
+            vertical-align: middle;
+            margin-right: 5px;
+            margin-bottom: 3px;
+        }
+    }
+
+    // 本文
+    .mainSpace {
+        background-color: $main-color-bg;
+        margin-bottom: 0;
+        text-align: center;
+        width: 100%;
+        height: 540px;
+
+        .main-text-area{
+            width: 100%;
+
+            .sub-text{
+                color: $color-gray900;
+                font-size: $fontsize-large;
+                margin: 10px 0 0 0;
+            }
+        }
+
+        .checkArea{
+            position: relative;
+            width: 100%;
+            margin: 0px;
+
+            @mixin checkAreaCard(){
+                background-repeat: no-repeat;
+                background-position-x: center;
+                background-position-y: 20px;
+                background-size: 70% auto;//200px 130px;
+                background-color: #ffffff;
+                border: 5px solid #bdbdbd;
+                border-radius: 15px;
+                height: 250px;
+                position: absolute;
+                width: 268px;
+                
+                .checkArea_card_title{
+                    top: 155px;
+                    color: #212121;
+                    font-size: 26px;
+                    font-weight: bold;
+                    left: 0;
+                    margin: auto;
+                    position: absolute;
+                    right: 0;
+                }
+            }
+
+            .checkArea_myNumberCard{
+                @include checkAreaCard();
+                background-image: url(../images/b_mynumber.svg);
+                left: 65px;
+                background-position-y: 32px;
+            }
+
+            .checkArea_noticeCard{
+                @include checkAreaCard();
+                background-image: url(../images/notification.svg);
+                left: 0;
+                margin: auto;
+                right: 0;
+                background-position-y: 32px;
+            }
+
+            .checkArea_residence{
+                @include checkAreaCard();
+                background-image: url(../images/residential_certificate.svg);
+                right: 65px;
+
+                .checkArea_card_title{
+                    line-height: 32px;
+                    top: 155px;
+                }
+                .checkArea_residence_text{
+                    color: #212121;
+                    font-size: 13px;
+                    position: absolute;
+                    left: 0;
+                    letter-spacing: 1px;
+                    margin: auto;
+                    right: 0;
+                    top: 186px;
+                }
+                .checkArea_residence_text2{
+                    color: $color-accent;
+                    font-size: 13px;
+                    position: absolute;
+                    left: 0;
+                    letter-spacing: 1px;
+                    margin: auto;
+                    right: 0;
+                    top: 205px;
+                }
+                .checkArea_residence_text3{
+                    top: 233px;
+                    font-size: 13px;
+                    letter-spacing: 1px;
+                    position: absolute;
+                    left: 0;
+                    margin: auto;
+                    right: 0;
+                }
+            }
+
+            .checkArea_residence-tall{
+                height: 360px;
+            }
+
+            .checkArea-active{
+                border: 5px solid $color-baseColor1;
+            }
+
+            // 共通スタイル上書き
+            .checkArea_div + .checkArea_div{
+                margin-left: 0;
+            }
+
+            .ng-isolate-scope{
+                position: relative;
+                top: 240px;
+
+                .checkArea_div{
+                    width: 210px;
+
+                    .checkArea_labelJust {
+                        font-size: $fontsize-middle;
+                        height: 30px;
+                        line-height: 30px;
+                    }
+                }
+            }
+        }
+
+        input {
+            opacity: 0;
+        }
+    }
+}

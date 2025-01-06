@@ -1,0 +1,166 @@
+//パンくず
+@mixin pankuzu-icon($name) {
+    background-image: url("../images/#{$name}.svg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 20px 20px;
+    letter-spacing: normal;
+    margin-right: 5px;
+    width: 22px;
+}
+
+@mixin pankuzu-common($step, $state) {
+    background-color: $color-white;
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    letter-spacing: normal;
+    width: 25%;
+    &::after {
+        background-repeat: no-repeat;
+        content: '';
+        position: relative;
+        right: -11px; // 微調整の結果
+        top: 0;
+        width: 14px; // 微調整の結果
+    }
+    @if $state == "active" {
+		color: $pankuzu-active-color-font;
+        background-color: $pankuzu-active-color-bg;
+        &::after {
+            background-image: url("../images/pankuzu_arrow_active.svg");
+        }
+    }@else if $state == "inactive" {
+		color: $pankuzu-inactive-color-font;
+        background-color: $pankuzu-inactive-color-bg;
+        &::after {
+            background-image: url("../images/a_pankuzu_arrow.svg");
+        }
+    }@else {
+        color: $pankuzu-done-color-font;
+        background-color: $pankuzu-done-color-bg;
+        &::after {
+            background-image: url("../images/b_pankuzu_arrow_visited.svg");
+        }
+    }
+}
+
+//進捗率（口座開設のみ）
+//引数はパーセントの値です ex.40% --→ @include progressCircle(40);
+@mixin progressCircle($progress-rate){
+    background-color: $color-nikko-12;
+    background-image: linear-gradient(to right, transparent 50%, $color-baseColor2 0);
+    border-radius: 50%;
+    position: absolute;
+    right: 15.36px;
+    bottom: 21px;
+    width: 105px;
+    height: 105px;
+    $c: $color-nikko-12;
+    $rate: $progress-rate;
+    @if ($progress-rate >= 50){
+        $c: $color-baseColor2;
+        $rate: -50+$progress-rate;
+    }
+    &::before{
+        content: '';
+        display: block;
+        margin-left: 50%;
+        height: 100%;
+        border-radius: 0 100% 100% 0 / 50%;
+        background-color: $c;
+        transform-origin: left;
+        transform: rotate($rate*3.6deg);
+    }
+}
+
+// モーダル 
+// 第一引数: large,middle,small(l,m,s)を指定
+// bootstrapの .modal-dialog 及び .modal-content に追記
+// モーダルの画面idのdiv配下でインクルードして使用する
+// ex.
+// #G0000-00{
+//     @include modal(m);
+// }
+@mixin modal($size: "s"){
+    $w: 460px !default;
+    $ini: to-upper-case(str-slice($size, 1, 1));
+    @if $ini == "L" {
+        $w: $modal-size-large;
+    }@else if $ini == "M" {
+        $w: $modal-size-middle;
+    }@else if $ini == "S" {
+        $w: $modal-size-small;
+
+        .modal-body {
+            padding: 50px 25px;
+        }
+
+        .modal-footer {
+            padding: 15px;
+        }
+
+        .modal-body.noPadding {
+            padding: 0;
+        } 
+    }
+
+    .modal-dialog {
+        width: $w;
+        top: 0;
+        align-items: center;
+        display: flex;
+        height: 100%;
+        margin: 0 auto;
+    }
+    .modal-content{
+        border-radius: 15px;
+        border: 6px solid $color-gray400;
+        width: 100%;
+        border: $modal-border;
+        box-shadow: unset;
+    }
+    .modal-footer{
+        text-align: center;
+        border-top: $modal-border-footer;
+    }
+}
+
+//イラスト画面
+// 第一引数: 画像名を指定
+// 第二引数: mainBodyの高さ（ぱんくずがない画面のディフォルト値：575px）
+// 第三引数: mainBody_sentenceの高さ（ぱんくずがない画面のディフォルト値：145px）
+// 第四引数: mainBody_descriptの高さ（ぱんくずがない画面のディフォルト値：430px）
+// ex.
+// #G0000-00{
+//     @include illustPage(img02, 575px, 145px, 430px);
+// }
+@mixin illustPage($imgName, $h1: 575px, $h2: 145px, $h3: 430px) {
+    .mainBody {
+        width: 100%;
+        height: $h1;
+        margin-top: 105px;
+        background-color: $main-color-bg;
+        text-align: center;
+
+        &_sentence {
+            color: $color-gray900;
+            font-size: $page-title-fontsize;
+            font-weight: bold;
+            padding-top: 25px;
+            height: $h2;
+        }
+
+        &_descript {
+            position: relative;
+            height: $h3;
+            &_image {
+                background: url("../images/#{$imgName}.svg");
+                background-size: auto $h3;
+                background-position: center;
+                background-repeat: no-repeat;
+                height: $h3;
+            }
+        }
+    }
+}

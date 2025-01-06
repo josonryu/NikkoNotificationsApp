@@ -1,0 +1,84 @@
+/*
+G1060-01_selectCustomer
+お客さま検索画面
+*/
+
+#G1060-01{
+
+    //独自スタイル
+    .err-message{
+        margin-left: 220px;
+        margin-top:5px;
+    }
+
+    .scrollArea{
+        padding-bottom: 80px;
+        &_sign {
+            margin-bottom: 0px;
+        }
+    }
+
+    .mainSpace{
+        border-bottom: none;
+        text-align: left;
+        width: 100%;
+    }
+
+    //サブテキストブロック
+    .subText{
+        margin: 45px 30px;
+        color: $color-gray900;
+        font-size: $fontsize-large;
+        text-align: left;
+        font-weight: bold;
+    }
+
+    //入力ブロック
+    .blockArea{
+        &_result{
+            color: $color-gray900;
+            font-size: $fontsize-large;
+            font-weight: normal;
+            text-align: left;
+            width: 600px;
+            margin-left: 70px;
+        }
+        
+        &_row{
+            margin-top: 20px;
+            
+            .firstRow{
+                margin-top: 10px;
+            }
+        }
+
+        &_inputReq4{
+            width: 90px;
+        }
+
+        &_inputReq7{
+            width: 120px;
+        }
+    }
+    .hyphen{
+        margin-left: 10px;
+        font-size: 14px;
+        font-weight: bold;
+    }
+    .marginleft50{
+        margin-left: 50px;
+    }
+
+    //以下共通部分を上書き
+    // ブロックエリア
+    .blockArea {
+        // ロー中ラベル
+        &_label {
+            width: 165px;
+            text-align: right;
+        }
+    }
+    .notMargin{
+        margin: 0px 0px 0px 0px
+    }
+}    

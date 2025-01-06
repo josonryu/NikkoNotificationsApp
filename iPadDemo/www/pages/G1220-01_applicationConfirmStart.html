@@ -1,0 +1,35 @@
+<!-- 
+    画面名：申込内容確認開始画面
+    画面id：G1220-01
+-->
+<div id="G1220-01" ng-init="init()">
+    <!--固定ヘッダー ブロック-->
+    <header ng-include="'pages/common/header.html'"></header>
+
+    <main>
+        <!--mainBody メインブロック-->
+        <div class="mainBody">
+            <!-- 日興カード申し込みあり -->
+            <div ng-if="1 == mosikomi || 3 == mosikomi" class="mainBody_sentence">
+                これより日興カードの暗証番号を設定のうえ、<br>
+                お申し込み内容をご確認いただきます。<br>
+                お客さまご自身でタブレットをご操作ください。
+            </div>
+            <!-- 日興カード申し込みなし -->
+            <div ng-if="1 != mosikomi && 3 != mosikomi" class="mainBody_sentence">
+                お申し込み内容をご確認いただきます。<br>
+                お客さまご自身でタブレットをご操作ください。
+            </div>
+            <!--descript 説明ブロック-->
+            <div class="mainBody_descript">
+                <div class="mainBody_descript_image"></div>
+            </div>
+        </div>
+    </main>
+
+    <!--固定フッター ブロック-->
+    <footer class="fixedFooter">
+        <button class="backBtn" ng-click="backBtnClick()">戻る</button>
+        <button class="nextBtn" ng-click="nextBtnClick()">次へ</button>
+    </footer>
+</div>

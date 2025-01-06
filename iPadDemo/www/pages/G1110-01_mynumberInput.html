@@ -1,0 +1,75 @@
+<!-- 
+    画面名：個人番号入力画面
+    画面id：G1110-01
+-->
+<div id="G1110-01" ng-init="init()">
+    <!-- ヘッダー部 -->
+    <header ng-include="'pages/common/header.html'"></header>
+
+    <!-- コンテンツ部 -->
+    <main id="G1110-01-main" class="main">
+
+        <!--パンくず ブロック-->
+        <div class="pankuzu" ng-include="'pages/common/pankuzu.html'" ng-init="pankuzuType = pankuzuPatten"></div>
+
+        <!-- 本文 -->
+        <div class="mainSpace">
+            <!-- ページタイトル -->
+            <div class="pageTitle">
+                <span>「{{myNumDocInfos.MSY}}」に記載された個人番号を入力してください</span>
+            </div>
+
+            <!-- サブテキスト -->
+            <div class="subText" ng-if="myNumDocInfos.CD <= 2">
+                <span>タブレットの背面のカメラで個人番号を読み取る機能を利用できます。</span>
+            </div>
+
+            <!-- 注意喚起 -->
+            <div class="basicInfoTitle_warn" ng-if='showHeadsUp'>
+                <span class="basicInfoTitle_warn_icon"></span>
+                {{msgHeadsUp}}
+            </div>
+            
+            <!-- 個人番号入力チェック ブロック -->
+            <div class="input-check-area" ng-class="{margintop100:!showHeadsUp}">
+                <div class="blockArea ocrRow">
+                    <!-- OCR結果表示　ブロック -->
+                    <div class="blockRow" ng-show="showOcrResult">
+                        <div class="ocr_label">
+                            <div class="ocr_right"></div>
+                            書類読取情報
+                        </div>
+                        <div class="ocr_result mynumber_ocrResultWidth">
+                            <div class="ocr_Left"></div>
+                            <span>{{mynumberOcr}}</span>
+                            <div class="ocr_right"></div>
+                        </div>
+                        <div class="ocr_btnArea">
+                            <button class="ocr_btnInputOcr" ng-click="btnInputOcrClick('mynumber')">この内容を反映</button>
+                        </div>
+                    </div>
+                    <!-- 個人番号入力 ブロック-->
+                    <div class="blockRow input-check-row">
+                        <label class="rowLabel">個人番号</label>
+                        <input type="text" class="withoutMark" id="txtMynumber" pattern="\d*" placeholder="000000000000" maxlength="12" size="12" input-data="input.MYNO" ng-model="MODEL.MYNO">
+                        <button ng-if="myNumDocInfos.CD <= 2" class="btnOcr" id="btnOcr" ng-click="btnOcrClick()">書類読取</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!--フッター部-->
+    <footer>
+        <div class="fixedFooter">
+            <button id="btnBack" class="backBtn" ng-click="btnBackClick()">戻る</button>
+            <button id="btnNext" class="nextBtn" ng-click="btnNextClick()">{{editMode? "確認画面へ" : "次へ"}}</button>
+        </div>
+    </footer>
+</div>
+
+<!-- G1120-01 撮影書面表示（番号確認書類）画面 -->
+<div class="modal fade" data-backdrop="static" ng-include="'pages/G1120-01_startCamera.html'" id="G1120-01" onload="initModal()"></div>
+
+<!-- G1130-01 カメラ撮影（番号確認書類）画面 -->
+<div id="G1130-01" class="bodyPart" ng-include="'pages/G1130-01_cameraShooting.html'"></div>

@@ -1,0 +1,31 @@
+<!--
+    画面名：撮影結果表示画面(本人確認書類撮影機能) (3枚目)
+    画面id：G1180-03
+-->
+<div id="G1180-03" ng-init="init()">
+    <header class="container-fluid G1180-header">
+        <div class="G1180-title">{{docName}}</div>
+    </header>
+
+    <main class="container-fluid G1180-main-space">
+        <div class="row">
+            <div class="G1180-confirm-title">{{pictureConfirm}}</div>
+        </div>
+        <div class="row">
+            <img id="imgBack" ng-src="{{cardThirdimg}}" class="img-responsive center-block G1180-divimg G1180-divimg_frame" alt="{{docName}} イメージ"></img>
+        </div>
+    </main>
+
+    <footer>
+        <div class="fixedFooter">
+            <button class="backBtn" id="btnTakeRetry" ng-disabled="noneInitCamFlg || noneInitCamOcrFlg"  ng-click="btnTakeRetryClick()">再撮影</button>
+            <button class="nextBtn" ng-click="btnNextClick()">次へ</button>
+        </div>
+    </footer>
+</div>
+
+<!-- 「G1160-01:撮影書面表示画面」 -->
+<div id="G1160-01" class="modal fade" data-backdrop="static" ng-include="'pages/G1160_startCameraId.html'"></div>
+
+<!-- 「G1170-01:カメラ撮影画面」 -->
+<div id="G1170-01" class="bodyPart" ng-include="'pages/G1170-01_cameraShooting.html'"></div>

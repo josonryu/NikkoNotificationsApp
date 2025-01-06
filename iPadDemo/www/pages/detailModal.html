@@ -1,0 +1,61 @@
+<!-- 
+    詳細リンク共通HTML
+-->
+
+<div class="modal fade linkModal" data-backdrop="static" id="modalDetail">
+    <div class="modal-dialog modalDetail_main">
+        <div class="modal-content modalDetail_content">
+            <div class="modalBody" id="linkModal_overflowScroll">
+
+                <!-- G1080-01：事務手続き画面 -->
+                <!-- 本人確認書類 詳細リンク -->
+                <img ng-if="G1080_06" dataurl="Documents/NoCloud/appBizFile/img/link_identification_img2.png" class="modalImage" alt="本人確認書類 詳細 縦：527px 横：916px">
+                <!-- 番号確認書類 詳細リンク -->
+                <img ng-if="G1080_07" dataurl="Documents/NoCloud/appBizFile/img/link_bangoukakunin_img.png" class="modalImage" alt="番号確認書類 詳細 縦：527px 横：916px">
+                <!-- 証券総合口座取引 詳細リンク -->
+                <img ng-if="G1080_08" dataurl="Documents/NoCloud/appBizFile/img/link_sogokoza_img2.png" class="modalImage" alt="証券総合口座取引 詳細 縦：527px 横：916px">
+                <!-- 日興カード 詳細リンク -->
+                <img ng-if="G1080_09" dataurl="Documents/NoCloud/appBizFile/img/link_card_img2.png" class="modalImage" alt="日興カード 詳細 縦：527px 横：916px">
+                <!-- 日興イージートレード 詳細リンク -->
+                <img ng-if="G1080_10" dataurl="Documents/NoCloud/appBizFile/img/link_eztrade_img2.png" class="modalImage" alt="日興イージートレード 詳細 縦：527px 横：916px">
+                <!-- 外国証券取引口座 詳細リンク -->
+                <img ng-if="G1080_11" dataurl="Documents/NoCloud/appBizFile/img/link_gaikokushoken_img2.png" class="modalImage" alt="外国証券取引口座 詳細 縦：527px 横：916px">
+                <!-- 特定口座 詳細リンク -->
+                <img ng-if="G1080_12" dataurl="Documents/NoCloud/appBizFile/img/link_tokutekoza_img2.png" class="modalImage" alt="特定口座 詳細 縦：527px 横：916px">
+                <!-- 特定管理口座 詳細リンク -->
+                <img ng-if="G1080_13" dataurl="Documents/NoCloud/appBizFile/img/link_tokuteikanri_img.png" class="modalImage" alt="特定管理口座 詳細 縦：527px 横：916px">
+                <!-- 加入者情報拡張登録 詳細リンク -->
+                <img ng-if="G1080_14" dataurl="Documents/NoCloud/appBizFile/img/link_kanyushajouhou_img.png" class="modalImage" alt="加入者情報拡張登録 詳細 縦：527px 横：916px">
+                <!-- NISA口座開設 詳細リンク -->
+                <img ng-if="G1080_15" dataurl="Documents/NoCloud/appBizFile/img/link_nisakoza_img2.png" class="modalImage" alt="NISA口座開設 詳細 縦：527px 横：916px">
+                <!-- 個人番号告知 詳細リンク -->
+                <img ng-if="G1080_16" dataurl="Documents/NoCloud/appBizFile/img/link_kojinbangou_img.png" class="modalImage" alt="個人番号告知 詳細 縦：527px 横：916px">
+                <!-- 当社から送金する際のお受取口座 詳細リンク -->
+                <img ng-if="G1080_17" dataurl="Documents/NoCloud/appBizFile/img/link_uketorikoza_img2.png" class="modalImage" alt="当社から送金する際のお受取口座 詳細 縦：527px 横：916px">
+                <!-- 利金・分配金支払方法（包括） 詳細リンク -->
+                <img ng-if="G1080_18" dataurl="Documents/NoCloud/appBizFile/img/link_houkatu_img.png" class="modalImage" alt="利金・分配金支払方法（包括） 詳細 縦：527px 横：916px">
+                <!-- 利金・分配金支払方法（銘柄） 詳細リンク -->
+                <img ng-if="G1080_19" dataurl="Documents/NoCloud/appBizFile/img/link_meigara_img.png" class="modalImage" alt="利金・分配金支払方法（銘柄） 詳細 縦：527px 横：916px">
+                <!-- 外国証券の円貨利金分配金振込銀行 詳細リンク -->
+                <img ng-if="G1080_20" dataurl="Documents/NoCloud/appBizFile/img/link_bunpaikin_img.png" class="modalImage" alt="外国証券の円貨利金分配金振込銀行 詳細 縦：527px 横：916px">
+                <!-- 累投（株投型）分配金買付停止 詳細リンク -->
+                <img ng-if="G1080_21" dataurl="Documents/NoCloud/appBizFile/img/link_ruitou_img.png" class="modalImage" alt="累投（株投型）分配金買付停止 詳細 縦：527px 横：916px">
+                <!-- 配当金受領方式 詳細リンク -->
+                <img ng-if="G1080_22" dataurl="Documents/NoCloud/appBizFile/img/link_haitokin_img2.png" class="modalImage" alt="配当金受領方式 詳細 縦：527px 横：916px">
+                
+                <!-- G1140-01：本人確認書類のご説明・ご選択画面 -->
+                <!-- 本人確認書類 詳細リンク -->
+                <img ng-if="G1140_03" dataurl="Documents/NoCloud/appBizFile/img/link_identification_img3.png" class="modalImage" alt="本人確認書類 詳細 縦：527px 横：916px">
+
+                <!-- G1260-01：営業員確認画面 -->
+                <!-- MRF目論見書の交付方式 詳細リンク -->
+                <img ng-if="G1260_02" dataurl="Documents/NoCloud/appBizFile/img/link_mrf_img2.png" class="modalImage" alt="MRF目論見書の交付方式 詳細 縦：527px 横：916px">
+            </div>
+            <div class="modal-footer">
+                <div class="modal-footer-relative">
+                    <button class="close-btn center-block modalCloseBtn" data-dismiss="modal" ng-click="modalCancelBtnClick()"><span class="modalDetail_closeText">閉じる</span></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

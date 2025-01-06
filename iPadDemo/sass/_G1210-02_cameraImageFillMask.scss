@@ -1,0 +1,144 @@
+/*
+G1210-02_cameraImageFillMask
+機微情報の塗りつぶし画面　※マスク画面
+*/
+
+#G1210-02 {
+    color: $color-white;
+    .modalHead{
+        background-color: $color-blueGray900;
+        border-bottom: 0px;
+        height: 46px;
+        padding-top: 5px;
+        padding-bottom: 0px;
+        text-align: center;
+        &_title{
+            font-size: $fontsize-extraLarge;
+            font-weight: bold;
+        }
+    }
+    .modalBody{
+        // キャンバススクロール共通定義
+        @mixin canvasScroll () {
+            background-color: #474849;
+            height: 635px;
+            max-height:660px;
+            max-width:1024px;
+            overflow-x:scroll;
+            overflow-y:scroll;
+            padding: 0 0 0 0;
+        }
+        &_canvas{
+            @include canvasScroll;
+            align-items: center;
+            float: left;
+            display: flex;
+            justify-content: center;
+            width: 91%;
+
+            &-bigScale{
+                @include canvasScroll;
+                width: 100%;
+                canvas.mainCanvas {
+                    &-bigScaleHeight{
+                        height: 200%;
+                    }
+                    &-bigScaleWidth{
+                        width: 200%;
+                    }
+                }
+            }
+            canvas.mainCanvas {
+                &-normalScaleHeight{
+                    height: 100%;
+                }
+                &-normalScaleWidth{
+                    width: 100%;
+                }
+            }
+        }
+        &_menu{
+            background-color: $color-blueGray900;
+            float: left;
+            text-align: center;
+            width: 9%;
+            height: 700px;
+            margin-top: -45px;
+            .menu {
+                &_button {
+                    background-color: $color-bluegray;
+                    border: solid 2px $color-white;
+                    border-radius: 12px;
+                    color: $color-white;
+                    font-size: $fontsize-small;
+                    font-weight: normal;
+                    height: 50px;
+                    margin: 10px 0 5px 0;
+                    width: 70px;
+                }
+                &_descript {
+                    font-size: $fontsize-middle;
+                    margin-top: 5px;
+                }
+
+                // アイコン画像ボタン共通定義
+                @mixin iconButton ($imagePath) {
+                    background-image: url($imagePath);
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                    background-position: 0px 0px;
+                    margin-left: auto;
+                    margin-right: auto;
+                    height: 60px;
+                    opacity: 0.5;
+                    width: 64px;
+                }
+                &_freeLineButton {
+                    @include iconButton("../images/bt_lineStyle_free.svg");
+                    &-active{
+                        opacity: 1.0;
+                    }
+                }
+                &_straightLineButton {
+                    @include iconButton("../images/bt_lineStyle_straight.svg");
+                    &-active{
+                        opacity: 1.0;
+                    }
+                }
+                &_eraserButton {
+                    @include iconButton("../images/bt_eraser.svg");
+                    &-active{
+                        opacity: 1.0;
+                    }
+                }
+                &_smallLineButton {
+                    @include iconButton("../images/bt_blush_size00.svg");
+                    &-active{
+                        opacity: 1.0;
+                    }
+                }
+                &_normalLineButton {
+                    @include iconButton("../images/bt_blush_size01.svg");
+                    &-active{
+                        opacity: 1.0;
+                    }
+                }
+                &_boldLineButton {
+                    @include iconButton("../images/bt_blush_size02.svg");
+                    &-active{
+                        opacity: 1.0;
+                    }
+                }
+                &_autoMaskButton {
+                    @include iconButton("../images/bt_autoMask.svg");
+                    opacity: 1.0;
+                }
+            }
+            .tooltip {
+                right: 73px !important;
+                top: 560px !important;
+                width: 120px !important;
+            }
+        }
+    }
+}

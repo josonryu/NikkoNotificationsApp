@@ -1,0 +1,59 @@
+/*
+G1120-01_startCamera.scss
+撮影書面表示（番号確認書類）画面
+*/
+#G1120-01{
+    @include modal(m);
+    .G1120-modal {
+        text-align: center;
+
+        &-title{
+            color: $color-gray900;
+            margin-top: 20px;
+
+            .plarge{
+                font-size: $fontsize-large;
+                font-weight: bold;
+                line-height: 22px;
+            }
+
+            .strong{
+                color: $color-accent;
+            }
+        }
+
+        .modal-body{
+            height: 291px;
+        }
+
+        .form-group{
+            text-align: -webkit-center;
+        }
+
+        .mynumber-back{
+            background-image: url(../images/b_mynumber.svg);
+            background-size: 100% auto;
+            background-repeat: no-repeat;
+            background-position: center;
+            height: 160px;
+            width: 250px;
+            margin-top: 35px;
+        }
+        .notice{
+            background-image: url(../images/notification.svg);
+            background-size: 100% auto;
+            background-repeat: no-repeat;
+            background-position: center;
+            height: 160px;
+            width: 250px;
+            margin-top: 35px;
+        }
+
+        .modal-cancel-btn{
+            @extend .btn_no;
+        }
+        .modal-confirm-btn{
+            @extend .btn_yes;
+        }
+    }
+}

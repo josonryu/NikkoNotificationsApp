@@ -1,0 +1,124 @@
+/*
+G1080-04、G1080-05
+金融機関名検索画面、支店名検索画面
+*/
+
+#G1080-04,
+#G1080-05 {
+    @include modal(m);
+    .finSearchModal {
+        &_dialog {
+            display: block;
+            padding-top: 70px;
+        }
+
+        &_content {
+            min-height: 325px; // ipad air3対応
+            text-align: center;
+        }
+
+        &_body {
+            padding-bottom: 80px;
+        }
+
+        &_title {
+            font-size: $fontsize-large;
+            font-weight: bold;
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        &_subTitle {
+            font-size: $fontsize-large;
+            font-weight: bold;
+            margin-top: 40px;
+        }
+
+        &_inputArea {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-right: 10px;
+            width: 100%;
+        }
+
+        &_input{
+            margin: 0;
+            width: 620px;
+        }
+
+        &_searchBtn {
+            @extend .btn_middle;
+            background-color: $button-search-color-bg;
+            height: 40px;
+            min-width: 115px;
+        }
+
+        &_overflowScroll {
+            height: 280px;
+            overflow-y: scroll;
+            padding: 1px;
+        }
+
+        &_result {
+            border: solid 1px $color-gray400;
+            border-radius: 10px;
+            margin-top: 5px;
+            padding: 10px;
+            text-align: left;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        &_resultText {
+            color: $color-gray900;
+            font-size: $fontsize-large;
+            font-weight: bold;
+            margin-right: 40px;
+            width: 500px;
+        }
+
+        &_resultCode {
+            font-size: $fontsize-middle;
+            width: 80px;
+            height: 20px;
+            text-align: center;
+        }
+
+        &_resultSelectBtn {
+            @extend .btn_middle;
+            background-color: $button-search-color-bg;
+            height: 36px;
+            width: 115px;
+        }
+
+        &_footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        &_cancelBtn {
+            @extend .btn_large;
+            background-color: $color-bluegray;
+        }
+
+        &_closeBtn {
+            @extend .btn_close;
+        }
+    }
+        
+    .err-message {
+        margin-left: 5px;
+        margin-top: 5px;
+    }
+
+    .input-check-area.err {
+        background-color: $color-white;
+    }
+}

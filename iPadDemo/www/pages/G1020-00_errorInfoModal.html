@@ -1,0 +1,33 @@
+<!--
+    エラーモーダル共通HTML
+    G1020-01：ログイン可能時間外のお知らせ画面
+    G1020-02：その他エラー画面
+    G1020-03：サービス終了のお知らせ画面
+    G1020-04：タイムアウト画面
+    G1020-05：通信エラー画面
+-->
+<div class="modal fade" data-backdrop="static" data-dismiss="modal" id="G1020">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!--エラー画面（モーダル）のメイン要素-->
+            <div class="modal-body errorInfo_textArea">
+
+                <!--アプリケーションロゴ-->
+                <div class="appLogo">
+                    <div class="appLogo_title">事務手続きアプリ</div>
+                </div>
+                <span class="msgTitle" id="txtTitle">{{messageTitle}}</span>
+                <span class="msgContents" id="txtContents">{{messageContents}}</span>
+            </div>
+
+            <!--エラー画面（モーダル）のフッター-->
+            <div class="modal-footer errorInfo_footerText" id="footerMessage">
+                <span>ホームボタンを２回押下して、アプリを終了してください</span>
+            </div>
+            <div class="modal-footer errorInfo_footerButton" id="footerCloseButton">
+                    <button class="errorInfo_close-btn" data-dismiss="modal">　閉じる</button>
+            </div>
+        </div>
+    </div>
+</div>

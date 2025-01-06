@@ -1,0 +1,330 @@
+/*
+G1510-01_inputAssistant
+入力補助（手書き文字認識/キーボード）画面
+*/
+
+#G1510 {
+    font-weight: bold;
+
+    .transForInit {
+        opacity: 0 !important;
+        z-index: -1 !important;
+    }
+
+    .assistant {       
+        background: none;
+        color: $color-white;
+        display: none;
+        font-size: 23px;
+        // min-height: 465px;
+        left: 0;
+        margin: 0;
+        padding: 0 20px;
+        position: fixed;
+        text-align: center;
+        width: 100%;
+        z-index: 2002;
+        bottom: 0;
+
+        &_row-top {
+            position: relative;
+            z-index: 2000;
+            height: 40px;
+            margin: auto 0;
+        }
+
+        &_row-center {
+            position: relative;
+            z-index: 2002;
+            height: 60px;
+            margin: auto 0;
+        }
+
+        &_row-bottom {
+            position: relative;
+            z-index: 2002;
+            height: 60px;
+            margin: auto 0;
+        }
+
+        &_btn {
+            border: 1px solid $color-white;
+            border-radius: 10px;
+            box-shadow: none;
+            color: $color-white;
+            font-size: 20px;
+            font-weight: bold;
+            height: 44px;
+            position: relative;
+            width: 200px;
+
+            &:active {
+                box-shadow: 0 0;
+                transform: translate3d(0, 3px, 0);
+            }
+        }
+
+        &_backBtn {
+            background-color: $button-close-color-bg;
+            margin: 5px 5px 0 !important;
+        }
+
+        &_confirmBtn {
+            background-color: $button-confirm-color-bg;
+            margin: 11px 15px 0 !important;
+        }
+
+        &_closeBtn {
+            background-color: $button-close-color-bg;
+            margin-bottom: 7px;
+            margin-top: 7px;
+        }
+    }
+
+    .handwriteModeBtn {
+        border: 0;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        color: $color-white;
+        font-size: 16px;
+        height: 40px;
+        margin-right: 5px;
+        text-align: center;
+        width: 200px;
+
+        .signModeIcon {
+            background-image: url(../images/icon_tegaki.svg);
+            background-size: 15px 15px;
+            display: inline-block;
+            height: 15px;
+            margin: 2px 5px 5px 0px;
+            vertical-align: middle;
+            width: 15px; 
+        }
+    }
+
+    .keyboardModeBtn {
+        border: 0;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        color: $color-white;
+        font-size: 16px;
+        height: 40px;
+        margin-left: 5px;
+        text-align: center;
+        width: 200px;
+
+        .keyModeIcon {
+            background-image: url(../images/icon_keyboard.svg);
+            background-size: 25px 15px;
+            display: inline-block;
+            height: 15px;
+            margin: 2px 5px 5px 0px;
+            vertical-align: middle;
+            width: 25px;
+        }
+    }
+
+    .handwriteMode {
+        .handwriteModeBtn {
+            background-color: $color-blueGray900;
+        }
+
+        .keyboardModeBtn {
+            background-color: $color-bluegray;
+        }
+        
+        .keyboardItem {
+            display: none;
+        }
+    }
+
+    .keyboardMode {
+        .handwriteModeBtn {
+            background-color: $color-bluegray;
+        }
+
+        .keyboardModeBtn {
+            background-color: $color-blueGray900;
+        }
+
+        .handwriteItem {
+            display: none;
+        }
+    }
+
+    .assistant_label {
+        font-size: 26px;
+        font-weight: bold;
+        height: 60px;
+        line-height: 60px;
+        padding-left: 20px;
+        text-align: center;
+    }
+
+    .handwriteBox {
+        position: relative;
+        z-index: 2002;
+        background-color: $color-white;
+        border: 0;
+        height: 315px;
+        margin-bottom: 10px;
+        padding: 10px;
+
+        &_titleRow {
+            margin: auto 0 11px;
+        }
+
+        &_BtnArea {
+            display: inline-block;
+        }
+
+        &_inputBtn {
+            background-color: $color-white;
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 3px 3px 1px rgba($color-black, 0.2);
+            color: $color-gray900;
+            font-size: $fontsize-large;
+            height: 45px;
+            padding: 2px;
+
+            &:active {
+                box-shadow: 0 0 3px 1px rgba($color-black, 0.2);
+                transform: translate3d(0, 2px, 0);
+            }
+        }
+
+        &_numBtn {
+            width: 42px;
+        }   
+
+        &_hyphenBtn {
+            width: 61px;
+        }
+      
+        &_vowelBtn {
+            width: 61px;
+        }
+
+        &_deleteBtn {
+            background-color: $color-bluegray;
+            border: 0;
+            border-radius: 15px;
+            color: $color-white;
+            display: inline-block;
+            font-size: $fontsize-large;
+            height: 45px;
+            line-height: 40px;
+            margin-left: 5px;
+            padding: 0;
+            text-align: center;
+            width: 145px;
+
+            &:active {
+                transform: translate3d(0, 2px, 0);
+            }
+        }
+
+        &_deleteIcon {
+            background-size: 15px 15px;
+            display: inline-block;
+            height: 15px;
+            margin: 2px 5px 5px 0px;
+            vertical-align: middle;
+            width: 15px;
+        }
+
+        &_backspaceIcon {
+            background-image: url(../images/icon_backspace.svg);
+        }
+
+        &_allclearIcon {
+            background-image: url(../images/icon_all_clear.svg);
+        }
+
+        &_startLine {
+            border-bottom: 1px solid $color-gray400;
+            height: 0;
+            margin: -1px 20px 0px;
+            padding: 0px;
+        }
+
+        &_showArea {
+            background-color: $color-blueGray50;
+            height: 50px;
+            margin: 7px 20px 0;
+            position: absolute;
+            width: 924px;
+        }
+
+        &_inputArea {
+            color: $color-gray900;
+            font-size: 25px;
+            font-weight: bold;
+            height: 255px;
+            margin-left: -10px;
+            text-align: left;
+            width: 984px;
+        }
+
+    }
+
+    .modal-key-overlay {
+        background-color: $color-blueGray900;
+        display: none;
+        // min-height: 425px;
+        left: 0;
+        position: fixed;
+        width: 100%;
+        z-index: 2001; 
+        bottom: 0;
+    }
+
+    #hw-sheet-input-field-Data {
+        background-color: transparent !important;
+        font-size: 26px !important;
+        line-height: 65px !important;
+        padding-left: 35px;
+    }
+
+    .hw-sheet-form {
+        transform: unset !important;
+        padding: 0 30px;
+        height: 255px;
+        width: 984px;
+
+        img {
+            width: 924px;
+            height: 255px;
+            position: absolute;
+            top: 0;
+        }
+    }
+
+    #hw-Data {
+        position: initial !important;
+        background-color: unset !important;
+        height: 255px !important;
+        width: 924px !important;
+        padding-top: 0px;
+        padding-left: 0px;
+        top: 0px !important;
+
+        pre {
+            background: none;
+            border-radius: unset !important;
+            font-size: 24px !important;
+            line-height: 50px !important;
+            width: 924px;
+            height: 48px;
+            margin-top: 5px !important;
+            padding-left: 5px !important;
+        }
+    }
+
+    .mailType #hw-Data pre {
+        font-size: 18px !important;
+        line-height: 52px !important;
+    }
+}

@@ -1,0 +1,34 @@
+<div id="G1270-01" ng-init="sendInit()">
+
+    <!--ヘッダー-->
+    <header ng-include="'pages/common/header.html'"></header>
+
+    <main class="mainArea">
+
+        <!--営業員専用ブロック-->
+        <div class="staffOnly">
+            <div class="staffOnly_caution"></div>
+            <span class="staffOnly_text">この画面は営業員専用の画面です</span>
+        </div>
+        <div class="mainArea_mainText">
+            <div>お申し込み内容を登録しています。</div>
+            <div class="mainArea_subText">処理結果が表示されるまでお待ちください。</div>
+        </div>
+
+        <!--受付中インジケータ-->
+        <img class="loadingCircle center-block" src="./images/loadingCircle.svg" draggable="false"></img>
+        <div class="mainArea_caution">
+            <div class="mainArea_caution-notice mainArea_caution-notice-accent">
+                <span class="mainArea_cautionIcon"></span>
+                数分経過しても処理が完了しない場合は、一旦、事務手続きアプリを終了し、
+            </div>
+            <p class="mainArea_caution-notice mainArea_caution-notice-accent">
+                通信環境の良好な場所でアプリを再起動のうえ、ホーム画面より再送信してください。
+            </p>
+            <p class="mainArea_caution-notice">
+                (この状態でアプリを終了しても送付データは抹消されません）
+            </p>
+        </div>
+
+    </main>
+</div>

@@ -1,0 +1,838 @@
+<!-- 
+    画面名：事務手続き画面
+    画面id：G1080-01
+-->
+<div id="G1080-01" ng-init="init()">
+    <!-- ヘッダー -->
+    <header id="headerElem" ng-include="'pages/common/header.html'"></header>
+
+    <!--サブナビケーション-->
+    <div class="nav-toggle" ng-click="navToggle();writeNavLog(true)" ng-show="!itemSelected" ng-class="{'doFadeIn': !itemSelected, 'doFadeOut': itemSelected}"></div>
+    <nav id="navBar" class="navBar" ng-show="itemSelected" ng-class="{'doFadeIn': itemSelected, 'doFadeOut': !itemSelected}">
+        <div class="nav-subinfo">
+            <span>表示する項目を選択してください</span>
+        </div>
+        <div class="nav-fixed">
+            <ui class="nav nav-pills nav-stacked">
+                <li ng-repeat="e in navilist">
+                    <a target="{{e.target}}" ng-click="gotoAnchor(e.target);writeNavItemLog(e.navinm)" id="{{e.id}}">{{e.navinm}}</a>
+                </li>
+            </ui>
+        </div>
+        <div class="nav-footer">
+            <span class="nav-close" ng-click="navToggle();writeNavLog(false)"></span>
+        </div>
+    </nav>
+
+    <main id="G1080-01-main" class="scrollArea main main-div-area-scroll" scroll>
+        <!-- パンくず画面位置調整ブロック -->
+        <div class="pankuzu" ng-include="'pages/common/pankuzu.html'" ng-init="::(isFromConfirmPageFlg ? pankuzuType = 4 : pankuzuType = 1)"></div>
+
+        <blockarea confrim-before first-area class="kozaInfoTitle noAfter"> 
+            <base-area>
+                <row title="開設日" info="{{::kozaInfo.KOZA_OPEN_YMD}}"></row>
+                <row title="口座番号">
+                    <row-info>{{::kozaInfo.MISE_C}}<span>－</span>{{::kozaInfo.KYAK_CIF_C}}</row-info>
+                </row>
+            </base-area>
+        </blockarea>
+
+        <div class="pageTitle">変更内容のご入力</div>
+
+        <div class="alarmArea" ng-if="::isAddressUnkown">
+            {{getMsg("KKAP-SFJ06-02I")}}
+        </div>
+        <div class="alarmArea" ng-if="::isMyNumberNotNotice">
+            {{getMsg("KKAP-SFJ06-01I")}}
+        </div>
+
+        <a class="anchor anchorFirst" id="customerName"></a>
+        <blockarea title="おなまえ" class="areaTitle45" id="navCustomerName" data ="name" is-input-show="modifyFlg.KYAKNM_F" btn-id="KYAKNM_F" btn-disable-check="modifyFlg" write-btn-log="writeBtnLog(isInputShow, title)">
+            <base-area>
+                <row info="{{::nameBefore.KYAKNM_SEI_KNJ}}{{::Const.FullSpace}}{{::nameBefore.KYAKNM_MEI_KNJ}}">
+                    <row-title>おなまえ<br><span class="nameSubTitle">（漢字）</span></row-title>
+                </row>
+                <row info="{{::nameBefore.KYAKNM_SEI_KANA}}{{::Const.FullSpace}}{{::nameBefore.KYAKNM_MEI_KANA}}">
+                    <row-title>おなまえ<br><span class="nameSubTitle">（カナ）</span></row-title>
+                </row>
+            </base-area>
+            <input-area>
+                <row>
+                    <row-info class="warningText">
+                        <ul>
+                            <li>{{getMsg("KKAP-SFJ06-03I")}}</li>
+                            <li>{{getMsg("KKAP-SFJ06-04I")}}
+                                <span class="link nameLink" data-toggle="modal" data-target="#modalDetail" ng-click="detailModalReset('G1080-01','G1080-06','')" >詳しくはこちら</span>
+                            </li>
+                            <li>{{getMsg("KKAP-SFJ06-16I")}}</li>
+                        </ul>
+                    </row-info>
+                </row>
+                <row>
+                    <row-title>おなまえ<br><span class="nameSubTitle">（漢字）</span></row-title>
+                    <row-info>
+                        <input type="text" class="nameInput" id="txtKyaknmSeiKnj" ng-model="name.KYAKNM_SEI_KNJ" placeholder="日興" maxlength="20" input-data="inputData.name.KYAKNM_SEI_KNJ">
+                        <input type="text" class="nameInput" id="txtKyaknmMeiKnj" ng-model="name.KYAKNM_MEI_KNJ" placeholder="太郎" maxlength="20" input-data="inputData.name.KYAKNM_MEI_KNJ">
+                    </row-info>
+                </row>
+                <row>
+                    <row-title>おなまえ<br><span class="nameSubTitle">（カナ）</span></row-title>
+                    <row-info>
+                        <input type="text" class="nameInput" id="txtKyaknmSeiKana" ng-model="name.KYAKNM_SEI_KANA" placeholder="ニッコウ" maxlength="30" input-data="inputData.name.KYAKNM_SEI_KANA">
+                        <input type="text" class="nameInput" id="txtKyaknmMeiKana" ng-model="name.KYAKNM_MEI_KANA" placeholder="タロウ" maxlength="30" input-data="inputData.name.KYAKNM_MEI_KANA">
+                    </row-info>
+                </row>
+            </input-area>
+        </blockarea>
+
+        <a class="anchor" id="customerAddress"></a>
+        <blockarea title="ご住所" id="navCustomerAddress" data="addr" default-map="addrDefaultMap" is-input-show="modifyFlg.KYAK_ADDR_F" err-item-id="KYAK_ADDR_F_MAE" write-btn-log="writeBtnLog(isInputShow, title)" clear-others="ezTokuteiSoukanItems">
+            <base-area>
+                <row title="郵便番号">
+                    <row-info>{{::addrBefore.YUBINNO | substr :0:3 }}<span ng-if="::addrBefore.YUBINNO">－</span>{{::addrBefore.YUBINNO | substr :3 }}</row-info>
+                </row>
+                <row title="ご住所①" info="{{::addrBefore.KYAK_ADDR_KNJ}}"></row>
+                <row title="ご住所①のフリガナ" info="{{::addrBefore.KYAK_ADDR_KANA}}"></row>
+                <row title="ご住所②" info="{{::addrBefore.KYAK_HOSK_ADDR_KNJ}}"></row>
+                <row title="ご住所②のフリガナ" info="{{::addrBefore.KYAK_HOSK_ADDR_KANA}}"></row>
+                <row title="ご住所③" info="{{::addrBefore.KYAK_HOUSENM_KNJ}}"></row>
+                <row title="ご住所③のフリガナ" info="{{::addrBefore.KYAK_HOUSENM_KANA}}"></row>
+                <row title="送付先郵便番号">
+                    <row-info>{{::addrBefore.SOUHUSAKI_YBN_BNG | substr :0:3 }}<span ng-if="::addrBefore.SOUHUSAKI_YBN_BNG">－</span>{{::addrBefore.SOUHUSAKI_YBN_BNG | substr :3 }}</row-info>
+                </row>
+                <row title="送付先住所" info="{{::addrBefore.SOUHUSAKI_JYSY_KNJ}}"></row>
+                <row title="送付先フリガナ" info="{{::addrBefore.SOUHUSAKI_JYSY_KN}}"></row>
+            </base-area>
+            <input-area>
+                <row ng-if ="tkKozaBefore.TKTEI_KOZA_GNSN == '1'">
+                    <row-info class="warningText">
+                        <ul>
+                            <li>{{getMsg("KKAP-SFJ06-05I")}}</li>
+                        </ul>
+                    </row-info>
+                </row>
+                <row title="郵便番号">
+                    <row-info>
+                        <input type="text" class="addrZipCodeFirst" id="txtAddrNum1" pattern="\d*" maxlength="3" ng-model="addr.YUBINNO_1" placeholder="000" input-data="inputData.addr.YUBINNO_1">
+                        <label class="hyphen">－</label>
+                        <input type="text" class="addrZipCodeLast" id="txtAddrNum2" pattern="\d*" maxlength="4" ng-model="addr.YUBINNO_2" placeholder="0000" input-data="inputData.addr.YUBINNO_2">
+                        <button class="searchButton addrsrhBotton" id="btnSearchAddr" data-toggle="modal" ng-show="addr.KYAK_ADDR_FLAG == '0'" ng-click="addrSrhBtnClick()">住所検索</button>
+                        <a class="link addrModeChgLink" data-toggle="modal" ng-click="addrInputModeChg()" id="linkChangeAddr1">
+                            郵便番号から住所を入力<span ng-show="addr.KYAK_ADDR_FLAG == '1'">する</span><span ng-show="addr.KYAK_ADDR_FLAG == '0'">できない</span>場合はこちら
+                        </a>
+                        <div class="groupCheckRow"><div id="txtAddrNum1-txtAddrNum2"></div></div>
+                    </row-info>
+                </row>
+                <row title="ご住所①（都道府県）" ng-show="addr.KYAK_ADDR_FLAG == '1'">
+                    <row-info>
+                        <pulldown data-id="pldAddrTDFK" data="addr.KYAK_ADDR_TDHKN" list="tDFKList" width="150px" change="plAddrTDFKChg(value)"></pulldown>
+                    </row-info>
+                </row>
+                <!--<row ng-show="addr.KYAK_ADDR_FLAG == '1'" info="市区町村を以下に入力" class="addrDescription"></row>
+                <row class="rowMarginTop0" title="ご住所①" ng-show="addr.KYAK_ADDR_FLAG == '1'">
+                    <row-info>
+                        <input type="text" class="addrInput" id="txtAddr1_1" maxlength="10" placeholder="市区町村" ng-model="addr.KYAK_ADDR_KNJ" input-data="inputData.addr.KYAK_ADDR_KNJ">
+                    </row-info>
+                </row>
+                <row ng-show="addr.KYAK_ADDR_FLAG == '1'" info="ご住所①のフリガナを以下に入力" class="addrDescription"></row>
+                <row class="rowMarginTop0" title="ご住所①のフリガナ" ng-show="addr.KYAK_ADDR_FLAG == '1'">
+                    <row-info>
+                        <input type="text" class="addrInput" id="txtAddrKana1_1" maxlength="20" placeholder="シクチョウソン（全角カタカナ）" ng-model="addr.KYAK_ADDR_KANA" input-data="inputData.addr.KYAK_ADDR_KANA">
+                    </row-info>
+                </row>-->
+                <row ng-show="addr.KYAK_ADDR_FLAG == '0'" info="都道府県市区町村" class="addrDescription"></row>
+                <row title="ご住所①" ng-show="addr.KYAK_ADDR_FLAG == '0'" class="rowMarginTop0">
+                    <row-info>
+                        <label class="addrFirstLabel" ng-class="{'addrFirstLabelFontSmall':addr.KYAK_ADDR_KNJ !== undefined }" id="lblAddr1">{{addr.KYAK_ADDR_KNJ == undefined ? '住所を自動反映します' : addr.KYAK_ADDR_KNJ}}</label>
+                    </row-info>
+                </row>
+                <row info="{{addr.KYAK_ADDR_FLAG == '0' ? 'ご住所①に含まれない「市区町村・丁目・番地・号」を以下に入力' : '市区町村を以下に入力'}}" class="addrDescription"></row>
+                <row title="ご住所②" class="rowMarginTop0">
+                    <row-info>
+                        <input type="text" class="addrInput" id="txtAddr2_1" ng-attr-maxlength="{{addr.KYAK_ADDR_FLAG == '0' ? 12 : 10}}" ng-attr-placeholder="{{addr.KYAK_ADDR_FLAG == '0' ? '１－５－５' : '市区町村'}}" ng-model="addr.KYAK_HOSK_ADDR_KNJ" input-data="inputData.addr.KYAK_HOSK_ADDR_KNJ">
+                    </row-info>
+                </row>
+                <row info="ご住所②のフリガナを以下に入力" class="addrDescription"></row>
+                <row class="rowMarginTop0" title="ご住所②のフリガナ">
+                    <row-info>
+                        <input type="text" class="addrInput" id="txtAddrKana2_1" maxlength="18" ng-attr-placeholder="{{addr.KYAK_ADDR_FLAG == '0' ? '１－５－５（全角カタカナ）' : 'シクチョウソン（全角カタカナ）'}}" ng-model="addr.KYAK_HOSK_ADDR_KANA" input-data="inputData.addr.KYAK_HOSK_ADDR_KANA">
+                    </row-info>
+                </row>
+                <row info="{{addr.KYAK_ADDR_FLAG == '0' ? 'ご住所にマンション名などが入る場合、マンション名以降のご住所を以下に入力' : '丁目・番地・号およびご住所にマンション名などが入る場合、マンション名以降のご住所を以下に入力'}}" class="addrDescription"></row>
+                <row title="ご住所③" class="rowMarginTop0">
+                    <row-info>
+                        <input type="text" class="addrInput" id="txtAddr3_1" maxlength="14" ng-attr-placeholder="{{addr.KYAK_ADDR_FLAG == '0' ? '神保町タワー１０１号室' : '１－５－５'}}" ng-model="addr.KYAK_HOUSENM_KNJS[0]" input-data="inputData.addr3[0]">
+                    </row-info>
+                </row>
+                <row ng-show="addr.isShowAddr3KanjiInput % (2 * 2) >= 2">
+                    <row-info>
+                        <input type="text" class="addrInput" id="txtAddr3_2" maxlength="20" placeholder="続けて入力する場合は、こちらに入力ください" ng-model="addr.KYAK_HOUSENM_KNJS[1]" input-data="inputData.addr3[1]">
+                    </row-info>
+                </row>
+                <row ng-show="addr.isShowAddr3KanjiInput % (2 * 2 * 2) >= 4">
+                    <row-info>
+                        <input type="text" class="addrInput" id="txtAddr3_3" maxlength="20" placeholder="続けて入力する場合は、こちらに入力ください" ng-model="addr.KYAK_HOUSENM_KNJS[2]" input-data="inputData.addr3[2]">
+                    </row-info>
+                </row>
+                <!--ご住所③～ご住所③追加2の最大52文字の相関チェックエラー（漢字）-->
+                <div class="input-check-row"><div id="KYAK_ADDR3_F"></div></div>
+                <!--ご住所③～ご住所③追加2とご住所③カナ～ご住所③カナ追加2の相関チェックエラー（漢字）-->
+                <div class="input-check-row"><div id="KYAK_ADDR3_F2"></div></div>
+                <!--ご住所①～ご住所③追加2の最大108文字の相関チェックエラー（漢字）-->
+                <div class="input-check-row"><div id="KYAK_ADDR_F"></div></div>
+                <div class="btnRow">
+                    <div ng-show="addr.isShowAddr3KanjiInput < 7" ng-click="addrInputButtonClick(0, 'isShowAddr3KanjiInput' ,'KYAK_HOUSENM_KNJS')" class="btnDiv add">続けて入力</div>
+                    <div ng-show="addr.isShowAddr3KanjiInput > 1" ng-click="addrInputButtonClick(1, 'isShowAddr3KanjiInput' ,'KYAK_HOUSENM_KNJS')" class="btnDiv Del">続けて入力を削除する</div>
+                </div>
+                <row info="ご住所③のフリガナを以下に入力" class="addrDescription"></row>
+                <row class="rowMarginTop0" title="ご住所③のフリガナ">
+                    <row-info>
+                        <input type="text" class="addrInput" id="txtAddrKana3_1" maxlength="18" ng-attr-placeholder="{{addr.KYAK_ADDR_FLAG == '0' ? 'ジンボチョウタワー１０１ゴウシツ（全角カタカナ）' : '１－５－５（全角カタカナ）'}}" ng-model="addr.KYAK_HOUSENM_KANAS[0]" input-data="inputData.addr3kana[0]">
+                    </row-info>
+                </row>
+                <row ng-show="addr.isShowAddr3KanaInput % (2 * 2) >= 2">
+                    <row-info>
+                        <input type="text" class="addrInput" id="txtAddrKana3_2" maxlength="30" placeholder="続けて入力する場合は、こちらに入力ください" ng-model="addr.KYAK_HOUSENM_KANAS[1]" input-data="inputData.addr3kana[1]">
+                    </row-info>
+                </row>
+                <row ng-show="addr.isShowAddr3KanaInput % (2 * 2 * 2) >= 4">
+                    <row-info>
+                        <input type="text" class="addrInput" id="txtAddrKana3_3" maxlength="30" placeholder="続けて入力する場合は、こちらに入力ください" ng-model="addr.KYAK_HOUSENM_KANAS[2]" input-data="inputData.addr3kana[2]">
+                    </row-info>
+                </row>
+                <!--ご住所③カナ～ご住所③カナ追加2の最大48文字（半角文字に変換後）の相関チェックエラー（カナ）-->
+                <div class="input-check-row"><div id="KYAK_ADDR3_KANA_F"></div></div>
+                <!--ご住所③～ご住所③追加2とご住所③カナ～ご住所③カナ追加2の相関チェックエラー（カナ）-->
+                <div class="input-check-row"><div id="KYAK_ADDR3_KANA_F2"></div></div>
+                <!--ご住所①カナ～ご住所③カナ追加2の最大100文字（半角文字に変換後）の相関チェックエラー（カナ）-->
+                <div class="input-check-row"><div id="KYAK_ADDR_KANA_F"></div></div>
+                <div class="btnRow">
+                    <div ng-show="addr.isShowAddr3KanaInput < 7" ng-click="addrInputButtonClick(0, 'isShowAddr3KanaInput' ,'KYAK_HOUSENM_KANAS')" class="btnDiv add">続けて入力</div>
+                    <div ng-show="addr.isShowAddr3KanaInput > 1" ng-click="addrInputButtonClick(1, 'isShowAddr3KanaInput' ,'KYAK_HOUSENM_KANAS')" class="btnDiv Del">続けて入力を削除する</div>
+                </div>
+                <row ng-show ="tkKozaBefore.TKTEI_KOZA_GNSN == '1'" title="転居日">
+                    <row-info> 
+                        <pulldown data-id="pldTnkyGngo" data="addr.TNKY_GNGO" list="gnGoList" width="116px" change="tnkyGngoChg(value)"></pulldown>
+                        <input type="text" class="addrTnkyNumInput left10 alignRight" id="txtTnkyYear" ng-model="addr.TNKYY" pattern="\d*" maxlength="4" placeholder="20" input-data="inputData.addr.TNKYY">
+                        <label class="addrInkyNumInputLabel">年</label>
+                        <input type="text" class="addrTnkyNumInput alignRight" id="txtTnkyMonth" ng-model="addr.TNKYM" pattern="\d*" maxlength="2" placeholder="8" input-data="inputData.addr.TNKYM">
+                        <label class="addrInkyNumInputLabel">月</label>
+                        <input type="text" class="addrTnkyNumInput alignRight" id="txtTnkyDay" ng-model="addr.TNKYD" pattern="\d*" maxlength="2" placeholder="1" input-data="inputData.addr.TNKYD">
+                        <label class="addrInkyNumInputLabel">日</label>
+                        <div class="groupCheckRow"><div id="pldTnkyGngo-txtTnkyYear"></div></div>
+                        <div class="groupCheckRow"><div id="pldTnkyGngo-txtTnkyYear-txtTnkyMonth-txtTnkyDay"></div></div>
+                    </row-info>
+                </row>
+                <row ng-show ="tkKozaBefore.TKTEI_KOZA_GNSN == '1'" title="年初住所">
+                    <row-info>
+                        <pulldown data-id="pldNensyJsy" data="addr.NENSY_JSY" list="tDFKList" width="150px"></pulldown>
+                        <div class="groupCheckRow"><div id="pldNensyJsy-pldTkteiKozaNensy"></div></div>
+                    </row-info>
+                </row>
+                <row title="番号確認書類" ng-if="::(!isMyNumberNotNotice)" class="rowBolder">
+                    <row-info>
+                        <radio id="radioMnsyseiryJoho" list="[{label: '持参あり', value: '1'}, {label: '持参なし', value: '0'}]" width="150px" data="addr.MNSYSEIRY_JISN_FLAG" ></radio>
+                        <a class="link addrModeChgLink" data-toggle="modal" data-target="#modalDetail" ng-click="detailModalReset('G1080-01','G1080-07','')">詳しくはこちら</a>
+                    </row-info>
+                </row>
+            </input-area>
+        </blockarea>
+
+        <a class="anchor" id="customerTel"></a>
+        <blockarea title="電話番号" data="tels" id="navCustomerTel" default-map="telsDefaultMap" is-input-show="modifyFlg.TELNO_F" write-btn-log="writeBtnLog(isInputShow, title)">
+            <base-area>
+                <row title="ご自宅電話番号">
+                    <row-info>
+                        <span class="telNum3">{{::telsBefore.TELNO1}}</span>
+                        <span ng-if="::telsBefore.TELNO1">－</span>
+                        <span class="telNum3">{{::telsBefore.TELNO2}}</span>
+                        <span ng-if="::telsBefore.TELNO1">－</span>
+                        <span class="telNum3">{{::telsBefore.TELNO3}}</span>
+                    </row-info>
+                </row>
+                <row title="携帯電話番号">
+                    <row-info>
+                        <span class="telNum3">{{::telsBefore.MOBILE_TELNO1}}</span>
+                        <span ng-if="::telsBefore.MOBILE_TELNO1">－</span>
+                        <span class="telNum3">{{::telsBefore.MOBILE_TELNO2}}</span>
+                        <span ng-if="::telsBefore.MOBILE_TELNO1">－</span>
+                        <span class="telNum3">{{::telsBefore.MOBILE_TELNO3}}</span>
+                    </row-info>
+                </row>
+                <row title="FAX番号">
+                    <row-info>
+                        <span class="telNum3">{{::telsBefore.FAXNO1}}</span>
+                        <span ng-if="::telsBefore.FAXNO1">－</span>
+                        <span class="telNum3">{{::telsBefore.FAXNO2}}</span>
+                        <span ng-if="::telsBefore.FAXNO1">－</span>
+                        <span class="telNum3">{{::telsBefore.FAXNO3}}</span>
+                    </row-info>
+                </row>
+            </base-area>
+            <input-area>
+                <row title="ご自宅電話番号">
+                    <row-info>
+                        <input ng-disabled="tels.TELNO_DEL == '1'" type="text" class="telInput" pattern="\d*" maxlength="4" placeholder="0000" ng-model="tels.TELNO1" id="txtTelno1" input-data="inputData.tels.TELNO1">
+                        <label class="hyphen">－</label>
+                        <input ng-disabled="tels.TELNO_DEL == '1'" type="text" class="telInput" pattern="\d*" maxlength="4" placeholder="0000" ng-model="tels.TELNO2" id="txtTelno2" input-data="inputData.tels.TELNO2">
+                        <label class="hyphen">－</label>
+                        <input ng-disabled="tels.TELNO_DEL == '1'" type="text" class="telInput right40" pattern="\d*" maxlength="4" placeholder="0000" ng-model="tels.TELNO3" id="txtTelno3" input-data="inputData.tels.TELNO3">
+                        <checkbox label="登録抹消" id="chkboxTelDel" value="'1'" false-value="''" data="tels.TELNO_DEL" click="clearNo(0, value)"></checkbox>
+                        <div class="groupCheckRow"><div id="txtTelno1-txtTelno2-txtTelno3"></div></div>
+<!-- // 01-2021-06-172 口座開設事務手続きアプリ改善要望対応 開始 20210913 -->
+                        <div class="groupCheckRow"><div id="txtTelno1-txtTelno2"></div></div>
+<!-- // 01-2021-06-172 口座開設事務手続きアプリ改善要望対応 終了 20210913 -->
+                    </row-info>
+                </row>
+                <row title="携帯電話番号">
+                    <row-info>
+                        <input ng-disabled="tels.MOBILE_TELNO_DEL == '1'" type="text" class="telInput" pattern="\d*" maxlength="3" placeholder="000" ng-model="tels.MOBILE_TELNO1" id="txtMobileTelno1" input-data="inputData.tels.MOBILE_TELNO1">
+                        <label class="hyphen">－</label>
+                        <input ng-disabled="tels.MOBILE_TELNO_DEL == '1'" type="text" class="telInput" pattern="\d*" maxlength="4" placeholder="0000" ng-model="tels.MOBILE_TELNO2" id="txtMobileTelno2" input-data="inputData.tels.MOBILE_TELNO2">
+                        <label class="hyphen">－</label>
+                        <input ng-disabled="tels.MOBILE_TELNO_DEL == '1'" type="text" class="telInput right40" pattern="\d*" maxlength="4" placeholder="0000" ng-model="tels.MOBILE_TELNO3" id="txtMobileTelno3" input-data="inputData.tels.MOBILE_TELNO3">
+                        <checkbox label="登録抹消" id="chkboxMobileTelDel" value="'1'" false-value="''" data="tels.MOBILE_TELNO_DEL" click="clearNo(1, value)"></checkbox>
+                        <div class="groupCheckRow"><div id="txtMobileTelno1-txtMobileTelno2-txtMobileTelno3"></div></div>
+                    </row-info>
+                </row>
+                <row title="FAX番号">
+                    <row-info>
+                        <input ng-disabled="tels.FAXNO_DEL == '1'" type="text" class="telInput" pattern="\d*" maxlength="4" placeholder="0000" ng-model="tels.FAXNO1" id="txtFaxno1" input-data="inputData.tels.FAXNO1">
+                        <label class="hyphen">－</label>
+                        <input ng-disabled="tels.FAXNO_DEL == '1'" type="text" class="telInput" pattern="\d*" maxlength="4" placeholder="0000" ng-model="tels.FAXNO2" id="txtFaxno2" input-data="inputData.tels.FAXNO2">
+                        <label class="hyphen">－</label>
+                        <input ng-disabled="tels.FAXNO_DEL == '1'" type="text" class="telInput right40" pattern="\d*" maxlength="4" placeholder="0000" ng-model="tels.FAXNO3" id="txtFaxno3" input-data="inputData.tels.FAXNO3">
+                        <checkbox label="登録抹消" id="chkboxFaxnoDel" value="'1'" false-value="''" data="tels.FAXNO_DEL" click="clearNo(2, value)"></checkbox>
+                        <div class="groupCheckRow"><div id="txtFaxno1-txtFaxno2-txtFaxno3"></div></div>
+<!-- // 01-2021-06-172 口座開設事務手続きアプリ改善要望対応 開始 20210913 -->
+                        <div class="groupCheckRow"><div id="txtFaxno1-txtFaxno2"></div></div>
+<!-- // 01-2021-06-172 口座開設事務手続きアプリ改善要望対応 終了 20210913 -->
+                    </row-info>
+                </row>
+                <div class="input-check-row"><div id="txtTel-txtMobile-txtFax"></div></div>
+                <div class="input-check-row"><div id="txtTel-txtMobile"></div></div>
+                <div class="groupCheckRow input-check-row"><div id="TELNO_F"></div></div>
+            </input-area>
+        </blockarea>
+
+        <a class="anchor" id="customerMrf"></a>
+        <blockarea title="日興MRF累積投資口座（証券総合口座取引）" id="navCustomerMrf" data="mrf" default-map="mrfDefaultMap" is-input-show="modifyFlg.NIKKO_MRF_F" no-btn="::isMrfNoChg" link="detailModalReset('G1080-01','G1080-08','')" write-btn-log="writeBtnLog(isInputShow, title)">
+            <base-area>
+                <row info="{{::mrfBefore.NIKKO_MRF}}"></row>
+            </base-area>
+            <input-area>
+                <row>
+                    <row-info>
+                        <checkbox label="「証券取引約款の証券総合口座に関する規定」および「日興MRF自|動けいぞく投資約款」を承認のうえ、自動買付・自動換金を申し込|みます。" id="chkboxNikkoMRF" value="'1'" false-value="''" data="mrf.NIKKO_MRF"></checkbox>
+                    </row-info>
+                </row>
+            </input-area>
+        </blockarea>
+
+        <a class="anchor" id="customerCard"></a>
+        <blockarea title="日興カード" id="navCustomerCard" data="nkCard" is-input-show="modifyFlg.NIKKO_CARD_F" link="detailModalReset('G1080-01','G1080-09','')" write-btn-log="writeBtnLog(isInputShow, title)">
+            <base-area>
+                <row title="カード発行日" info="{{::nkCardBefore.NIKKO_CARD}}"></row>
+            </base-area>
+            <input-area>
+                <row title="申込区分">
+                    <row-info>
+                        <radio list="::snkKjySaihkList" data="nkCard.NIKKO_CARD" id="radioNikkoCard" change="nikkoCardChg(val)"></radio>
+                    </row-info>
+                </row>
+            </input-area>       
+        </blockarea>
+
+        <a class="anchor" id="customerEasyTrade"></a>
+        <blockarea title="日興イージートレード" id="navCustomerEasyTrade" data="ezTrade" is-input-show="modifyFlg.NIKKO_EZ_F" link="detailModalReset('G1080-01','G1080-10','')" write-btn-log="writeBtnLog(isInputShow, title)">
+            <base-area>
+                <row title="申込日" info="{{::ezTradeBefore.NIKKO_EZ}}"></row>
+                <row title="電子交付サービス" info="{{::ezTradeBefore.DNS_KOFU_SRV}}"></row>
+            </base-area>
+            <input-area>
+                <row>
+                    <row-info class="warningText">
+                        <ul>
+                            <li>{{getMsg("KKAP-SFJ06-06I")}}</li>
+                        </ul>
+                    </row-info>
+                </row>
+                <row title="申込区分" class="titleTop">
+                    <row-info>
+                        <radio list="[{label: '「証券取引約款の日興イージートレードに関する規定」を承認のう|え、日興イージートレードを申し込みます。', value: '1'}]" data="ezTrade.NIKKO_EZ"></radio>
+                    </row-info>
+                </row>
+                <row>
+                    <row-info>
+                        <radio list="[{label: '解除', value: '2'}]" data="ezTrade.NIKKO_EZ"></radio>
+                    </row-info>
+                </row>
+                <row>
+                    <row-info>
+                        <radio id="radioNikkoEZ" list="[{label: 'パスワード再発行', value: '3'}]" data="ezTrade.NIKKO_EZ"></radio>
+                    </row-info>
+                </row>
+            </input-area>       
+        </blockarea>
+
+        <a class="anchor" id="customerForeignCurrRikin"></a>
+        <blockarea title="外国証券取引口座" id="navCustomerForeignCurrRikin" data="gaikSyknKoza" default-map="gaikSyknKozaDefaultMap" is-input-show="modifyFlg.GAIK_SYKN_KOZA_F" link="detailModalReset('G1080-01','G1080-11','')" no-btn="::isGaikSyknKozaNoChg" write-btn-log="writeBtnLog(isInputShow, title)">
+            <base-area>
+                <row title="開設日" info="{{::gaikSyknKozaBefore.GAIK_SYKN_KOZA_OPENYMD}}"></row>
+            </base-area>
+            <input-area>
+                <row>
+                    <row-info>
+                        <checkbox label="「外国証券取引口座約款」および「証券取引約款の国内外貨建て債|券取引に関する規定」を承認のうえ、外国証券取引、国内外貨建債|券取引を申し込みます。" id="chkboxGaikSyknKozaMRF" value="'1'" false-value="''" data="gaikSyknKoza.GAIK_SYKN_KOZA"></checkbox>
+                    </row-info>
+                </row>
+            </input-area> 
+        </blockarea>
+
+        <a class="anchor" id="customerTokuteiKoza"></a>
+        <blockarea title="特定口座" id="navCustomerTokuteiKoza" data="tkKoza" is-input-show="modifyFlg.TKTEI_KOZA_F" link="detailModalReset('G1080-01','G1080-12','')" write-btn-log="writeBtnLog(isInputShow, title)" clear-others="ezTokuteiSoukanItems">
+            <base-area>
+                <row title="開設日" info="{{::tkKozaBefore.TKTEI_KOZA_OPENYMD}}"></row>
+                <row title="勘定区分" info="{{::tkKozaBefore.TKTEI_KOZA_AC_NM}}"></row>
+                <row title="源泉徴収区分" info="{{::tkKozaBefore.TKTEI_KOZA_GNSN_NM}}"></row>
+                <row title="予約情報" info="{{::tkKozaBefore.TKTEI_KOZA_YYK_NM}}"></row>
+                <row title="年初取引" info="{{::tkKozaBefore.TKTEI_KOZA_NENSY_TORIHIKIYMD}}"></row>
+            </base-area>
+            <input-area>
+                <row ng-if ="tkKoza.TKTEI_KOZA_MSKM == '1' || tkKoza.TKTEI_KOZA_MSKM == '2'">
+                    <row-info class="warningText">
+                        <ul>
+                            <li ng-if="tkKoza.TKTEI_KOZA_MSKM == '1'">{{getMsg("KKAP-SFJ06-07I")}}</li>
+                            <li ng-if="tkKoza.TKTEI_KOZA_MSKM == '2'">{{getMsg("KKAP-SFJ06-08I")}}</li>
+                            <li ng-if="tkKoza.TKTEI_KOZA_MSKM == '2'">{{getMsg("KKAP-SFJ06-09I")}}</li>
+                        </ul>
+                    </row-info>
+                </row>
+                <row title="申込区分">
+                    <row-info>
+                        <radio id= "radioTkKoza" list="kstHnkHaisList" data="tkKoza.TKTEI_KOZA_MSKM" change="tkTeiKozaMskmChg(value)" ></radio>
+                    </row-info>
+                </row>
+                <row title="勘定区分" ng-show="tkKoza.TKTEI_KOZA_MSKM == '1' || tkKoza.TKTEI_KOZA_MSKM == '2'">
+                    <row-info>
+                        <radio list="[{label: '特定保管勘定', value: '1'}]" data="tkKoza.TKTEI_KOZA_AC" change="tkTeiKozaAcChg(value)"></radio>
+                    </row-info>
+                </row>
+                <row ng-show="tkKoza.TKTEI_KOZA_MSKM == '1' || tkKoza.TKTEI_KOZA_MSKM == '2'">
+                    <row-info>
+                        <radio id="radioTkkozaAC" list="[{label: '特定保管勘定、特定信用勘定', value: '3'}]" data="tkKoza.TKTEI_KOZA_AC" change="tkTeiKozaAcChg(value)"></radio>
+                    </row-info>
+                </row>
+                <row ng-show="tkKoza.TKTEI_KOZA_MSKM == '1' || tkKoza.TKTEI_KOZA_MSKM == '2'" class="titleHeight25">
+                    <row-title>特定口座源泉徴収<br><span>選択・配当等受入</span></row-title>
+                    <row-info>
+                        <radio list="[{label: '源泉徴収あり＆特定口座配当等通算', value: '1'}]" data="tkKoza.TKTEI_KOZA_GNSN" change="tkTeiKozaGnsnChg(value)"></radio>
+                    </row-info>
+                </row>
+                <row ng-show="tkKoza.TKTEI_KOZA_MSKM == '1' || tkKoza.TKTEI_KOZA_MSKM == '2'">
+                    <row-info>
+                        <radio id="radioTkkozaGNSN" list="[{label: '源泉徴収なし', value: '0'}]" data="tkKoza.TKTEI_KOZA_GNSN" change="tkTeiKozaGnsnChg(value)"></radio>
+                    </row-info>
+                </row>
+                <row title="源泉徴収変更予約" ng-show="tkKoza.TKTEI_KOZA_MSKM == '2'">
+                    <row-info>
+                        <radio list="[{label: '源泉徴収あり＆特定口座配当等通算', value: '1'}]" data="tkKoza.TKTEI_KOZA_YYK" change="tkTeiKozaYykChg(value)"></radio>
+                    </row-info>
+                </row>
+                <row ng-show="tkKoza.TKTEI_KOZA_MSKM == '2'">
+                    <row-info>
+                        <radio id="radioTkKozaYYK" list="[{label: '源泉徴収なし', value: '0'}]" data="tkKoza.TKTEI_KOZA_YYK" change="tkTeiKozaYykChg(value)"></radio>
+                    </row-info>
+                </row>
+                <row ng-show="tkKoza.TKTEI_KOZA_MSKM == '1' || tkKoza.TKTEI_KOZA_MSKM == '2'" title="年初住所">
+                    <row-info>
+                        <pulldown data-id="pldTkteiKozaNensy" data="tkKoza.TKTEI_KOZA_NENSY_JSY" list="tDFKList" width="400px"></pulldown>
+                        <div class="groupCheckRow"><div id="pldTkteiKozaNensy-pldNensyJsy"></div></div>
+                    </row-info>
+                </row>
+                <div class="groupCheckRow input-check-row"><div id="TKTEI_KOZA_F"></div></div>
+            </input-area>
+        </blockarea>
+
+        <a class="anchor" id="customerTokuteiKozaKanri"></a>
+        <blockarea title="特定管理口座" id="navCustomerTokuteiKozaKanri" data="tkKanriKoza" default-map="tkKanriKozaDefaultMap" is-input-show="modifyFlg.TKTEI_KANRI_KOZA_F" link="detailModalReset('G1080-01','G1080-13','')" no-btn="::istkTeiKanriKozaNoChg" write-btn-log="writeBtnLog(isInputShow, title)">
+            <base-area>
+                <row title="開設日" info="{{::tkKanriKozaBefore.TKTEI_KANRI_KOZA_OPENYMD}}"></row>
+            </base-area>
+            <input-area>
+                <row>
+                    <row-info class="warningText">
+                        <ul>
+                            <li>{{getMsg("KKAP-SFJ06-10I")}}</li>
+                        </ul>
+                    </row-info>
+                </row>
+                <row title="開設">
+                    <row-info>
+                        <checkbox label="申し込む" id="chkboxTkteiKanriKozaMskm" value="'1'" false-value="''" data="tkKanriKoza.TKTEI_KANRI_KOZA_MSKM"></checkbox>
+                    </row-info>
+                </row>
+            </input-area>  
+        </blockarea>
+
+        <a class="anchor" id="customerKanyushaInfo"></a>
+        <blockarea title="加入者情報拡張登録" id="navCustomerKanyushaInfo" data="kaNyu" is-input-show="modifyFlg.KANYUSY_EXP_F" link="detailModalReset('G1080-01','G1080-14','')" no-btn="::isKaNyuNoChg" write-btn-log="writeBtnLog(isInputShow, title)">
+            <base-area>
+                <row title="拡張情報">
+                    <row-info>
+                          <div>
+                            <span ng-if="::kaNyuBefore.KAKU_KYAKNM_KNJ.trim()">{{::kaNyuBefore.KAKU_KYAKNM_KNJ}} <br/></span>
+                            <span ng-if="::kaNyuBefore.KAKU_YUBINNO.trim()">〒{{::kaNyuBefore.KAKU_YUBINNO | substr :0:3 }}－{{::kaNyuBefore.KAKU_YUBINNO | substr :3 }}<br/></span>
+                            <span ng-if="::kaNyuBefore.KAKU_ADDR.trim()">{{::kaNyuBefore.KAKU_ADDR}}</span>
+                        </div>
+                    </row-info>
+                </row>
+            </base-area>
+            <input-area>
+                <row title="拡張情報">
+                    <row-info>
+                        <checkbox label="抹消" id="chkboxKanyusyExpTorkK" value="'1'" data="kaNyu.KANYUSY_EXP_TORK_K"></checkbox>
+                    </row-info>
+                </row>
+            </input-area>  
+        </blockarea>
+        
+        <a class="anchor" id="customerNisa"></a>
+        <blockarea title="NISA口座開設" id="navCustomerNisa" data="nisa" default-map="nisaDefaultMap" is-input-show="modifyFlg.NISA_KOZA_F" link="detailModalReset('G1080-01','G1080-15','')" no-btn="::isNisaNoChg" write-btn-log="writeBtnLog(isInputShow, title)">
+            <base-area>
+                <row title="開設年" info="{{::nisaBefore.NISA_KOZA_OPENYMD}}"></row>
+            </base-area>
+            <input-area>
+                <!-- 01-2022-12-147 総合ＮＩＳＡ対応 開始 20231222 -->
+                <row title="NISA口座開設" class="titleTop">
+                    <row-info class="warningText">
+                        <ul>
+                            <li>開設する場合は、右上の「詳しくはこちら」に記載の留意事項をご確認いただき、チェックをしてください。</li>
+                            <li ng-if="nisa.NISA_KOZA_MSKM == '3'">{{getMsg("KKAP-SFJ06-11I")}}</li>
+                        </ul>
+                    </row-info>
+                </row>
+                <row>
+                    <row-info>
+                        <radio id="radioNisa" list="[{label: '開設する（特定累積投資勘定・特定非課税管理勘定）', value: '3'}]" data="nisa.NISA_KOZA_MSKM" ></radio>
+                    </row-info>
+                </row>
+                <!-- 01-2022-12-147 総合ＮＩＳＡ対応 終了 20231222 -->
+                <row>
+                    <row-info>
+                        <checkbox label="「株式数比例配分方式のお申し込みについてのご留意事項」を確認|しましたので、株式数比例配分方式（証券口座経由で配当受取）を|申し込みます。" id="chkboxHireihaibun" value="'1'" false-value="''" data="nisa.HIREIHAIBUN" ></checkbox>
+                    </row-info>
+                </row>
+            </input-area>
+        </blockarea>
+
+        <a class="anchor" id="customerMyNumber"></a>
+        <blockarea title="個人番号告知" id="navCustomerMyNumber" data="myNumber" default-map="myNumberDefaultMap" is-input-show="modifyFlg.MYNO_KOKUCHI_F" link="detailModalReset('G1080-01','G1080-16','')" no-btn="::isMyNumberNoChg" write-btn-log="writeBtnLog(isInputShow, title)">
+            <base-area>
+                <row title="告知状態" info="{{::myNumberBefore.MYNO_KKC_NM}}"></row>
+            </base-area>
+            <input-area>
+                <row title="個人番号の登録">
+                    <row-info>
+                        <checkbox label="告知する" id="chkboxMynoKokuchi" value="'1'" false-value="''" data="myNumber.MYNO_KOKUCHI" ></checkbox>
+                    </row-info>
+                </row>
+            </input-area>
+        </blockarea>
+
+        <a class="anchor" id="customerFurikomisaki"></a>
+        <!--事前登録0件のレイアウト-->
+        <blockarea class="noBaseArea" title="当社から送金する際のお受取口座" id="navCustomerFurikomisaki0" link="detailModalReset('G1080-01','G1080-17','')" no-btn="true" ng-if="isNoAcTitle">
+        </blockarea>
+        <!--事前登録1件以上のレイアウト-->
+        <!-- // 01-2021-06-172 口座開設事務手続きアプリ改善要望対応 開始 20210913 -->
+        <blockarea ng-repeat="koza in ::kozaBefore.KOZA" title="{{$index == 0 ? '当社から送金する際のお受取口座' : ''}}" id="navCustomerFurikomisaki" data="$parent.kozaDel[$index]"
+            default-map="$parent.kozaDelDefaultMap" is-input-show="$parent.kozaModifyFlg[$index]" link="$parent.detailModalReset('G1080-01','G1080-17','')" no-link="$index > 0" no-btn="::isUktrkzNoChg" write-btn-log="writeBtnLog(isInputShow, '当社から送金する際のお受取口座', $index + 1)">
+        <!-- // 01-2021-06-172 口座開設事務手続きアプリ改善要望対応 終了 20210913 -->
+            <base-area>
+                <row title="登録銀行No" info="{{::koza.KOZA_TRKNO}}"></row>
+                <row ng-if="::(koza.KOZA_UKTRKZ == '1')" title="金融機関コード" info="{{::koza.KOZA_BK_C}}－{{::koza.KOZA_MISE_C}}"></row>
+                <row title="銀行名" info="{{::koza.KOZA_BK_NM}}"></row>
+                <row ng-if="::(koza.KOZA_UKTRKZ == '1')" title="支店名" info="{{::koza.KOZA_BK_MISE_NM}}"></row>
+                <row ng-if="::(koza.KOZA_UKTRKZ == '1')" title="口座番号" info="{{::koza.BK_YOKNKND_NM}}　{{koza.BK_KOZA_CD}}"></row>
+                <row ng-if="::(koza.KOZA_UKTRKZ == '1')" title="口座名義" info="{{::koza.BK_KOZA_KANA}}"></row>
+                <row ng-if="::(koza.KOZA_UKTRKZ == '0')" title="記号" info="{{::koza.YUCH_BK_C}}"></row>
+                <row ng-if="::(koza.KOZA_UKTRKZ == '0')" title="通帳番号" info="{{::koza.YUCH_BK_KOZA_CD}}"></row>
+            </base-area>
+            <input-area>
+                <row title="登録情報">
+                    <row-info>
+                        <checkbox label="削除する" value="'1'" false-value="''" data="kozaDel[$index]" clear-id="kozaDel_{{$index+1}}"></checkbox>
+                    </row-info>
+                </row>
+                <row>
+                    <row-info>
+                        <div class="kozaDelInfo">累積投資（株投型）分配金買付停止や外証の円貨利金分配金の振込先に登録されていないか、<br>確認してください。累積投資（株投型）分配金買付停止は、入力必須です。</div>
+                    </row-info>
+                </row>
+                <div class="input-check-row"><div id="kozaDel_{{$index+1}}"></div></div>
+            </input-area>
+        </blockarea>
+
+        <div class="btnRow kozaDel" ng-repeat-start="data in kozaAdd.KOZA">
+            <div class="btnDiv Del" ng-click="kozaDelClick($index)">お受取口座を削除する</div>
+        </div>
+        <blockarea ng-repeat-end class="kozaBlock noBorder" no-btn="true" title="" id="navFurkomiWanring" ng-init="koazaAddInit(data, $id, $index)" write-btn-log="writeBtnLog(isInputShow, title)">
+            <base-area>
+                <row>
+                    <row-info class="warningText">
+                        <ul>
+                            <li>{{getMsg("KKAP-SFJ06-12I")}}</li>
+                        </ul>
+                    </row-info>
+                </row>
+                <row title="お受取口座">
+                    <row-info>
+                        <radio list="[{label: '三井住友銀行', value: '1'},{label: 'ゆうちょ銀行', value: '2'},{label: 'その他金融機関', value: '3'}]" data="data.KOZA_KBN" change="kozaKbnChg(value, $index, data.scopeId)" id="radioKozaUktrkz_{{data.scopeId}}"></radio>
+                    </row-info>
+                </row>
+                <row title="金融機関名等" ng-show="data.KOZA_KBN == '1'|| data.KOZA_KBN == '3'">
+                    <row-info>
+                        <div class="finInputLabelDiv" ng-show="data.KOZA_BK_C_ADD_BK">
+                            <label class="finInputNameLabel" >{{data.KOZA_BK_NM}}</label>
+                            <label class="finInputCodeLabel" >金融機関コード：{{data.KOZA_BK_C_ADD_BK}}</label>
+                        </div>
+                        <button ng-show="data.KOZA_KBN == '3'" class="searchButton finInputSrhButton" data-toggle="modal" ng-click="bankSrhBtnClick($index, data.scopeId)" id="searchBank_{{data.scopeId}}">金融機関を検索</button>
+                    </row-info>
+                </row>
+                <row ng-show="data.KOZA_BK_C_ADD_BK">
+                    <row-info>
+                        <div class="finInputLabelDiv" ng-show="data.KOZA_MISE_C_ADD_BK">
+                            <label class="finInputNameLabel" id="txtFinOrg" >{{data.KOZA_BK_MISE_NM}}</label>
+                            <label class="finInputCodeLabel" >支店コード：{{data.KOZA_MISE_C_ADD_BK}}</label>
+                        </div>
+                        <button ng-show="data.KOZA_KBN == '1'" class="searchButton finInputSrhButton" data-toggle="modal" ng-click="branchSrhBtnClick($index, data.scopeId)" id="searchBranch_{{data.scopeId}}">支店を検索</button>
+                    </row-info>
+                </row>
+                <row title="記号と通帳番号" ng-show="data.KOZA_KBN == '2'">
+                    <row-info>
+                        <label class="yuchoLabel">記号</label>
+                        <input type="text" class="yuchoCode" id="txtYuchBkC_{{data.scopeId}}" maxlength="5" ng-model="data.KOZA_BK_C_ADD_YUCH" pattern="\d*" placeholder="10000" input-data="inputData.kozaAdd[$index].KOZA_BK_C_ADD_YUCH">
+                        <label class="yuchoLabel left10"> － 通帳番号</label>
+                        <input type="text" class="yuchoNo" id="txtYuchBkKozaCd_{{data.scopeId}}" maxlength="8" ng-model="data.YUCH_BK_KOZA_CD_ADD_YUCH" pattern="\d*" placeholder="00000000"  input-data="inputData.kozaAdd[$index].YUCH_BK_KOZA_CD_ADD_YUCH">
+                    </row-info>
+                </row>
+                <row ng-show="data.KOZA_KBN == '2' || data.KOZA_MISE_C_ADD_BK != undefined" title="登録銀行No" info="{{data.KOZA_TORK_NO}}"></row>
+                <row ng-show="data.KOZA_MISE_C_ADD_BK">
+                    <row-info>
+                        <pulldown data-id="txtYoKnKnd_{{data.scopeId}}" id-group="txtYoKnKnd_" group-index="data.scopeId" data="data.KOZA_YOKNKND_ADD_BK" list="::bkYokkndList" width="210px" change="clearTxtYoKnKnd($index, data.scopeId)"></pulldown>
+                        <input type="text" class="finInputNum left10" id="txtKozaNumber_{{data.scopeId}}" placeholder="口座番号" maxlength="7" ng-model="data.KOZA_KOZA_CD_ADD_BK" input-data="inputData.kozaAdd[$index].KOZA_KOZA_CD_ADD_BK" ng-blur="clearTxtKozaNumber($index, data.scopeId)">
+                    </row-info>
+                </row>
+                <div class="groupCheckRow input-check-row"><div id="KOZA_ADD_FS_{{$index}}"></div></div>
+            </base-area>
+        </blockarea>
+
+        <div class="btnRow top20" ng-show="kozaDelCount + kozaAdd.KOZA.length < 9 && kozaAdd.KOZA.length < 2">
+            <div class="btnDiv add" ng-click="kozaAddClick()">お受取口座を追加する</div>
+        </div>
+
+        <a class="anchor" id="suknHoukatsu"></a>
+        <!-- // 01-2021-06-172 口座開設事務手続きアプリ改善要望対応 開始 20210913 -->
+        <blockarea title="利金・分配金支払方法（包括）" id="navSuknHoukatsu" data="suknHoukatsu" is-input-show="modifyFlg.SUKN_HKT_F" link="detailModalReset('G1080-01','G1080-18','');" no-btn="::isSuknHoukatsuNoChg" write-btn-log="writeBtnLog(isInputShow, title)" err-item-id="SUKN_HKT_F_MAE">
+        <!-- // 01-2021-06-172 口座開設事務手続きアプリ改善要望対応 終了 20210913 -->
+            <base-area>
+                <row title="包括" info="{{::suknBefore.SUKN_HOUKATSU}}"></row>
+            </base-area>
+            <input-area>
+                <row title="支払方法">
+                    <row-info>
+                        <radio list="[{label: '預り金へ入金', value: '1'},]" data="suknHoukatsu.SUKN_HKT_AZKR" change="suknHoukatsuChg(val)"></radio>
+                    </row-info>
+                </row>
+                <row>
+                    <row-info>
+                        <radio id="radioSuknHoukatsu" list="[{label: '登録銀行No', value: '0'},]" data="suknHoukatsu.SUKN_HKT_AZKR" change="suknHoukatsuChg(val)"></radio>
+                        <input type="text" class="ginKouInput alignRight" id="txtSuknHktTrkno" ng-model="suknHoukatsu.SUKN_HKT_TRKNO" placeholder="01" pattern="\d*" maxlength="2" ng-focus="suknHoukatsu.SUKN_HKT_AZKR = '0'" input-data="inputData.suknHoukatsu.SUKN_HKT_TRKNO">
+                        <span class="spInfo" ng-class="{ 'spInfo_selected' : (suknHoukatsu.SUKN_HKT_AZKR == '0') }" ng-click="suknHoukatsu.SUKN_HKT_AZKR = '0'">に変更</span>
+                    </row-info>
+                </row>
+            </input-area>
+        </blockarea>
+
+        <a class="anchor" id="suknMeigara"></a>
+        <!-- // 01-2021-06-172 口座開設事務手続きアプリ改善要望対応 開始 20210913 -->
+        <blockarea title="利金・分配金支払方法（銘柄）" id="navSuknMeigara" data="suknMeigara" is-input-show="modifyFlg.SUKN_HKT_MEIG_F" link="detailModalReset('G1080-01','G1080-19','');" no-btn="::isSuknHoukatsuMeigNoChg" write-btn-log="writeBtnLog(isInputShow, title)">
+        <!-- // 01-2021-06-172 口座開設事務手続きアプリ改善要望対応 終了 20210913 -->
+            <base-area>
+                <row title="銘柄" info="{{::suknBefore.SUN_MEIGARA}}"></row>
+            </base-area>
+            <input-area>
+                <row>
+                    <row-info>
+                        <checkbox label="銘柄ごとに支払方法を指定している場合、すべての契約が「利金分|配金（包括）」にて選択した内容に変更されます。" id="chkboxSuknHktK" value="'1'" data="suknMeigara.SUKN_HKT_MEIG_K"></checkbox>
+                    </row-info>
+                </row>
+                <div class="groupCheckRow input-check-row"><div id="SUKN_HKT_MEIG_F"></div></div>
+            </input-area>
+        </blockarea>
+
+        <a class="anchor" id="gaikSukn"></a>
+        <!--<blockarea title="外国証券の円貨利金分配金振込銀行" id="navGaikSukn" data="gaikSukn" is-input-show="modifyFlg.GAIK_SYKN_YEN_F" link="detailModalReset('G1080-01','G1080-20','');" err-item-id="GAIK_SYKN_YEN_F_MAE" write-btn-log="writeBtnLog(isInputShow, title)" no-btn="::isGaikSuknNoChg">-->
+        <!-- // 01-2021-06-172 口座開設事務手続きアプリ改善要望対応 開始 20210913 -->
+        <blockarea title="外国証券の円貨利金分配金振込銀行" id="navGaikSukn" data="gaikSukn" is-input-show="modifyFlg.GAIK_SYKN_YEN_F" link="detailModalReset('G1080-01','G1080-20','');" no-btn="::isGaikSyknYenNoChg" err-item-id="GAIK_SYKN_YEN_F_MAE" write-btn-log="writeBtnLog(isInputShow, title)">
+        <!-- // 01-2021-06-172 口座開設事務手続きアプリ改善要望対応 終了 20210913 --> 
+            <base-area>
+                <row title="包括" info="{{::gaikSunkBefore.GAIK_SYKN_YEN_SUKN_BK_HKT}}"></row>
+                <row title="銘柄／受取口座" ng-show="::gaikSunkBefore.GAIK_SYKN_YEN_SUKN_BK_MEIG_NASI" info="なし"></row>
+                <row ng-repeat="e in ::gaikSunkBefore.GAIK_SYKN_YEN_SUKN_BK_MEIG" title="銘柄／受取口座" info="{{::e.GAIK_SYKN_YEN_SUKN_BK_MEIG_CD}}{{'／登録銀行No '}}{{::e.GAIK_SYKN_YEN_SUKN_BK_MEIG_KOZA}}"></row>
+            </base-area>
+            <input-area>
+                <row ng-if ="kozaDelCount == kozaDel.length ">
+                    <row-info class="warningText">
+                        <ul>
+                            <li>{{getMsg("KKAP-SFJ06-14I")}}</li>
+                        </ul>
+                    </row-info>
+                </row>
+                <row title="支払方法">
+                    <row-info>
+                        <radio list="[{label: '預り金へ入金', value: '1'}]" data="gaikSukn.GAIK_SYKN_YEN_SUKN_AZKR" change="clearGaikNo(value)"></radio>
+                    </row-info>
+                </row>
+                <row>
+                    <row-info>
+                        <radio id="radioGaikSukn" list="[{label: '登録銀行No', value: '0'}]" data="gaikSukn.GAIK_SYKN_YEN_SUKN_AZKR" change="clearGaikNo(value)"></radio>
+                        <input type="text" class="ginKouInput alignRight" id="txtGaikSyknYen" ng-model="gaikSukn.GAIK_SYKN_YEN_SUKN_BK" placeholder="01" pattern="\d*" maxlength="2" ng-focus="gaikSukn.GAIK_SYKN_YEN_SUKN_AZKR = '0'" input-data="inputData.gaikSukn.GAIK_SYKN_YEN_SUKN_BK">
+                        <span class="spInfo" ng-class="{ 'spInfo_selected' : (gaikSukn.GAIK_SYKN_YEN_SUKN_AZKR == '0') }" ng-click="gaikSukn.GAIK_SYKN_YEN_SUKN_AZKR = '0'">に変更</span>
+                    </row-info>
+                </row>
+                <div class="groupCheckRow input-check-row"><div id="GAIK_SYKN_YEN_F"></div></div>
+            </input-area>
+        </blockarea>
+
+        <a class="anchor" id="ruiTouSunk"></a>
+        <!-- // 01-2021-06-172 口座開設事務手続きアプリ改善要望対応 開始 20210913 -->
+        <blockarea title="累投（株投型）分配金買付停止" id="navRuiTouSunk" data="ruiTouSunk" is-input-show="modifyFlg.RUITOU_SUKN_KAIT_TEIS_F" link="detailModalReset('G1080-01','G1080-21','');" no-btn="::isRuitouSyknKaitTeisNoChg" err-item-id="RUITOU_SUKN_KAIT_TEIS_F_MAE" write-btn-log="writeBtnLog(isInputShow, title)">
+        <!-- // 01-2021-06-172 口座開設事務手続きアプリ改善要望対応 終了 20210913 --> 
+            <base-area>
+                <div class="ruisekiArea">現在ご登録頂いている内容は、営業員にお問い合わせください。</div>
+            </base-area>
+            <input-area>
+                <row>
+                    <row-info class="warningText">
+                        <ul>
+                            <li>{{getMsg("KKAP-SFJ06-13I")}}</li>
+                        </ul>
+                    </row-info>
+                </row>
+                <row ng-show ="kozaDelCount == kozaDel.length" class="noMarginTop">
+                    <row-info class="warningText">
+                        <ul>
+                            <li>{{getMsg("KKAP-SFJ06-14I")}}</li>
+                        </ul>
+                    </row-info>
+                </row>
+                <row title="支払方法">
+                    <row-info>
+                        <radio list="[{label: '登録なし', value: '1'},]" data="ruiTouSunk.RUITOU_SUKN_KAIT_TEIS_K" change="ruiTouSunkChg(val)"></radio>
+                    </row-info>
+                </row>
+                <row>
+                    <row-info>
+                        <radio list="[{label: '分配金買付停止の解除（再投資）', value: '2'},]" data="ruiTouSunk.RUITOU_SUKN_KAIT_TEIS_K" change="ruiTouSunkChg(val)"></radio>
+                    </row-info>
+                </row>
+                <row>
+                    <row-info>
+                        <radio list="[{label: '分配金を預り金へ入金', value: '4'},]" data="ruiTouSunk.RUITOU_SUKN_KAIT_TEIS_K" change="ruiTouSunkChg(val)"></radio>
+                    </row-info>
+                </row>
+                <row class="rowTop13">
+                    <row-info>
+                        <radio id="radioRuiTouSunk" list="[{label: '登録銀行No', value: '3'},]" data="ruiTouSunk.RUITOU_SUKN_KAIT_TEIS_K" change="ruiTouSunkChg(val)"></radio>
+                        <input type="text" class="ginKouInput alignRight" id="txtRuitouSuknTrkno" ng-model="ruiTouSunk.RUITOU_SUKN_TRKNO" placeholder="01" pattern="\d*" maxlength="2" ng-focus="ruiTouSunk.RUITOU_SUKN_KAIT_TEIS_K = '3'" input-data="inputData.ruiTouSunk.RUITOU_SUKN_TRKNO">
+                        <span class="spInfo" ng-class="{ 'spInfo_selected' : (ruiTouSunk.RUITOU_SUKN_KAIT_TEIS_K == '3') }" ng-click="ruiTouSunk.RUITOU_SUKN_KAIT_TEIS_K = '3'">に変更</span>
+                    </row-info>
+                </row>
+                <div class="groupCheckRow input-check-row"><div id="RUITOU_SUKN_KAIT_TEIS_F"></div></div>
+            </input-area>
+        </blockarea>
+
+        <a class="anchor" id="haitkinSunk"></a>
+        <blockarea title="配当金受領方式" id="navHaitkinSunk" data="haitkinSunk" is-input-show="modifyFlg.HAITKN_SYKN_UKTR_F" link="detailModalReset('G1080-01','G1080-22','');" write-btn-log="writeBtnLog(isInputShow, title)" err-item-id="HAITKN_SYKN_UKTR_F_MAE">
+            <base-area>
+                <row title="" info="{{::haitkinSunkBefore.HAITKIN}}"></row>
+            </base-area>
+            <input-area>
+                <row title="申込区分">
+                    <row-info>
+                        <radio id="radioHaitkinSunk" list="mskNhksList" data="haitkinSunk.HAITKN_SYKN_UKTR_MSKM" change="haitkinSunBunChg(value)"></radio>
+                    </row-info>
+                </row>
+                <row title="受取方法" ng-show="haitkinSunk.HAITKN_SYKN_UKTR_MSKM == '1' || haitkinSunk.HAITKN_SYKN_UKTR_MSKM == '2'">
+                    <row-info>
+                        <checkbox label="全銘柄振込先指定方式" value="'1'" data="haitkinSunk.AMEIG_FURIKOMI_CHK" clear-id="checkHaitkinSunk" click="haitkinSunk.AMEIG_FURIKOMI_CHK = '1'"></checkbox>
+                    </row-info>
+                </row>
+                <row ng-show="haitkinSunk.HAITKN_SYKN_UKTR_MSKM == '1' || haitkinSunk.HAITKN_SYKN_UKTR_MSKM == '2'" class="rowTop5">
+                    <row-info>
+                        <span class="spInfo left32" ng-class="{ 'spInfo_selected' : (haitkinSunk.AMEIG_FURIKOMI_CHK == '1') }" ng-click="haitkinSunk.AMEIG_FURIKOMI_CHK = '1'">登録銀行No </span>
+                        <input type="text" class="ginKouInput alignRight" id="txtAmeigFurikomi" ng-model="haitkinSunk.AMEIG_FURIKOMI" placeholder="01" pattern="\d*" maxlength="2" ng-focus="haitkinSunk.AMEIG_FURIKOMI_CHK = '1'" input-data="inputData.haitkinSunk.AMEIG_FURIKOMI">
+                        <span class="spInfo" ng-class="{ 'spInfo_selected' : (haitkinSunk.AMEIG_FURIKOMI_CHK == '1') }" ng-click="haitkinSunk.AMEIG_FURIKOMI_CHK = '1'">を登録</span>
+                    </row-info>
+                </row>
+                <div class="input-check-row" ng-show="haitkinSunk.HAITKN_SYKN_UKTR_MSKM == '1' || haitkinSunk.HAITKN_SYKN_UKTR_MSKM == '2'"><div id="checkHaitkinSunk"></div></div>
+            </input-area>
+        </blockarea>
+    </main>
+
+    <!--フッター ブロック-->
+    <footer id="footerElem" class="fixedFooter">
+        <button ng-if="::(!isFromConfirmPageFlg)" class="backBtn" ng-click="stopBtnClick()">中止する</button>
+        <button id="btnNext" class="nextBtn" ng-disabled="btnDisabledChk()" ng-click="nextBtnClick()">{{::(isFromConfirmPageFlg ? '確認画面へ' : '次へ')}}</button>
+    </footer>
+</div>
+
+<!-- 
+    画面名：住所検索画面
+    画面id：G1080-03
+-->
+<div ng-include="'pages/G1080-03_addressSearchModal.html'"></div>
+
+<!-- 
+    画面名：金融機関名検索画面、支店名検索画面
+    画面id：G1080-04、G1080-05
+-->
+<div ng-include="'pages/G1080-04_bankSearchModal.html'"></div>
+
+<!-- 
+    画面名：詳細リンク画面
+    画面id：G1080-06 ~ G1080-22
+-->
+<div ng-include="'pages/detailModal.html'"></div>
+
+<!-- 
+    画面名：申込中止画面
+    画面id：G1080-23
+-->
+<div class="modal fade" data-backdrop="static" id="G1080-23">
+    <div class="modal-dialog modalStop_main">
+        <div class="modal-content modalStop_content">
+            <div class="modalStop_body modal-body">
+                申し込みを中止します。よろしいですか？
+            </div>
+            <div class="modal-footer">
+                <button class="modalStop_noBtn" data-dismiss="modal" ng-click="stopBtnNoClick()">いいえ</button>
+                <button class="modalStop_yesBtn" data-dismiss="modal" ng-click="stopBtnYesClick()">はい</button>
+            </div>
+        </div>
+    </div>
+</div>
+   
+<!-- 
+    画面名：事務手続きのエラー項目表示画面
+    画面id：G1080-24
+-->
+<div ng-include="'pages/common/errItemModal.html'"></div>
+
+<!-- 
+    画面名：入力補助（類似文字確認）画面
+    画面id：G1520-01
+-->
+<div ng-include="'pages/G1520-01_similarCharModal.html'"></div>

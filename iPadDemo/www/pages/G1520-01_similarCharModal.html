@@ -1,0 +1,28 @@
+<div class="modal fade charCorrectModal" data-backdrop="static" id="G1520-01" ng-controller="SimilarModalCtrl" ng-init='modalInit()'>
+    <div class="modal-dialog charCorrectModal_main">
+        <div class="modal-content charCorrectModal_content">
+            <div class="charCorrectModal_body">
+                <p class="charCorrectModal_title">赤枠の入力文字を確認して、確定ボタンを押下してください。<br>文字をタップで、確認文字の切替ができます。</p>
+                <table class="charCorrectModal_charTable">
+                    <tr class="charCorrectModal_charTable_tr2" ng-repeat="innerCharList in checkCharList">
+                        <td class="similarchar uneditable" ng-class="{last:$parent.$last && $last, editable:checkChar.editable}"
+                        id="char{{$parent.$index}}-{{$index}}"  ng-click="charSelect($parent.$index ,$index, false)" ng-repeat="checkChar in innerCharList">{{checkChar.char}}</td>
+                    </tr>
+                </table>
+                <div class="charCorrectModal_editArea">
+                    <p class="charCorrectModal_confirmLabel">入力されているのは{{inputedChar}}です。</p>
+                    <ul class="charCorrectModal_editableList">
+                        <li class="" ng-repeat="item in editableList">
+                            <a ng-click="charEdit(item)">{{item.description}}（{{item.target}}）に変換する</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="modal-footer-relative">
+                    <button class="center-block charCorrectModal_confirmBtn" data-dismiss="modal" ng-click="confirmChar()"><span class="">確定</span></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

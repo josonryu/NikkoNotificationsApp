@@ -1,0 +1,98 @@
+/*
+G1030-01_splash.scss
+スプラッシュ画面用SCSS
+*/
+
+#G1030-01 {
+
+    // 
+    .splashAnimation {
+        
+        &_backGround,&_backGround-complete{
+            background-color: $color-white;
+            background-size: 100%;
+            height: 100%;
+            position: absolute;
+            width: 100%;
+        }
+        &_logo,&_logo-complete {
+            animation: fadein 0.8s linear 0s 1 forwards;
+            background:url(../images/nikko.svg) no-repeat center;
+            background-size: 35%;
+            height:100%; 
+            left:0%;
+            opacity: 0;
+            position:absolute;           
+            top:0%;
+            width:100%;
+        }
+
+        @-webkit-keyframes fadein{
+            0%{
+                opacity: 0;
+                background-size: 35%;
+            }
+            50%{
+                opacity: 1;
+            }
+            100%{
+                opacity: 1;
+            }
+        }
+        @-webkit-keyframes fadeout{
+            0%{
+                opacity: 1;
+            }
+            56%{
+                opacity: 1;
+            }
+            100%{
+                opacity: 0;
+            }
+        }
+        @-webkit-keyframes sizemotion{
+            20%{
+                background-size: 35%;
+            }
+            100%{
+                background-size: 60%
+            }
+        }
+
+        &_loadingCircle{
+            animation: load 1.5s linear 0s 1 forwards;
+            position: relative;
+            top: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            width: 38px;
+            height: 38px;
+            background: url("../images/loadingCircle.svg") no-repeat;
+        }
+
+        &_loadingInfoText{
+            color:$color-white;
+            font-size: $fontsize-middle;
+            font-weight: bold;
+            position: relative;
+            text-align: center;
+            top: 510px;
+        }
+
+        @-webkit-keyframes load{
+            0%{
+                opacity: 0;
+            }
+            100%{
+                opacity: 1;
+            }
+        }
+    }
+
+    [class*="logo-complete"]{
+        animation: fadeout 2.2s linear 0s 1 forwards,sizemotion 2.2s linear 0s 1 forwards;
+    }
+    [class*="backGround-complete"]{
+        animation: backcolorChange 1.2s linear 0s 1 forwards;
+    }
+}

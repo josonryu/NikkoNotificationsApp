@@ -1,0 +1,354 @@
+/**
+* ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+* 整理前既存
+*/
+// キーボード背景色透過率
+$alpha-tenkeyBackGround: 0.6;
+$btn-disabledBackGround: 0.3;
+
+// 色指定
+$color-black: #000;
+$color-white: #fff;
+$color-fujitsu1: #44a5cb;
+$color-headBar: #f0bd2c;
+$color-blueGray900: #263238;
+$color-blueGray900Alpha: rgba(38, 50, 56, $alpha-tenkeyBackGround);
+$color-blueGray100: #cfd8dc;
+$color-blueGray50: #eceff1;
+$color-gray900: #212121;
+$color-gray400: #bdbdbd;
+$color-blue600: #207db4;
+$color-fujitsu2: #9ad3de;
+$color-fujitsu3: #328fb4;
+$color-fujitsu4: #e3e3e3;
+$color-staffOnly:#777777;
+
+// Mock
+$color-nikko-1:#f0ffd1;
+$color-nikko-4:#e2e2e2;
+$color-nikko-5:#4a6b7b;
+$color-nikko-6:#4d4d4d;
+$color-nikko-7:#616161;
+$color-nikko-8:#333333;
+$color-nikko-9:#808080;
+$color-nikko-10:#e6e6e6;
+$color-nikko-12:#dee8e8;
+
+// 以下、カラーガイドには無いがpngから抽出
+$color-nikko-13:#d8dadc;
+$color-nikko-14:#666666;
+$color-nikko-16:#f11d1c;
+$color-nikko-17:#eef3e4;
+$color-nikko-18:#936866;
+$color-nikko-19:#efefef;
+$color-nikko-22:#749a8f;
+$color-nikko-23:#bedfe6;
+$color-nikko-24:#757575;
+$color-nikko-26:#bfd9d9;
+$color-nikko-27:#7f7f7f;
+$color-staffOnly:#777777;
+
+// 以下、20190626の指摘で追加
+$color-lightgreen:#f8fbdd;
+
+/**
+* ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
+* 整理前既存
+*/
+
+/**
+* ベースカラー
+*/
+// 三井住友銀行コーポレートカラー。ヘッダ・フッタの区切り線、ホームメニューの手続き選択ボタン、選択状態の色として利用する。
+$color-baseColor1:#004831;
+// 三井住友銀行コーポレートカラー。中見出しごとの区切り線の色として利用する。
+$color-baseColor2:#99cc00;
+// アプリ内のアクセント色として利用、必須アイコンなど、注意喚起を促す配色として利用する。
+$color-accent:#cc0000;
+// テキストリンクの色として利用する。
+$color-link:#0047d6;
+// 事務手続きの「変更取消」ボタン色として利用する。
+$color-orange:#fa8200;
+// 事務手続き入力画面の変更後エリア背景色として利用する。
+$color-mistgreen:#edf3b2;
+// 手続き上で前処理に遷移するボタン(「戻る」ボタンや「閉じる」ボタンなど)の色として利用する。
+$color-bluegray:#90a4ae;
+// 項目毎の区切り線色として利用する。
+$color-darkgray:#7f7f7f;
+// パンくずエリア色、進捗率の非活性色に利用する。
+$color-gray:#ebebeb;
+
+// 区切り線２色 中見出し（ブロック）単位で区切る
+$color-line-2: $color-baseColor2;
+// 区切り線３色 中見出し（ブロック）内で、項目グループ単位で区切る
+$color-line-3: $color-gray400;
+// 区切り線４色 中見出し（ブロック）内で、項目ごとに区切る（照会結果の一覧表示など）
+$color-line-4: $color-gray400;
+
+/**
+* ベースフォントサイズ
+*/
+// 既存ページタイトル用
+$fontsize-28: 28px;
+// 主にタイトルとして利用
+$fontsize-extraLarge: 26px;
+// リード文言、コンテンツタイトル、入力(テキストボックス、ラジオボタン、チェックボックス)などに利用
+$fontsize-large: 20px;
+$fontsize-middle-two: 18px;
+// 本文として利用
+$fontsize-middle: 15px;
+// 備考や、強調すべきでないフォントに利用
+$fontsize-small: 12px;
+
+/**
+* 画面構成
+*/
+// ヘッダー
+$header-border-bottom: 3.5px solid $color-baseColor1;
+$header-bg: $color-white;
+$header-height: 60px;
+$header-icon-height: 40px;
+$header-color-bg: $color-white;
+
+// マイン
+$main-color-bg: $color-white;
+$main-padding-left: 30px;
+$main-padding-right: 30px;
+$main-height-min: 613.5px;
+$main-margin-top: $header-height;
+
+// 営業員専用ブロック
+$staffOnly-color-bg: $color-staffOnly;
+$staffOnly-color-font: $color-white;
+$staffOnly-height: 50px;
+$staffOnly-margin-top: 10px;
+$staffOnly-width: calc(100% + #{$main-padding-left * 2});
+$staffOnly-fontsize: $fontsize-large;
+$staffOnly-left: -$main-padding-left;
+$staffOnly-icon-width: 32px;
+$staffOnly-icon-height: 32px;
+$staffOnly-icon-margin-right: 10px;
+
+// ぱんぐず
+$pakuzu-row-left: -$main-padding-left;
+$pakuzu-bg: $color-white;
+$pankuzu-active-color-bg: $color-baseColor2;
+$pankuzu-active-color-font: $color-white;
+$pankuzu-inactive-color-bg: $color-gray;
+$pankuzu-inactive-color-font: $color-baseColor1;
+$pankuzu-done-color-bg: $color-baseColor1;
+$pankuzu-done-color-font: $color-white;
+$pakuzu-height: 50px;
+$pakuzu-width: calc(100% + #{$main-padding-left * 2});
+$pakuzu-fontsize: $fontsize-middle;
+$pakuzu-margin-top: 10px;
+
+// ページタイトル
+$page-title-margin-top: 20px;
+$page-title-margin-bottom: 20px;
+$page-title-margin-left: 0;
+$page-title-margin-right: 0;
+$page-tiltle-color-font:$color-gray900;
+$page-title-fontsize:$fontsize-28;
+
+// ブロックタイトル
+$title-border-bottom: 2.5px solid $color-baseColor2;
+$title-margin-top: 150px; // 事務手続きのみ
+$title-margin-top-first: 45px;
+$title-padding-bottom: 5px;
+$title-text-color-font: $color-baseColor1;
+$title-text-fontsize: $fontsize-extraLarge;
+$title-link-color-font:$color-link;
+$title-link-fontsize: $fontsize-middle;
+$title-edittext-fontsize: $fontsize-large;
+$title-edittext-color: $color-gray900;
+
+// ブロックマイン
+$bolck-main-padding-left: 20px;
+
+// ブロックエリア
+$blockarea-border-top: 1px solid $color-line-3;
+$blockarea-background-color: $color-white;
+
+// エリア
+$area-border-top: 0.5px solid $color-gray400;
+$area-color-bg: $color-white;
+$area-padding-bottom: 25px;
+$area-padding-top: 5px;
+$area-margin-left: 20px;
+
+// ベースエリア
+$basearea-padding-left: 20px;
+$basearea-padding-right: 20px;
+$basearea-padding-bottom: 60px;
+
+// ロー
+$row-border-top: 0.5px solid $color-line-3;
+$row-border-bottom: 0.5px solid $color-line-3;
+$row-padding: 13px;
+$row-margin-top: 20px;
+$row-color: $color-gray900;
+$row-margin-top-ocr: 5px;
+$row-font-size: $fontsize-large;
+$row-description-fontsize: $fontsize-middle;
+$row-label-color-font: $color-gray900;
+$row-label-fontsize: $fontsize-middle;
+$row-label-width: 145px;
+$row-label-sub-fontsize: $fontsize-small;
+$row-info-fontsize: $fontsize-large;
+$row-description-margin-left: 145px;
+$row-description-fontsize: $fontsize-middle;
+$row-border-bottom: solid 1px $color-gray400;
+$row-padding-bottom: 25px;
+$row-border-top: solid 1px $color-gray400;
+$row-padding-top: 25px;
+
+// 入力エリア
+$inputarea-background-color: $color-lightgreen;
+$inputarea-padding-top: 25px;
+$inputarea-padding-right: 20px;
+$inputarea-padding-bottom: 25px;
+$inputarea-padding-left: 20px;
+$inputarea-margin-top: 20px;
+$inputarea-border-radius: 15px;
+
+// 必須アイコン
+$required-color-bg: $color-accent;
+$required-color-font: $color-white;
+$required-fontsize:$fontsize-small;
+$norequired-width: 70px;
+$required-width: 46px;
+$required-height: 22px;
+$required-margin-left: 14px;
+$required-margin-right: 10px; // 事務手続きのみ
+
+// フッター
+$footer-border: 3.5px solid $color-baseColor1;
+$footer-height: 70px;
+$footer-color-bg: $color-white;
+$footer-padding-left: 30px;
+$footer-padding-right: 30px;
+
+// 進捗率
+$footer-progress-color-bg: $color-white;
+$footer-progress-width: 82px;
+$footer-progress-height: 82px;
+$footer-progress-text-fontsize: 12px;
+$footer-progress-text-height: 12px;
+$footer-progress-text-width: 105px;
+$footer-progress-text-color-font: $color-nikko-6;
+$footer-progress-rate-fontsize: 48px;
+$footer-progress-rate-lineHeight: 48px;
+$footer-progress-rate-height: 50px;
+$footer-progress-rate-width: 105px;
+$footer-progress-rate-color-font: $color-nikko-6;
+$footer-progress-percentage-fontsize: 12px;
+$footer-progress-percentage-height: 15px;
+$footer-progress-percentage-width: 105px;
+$footer-progress-percentage-color-font: $color-nikko-6;
+
+// エリア
+$margin-area-left:30px;
+$margin-area-right:30px;
+$margin-area-top:0px;
+$color-area-border-color:$color-nikko-4;
+
+// モーダル
+$modal-border: 2.5px solid $color-darkgray;
+$modal-border-footer: 0.5px solid $color-gray400;
+$modal-size-large: 960px;
+$modal-size-middle: 800px;
+$modal-size-small: 560px;
+$modal-err-body-maxheight: 600px;
+$modal-err-body-margin-left: 15px;
+$modal-err-title-color-font: $color-gray900;
+$modal-err-title-fontsize: $fontsize-large;
+$modal-err-title-margin-top: 20px;
+$modal-err-title-margin-bottom: 10px;
+$modal-err-supplement-color-font: $color-gray900;
+$modal-err-supplement-fontsize: $fontsize-middle;
+$modal-err-supplement-margin-bottom: 20px;
+$modal-err-supplement-maxheight: 445px;
+$modal-err-supplementList-margin-bottom: 10px;
+
+// 入力文字確認アイコン
+$linkChar-color-bg: $color-accent;
+$linkChar-color-font: $color-white;
+$linkChar-fontsize:$fontsize-small;
+$linkChar-height: 22px;
+$linkChar-width: 100px;
+
+// カメラ
+$color-cameraHeader : $color-staffOnly;
+
+/**
+* ボタン
+*/
+// ボタン共通
+$button-fontsize-large: $fontsize-large;
+$button-fontsize-middle: $fontsize-middle;
+$button-fontsize-small: $fontsize-small;
+$button-color-font: $color-white;
+$button-color-font-disabled:$color-nikko-14;
+$button-border-radius-large: 10px;
+$button-border-radius-middle: 5px;
+$button-height-large: 44px;
+$button-width-large: 200px;
+
+// 検索ボタン
+$button-search-color-bg: $color-baseColor1;
+$button-search-color-font: $color-white;
+$button-search-height: 40px;
+$button-search-width: 140px;
+
+// 再送信ボタン
+$button-color-bg-retransmit: $color-baseColor2;
+$button-fontsize-retransmit: 18.5px;
+$button-width-retransmit: 22.5%;
+$button-height-retransmit: 65px;
+
+// 戻るボタン
+$button-back-color-bg: $color-bluegray;
+
+// 変更取消ボタン
+$button-cancel-color-bg: $color-orange;
+
+// 変更するボタン
+$button-color-bg-modify: $color-baseColor1;
+$button-width-modify: 110px;
+$button-height-modify: 40px;
+
+// 修正するボタン
+$button-modify-boder: 2px solid $color-baseColor1;
+$button-modify-color-bg: transparent;
+$button-modify-color-font: $color-baseColor1;
+$button-modify-height: 40px;
+$button-modify-width: 90px;
+
+// 閉じるボタン
+$button-close-color-bg:$color-bluegray;
+
+// コンファームボタン
+$button-confirm-color-bg:$color-baseColor1;
+
+// 次へボタン
+$button-next-color-bg:$color-baseColor1;
+$button-next-color-bg-disabled:$color-nikko-13;
+
+// 署名画面内部ボタン
+$button-signature-border: 1px solid $color-white;
+
+// モーダル内ボタン
+$button-yes-color-bg: $color-baseColor1;
+$button-no-color-bg: $color-bluegray;
+$button-yes-margin-left: 10px;
+$button-no-margin-right: 10px;
+
+// テキスト
+$text-height: 40px;
+
+$pulldown-height: 40px;
+
+$radio-checkbox-height: 40px;
+
+$font-size-accent: $fontsize-middle;

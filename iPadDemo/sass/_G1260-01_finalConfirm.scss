@@ -1,0 +1,127 @@
+/*
+G1260-01_finalConfirm
+お申し込み最終確認画面
+*/
+
+#G1260-01 {
+    @extend #G1240-01;
+
+    .err-message {
+        padding-left: 235px;
+        padding-bottom: 13px;
+        display: block;
+    }
+
+    .requiredMark {
+        background-color: $required-color-bg;
+        border-radius: 10px;
+        color: $required-color-font;
+        display: inline-flex;
+        font-size: $required-fontsize;
+        height: $required-height;
+        margin-left: $required-margin-left;
+        width: $required-width;
+        align-items: center;
+        justify-content: center;
+        line-height: $required-height;
+    }
+
+    .similar-link {
+        padding-bottom: 13px;
+        margin-top: 0;
+        margin-left: 235px;
+    }
+
+    .bikoArea_input {
+        width: 610px;
+        padding: 0 5px 0 10px;
+    }
+
+    .noMargin {
+        margin-left: 0;
+    }
+
+    .blockArea.directive.normal .baseArea {
+        padding-bottom: 0;
+    }
+
+    .marginLeft70 {
+        margin-left: 70px;
+    }
+
+    .warningText {
+        text-align: center;
+        margin-top: 10px;
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+        padding-left: 40px;
+        padding-right: 130px;
+
+        &_icon {
+            display: inline-block;
+            height: 22px;
+            width: 26px;
+            background-image: url(../images/icon_alert.svg);
+            background-size: auto 15px;
+            background-repeat: no-repeat;
+            background-position-y: center;
+            flex-shrink: 0;
+        }
+
+        &_msg {
+            text-align: left;
+            font-size: $fontsize-middle;
+            color: $color-accent;
+            line-height: 22px;
+        }
+    }
+
+    .confirmCheckArea {
+        padding: 0 30px 0 40px;
+
+        &_withWarn {
+            padding: 10px 30px 20px 40px;
+            border-bottom: 0.5px solid $color-line-3;
+        }
+    }
+
+    .blockArea.after {
+        padding: 40px 0 20px;
+    }
+
+    .confirmBox {
+        margin-top: 25px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .areaTitle+*>.blockTitle {
+        margin-top: 45px;
+    }
+
+    .confirmArea>[confrim-before]:first-of-type .blockTitle{
+        margin-top: 45px;
+    }
+
+    .confirmArea>div:first-child .blockTitle{
+        margin-top: 45px;
+    }
+
+    .confirm-input-row {
+        display: flex;
+        align-items: center;
+        padding: 13px 0;
+        margin: 0 20px;
+    }
+}
+
+/*
+G1260-05:お客様確認への遷移確認画面
+G1260-03:営業員確認完了画面
+*/
+#G1260-05,
+#G1260-03 {
+    @extend #G1240-03;
+}

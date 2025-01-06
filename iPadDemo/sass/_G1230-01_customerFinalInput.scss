@@ -1,0 +1,161 @@
+/*
+G1230-01_customerFinalInput
+暗証番号確認画面
+*/ 
+#G1230-01 {
+
+    .confirmDataArea {
+        &_row {
+            display: flex;
+            align-items: center;
+            padding: 13px 0;
+            margin: 0 20px;
+        }
+
+        &_label {
+            font-size: $fontsize-middle;
+            font-weight: bold;
+            text-align: right;
+            width: 145px;
+            word-break: break-all;
+            margin-bottom: 0;
+        }
+
+        &_data {
+            font-size: $fontsize-large;
+            display: flex;
+            align-items: center;
+            margin-left: 70px;
+        }
+
+        &_btn {
+            @extend .btn_large;
+            width: 190px;
+            background-color: $button-confirm-color-bg;
+            border-radius: 5px;
+            font-weight: normal;
+            margin-left: 15px;
+        }
+    }
+
+    .confrimInfo {
+        padding-top: 20px;
+        margin: 20px 20px 0 20px;
+        border-top: solid 0.5px $color-gray400;
+        font-size: 20px;
+        font-weight: bold;
+        text-align: left;
+        color: $color-accent;
+    }
+
+    .confirmCheckbox {
+        padding: 13px 0;
+        margin: 0 20px;
+    }
+}
+
+// 暗証番号入力画面
+#G1230-02 {
+    @include modal(s);
+
+    input {
+        user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        -webkit-user-select: none;
+        outline-style: none;
+    }
+
+    .pinConfirm {
+
+        // 暗証番号入力画面の大枠
+        &_mainArea {
+            color: $color-gray900;
+            padding: 15px 15px;
+            text-align: center;
+        }
+
+        // 暗証番号入力画面のタイトル
+        &_title {
+            font-size: $fontsize-large;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+
+        // 禁止番号説明
+        &_notes {
+            font-size: $fontsize-middle;
+            font-weight: normal;
+            margin: 20px 15px 20px;
+            text-align: left;
+            align-items: center;
+            display: inline-flex;
+        }
+
+        // 暗証番号入力ボックス、暗証番号確認ボックスのラベル
+        &_inputLabel {
+            font-size: $fontsize-middle;
+            font-weight: normal;
+            margin-top: 20px;
+        }
+
+        //  暗証番号入力ボックス、暗証番号確認ボックス
+        &_input {
+            margin: 0 auto;
+            padding-left: 13px;
+            width: 388px;
+        } 
+
+        &_value {
+            position: fixed;
+            z-index: -9999;
+            display: block;
+        } 
+
+        // 暗証番号確認エラーメッセージ
+        &_errMessage {
+            color: $color-accent;
+            display: block;
+            margin-bottom: 20px;
+            padding-left: 15px;
+            text-align: left;
+        }
+    }
+
+    .passwordChange {
+        background-color: $color-white;
+        border: 2px solid $color-area-border-color;
+        border-radius: 8px;
+        display: inline-block;
+        position: relative;
+        padding: 5px 10px 5px 7px;
+        color: $color-baseColor1;
+        font-size: $fontsize-small;
+        font-weight: bold;
+        align-items: center;
+    }
+
+    .footer {
+        // キャンセルボタン
+        &_cancelBtn {
+            @extend .btn_large;
+            background-color: $color-bluegray;
+            margin-right: 14px;
+        }
+
+        // 確定するボタン
+        &_confirmBtn {
+            @extend .btn_large;
+            background-color: $button-confirm-color-bg;
+        }
+    }
+
+    .err-message {
+        margin-left: 68.5px;
+        margin-top: 5px;
+    }
+
+    .input-check-area.err {
+        background: none;
+    }
+}

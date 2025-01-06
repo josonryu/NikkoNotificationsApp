@@ -1,0 +1,76 @@
+/*
+G1020-00_errorInfo.scss
+エラーモーダル共通スタイル
+G1020-01：ログイン可能時間外のお知らせ画面
+G1020-02：その他エラー画面
+G1020-03：サービス終了のお知らせ画面
+G1020-04：タイムアウト画面
+G1020-05：通信エラー画面
+*/
+#G1020 {
+    @include modal(m);
+
+    // モーダルのスタイル
+    .errorInfo {
+
+        &_textArea {
+            font-size: $fontsize-large;
+            height: 350px;
+            padding: 15px 30px;
+        }
+        &_footerText {
+            color: $color-accent;
+            font-size: $fontsize-large;
+            font-weight: bold;
+            text-align: center;
+        }
+        &_footerButton {
+            display: none;
+        }
+        &_close-btn {
+            @extend .btn_close;
+            display: block;
+            margin: auto;
+        }
+    }
+
+    // アプリケーションロゴ
+    .appLogo{
+        align-items: center;
+        display: flex;
+        height: 60px;
+        justify-content: center;
+        margin-bottom: 10px;
+        width: 100%;
+
+        // アプリケーションアイコン
+        &_icon{
+            background-image: url(../images/icon_head_notify.svg);
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-size: 50px auto;
+            height: 100%;
+            margin-right: 10px;
+            width: 50px;
+        }
+
+        // アプリケーション名
+        &_title{
+            color: $color-baseColor1;
+            font-size: $fontsize-extraLarge;
+            font-weight: bold;
+        }
+    }
+
+    // メッセージタイトル
+    .msgTitle {
+        align-items: center;
+        color: $color-gray900;
+        display: flex;
+        font-size: $fontsize-extraLarge;
+        font-weight: bold;
+        justify-content: center;
+        margin-bottom: 15px;
+    }
+}
+

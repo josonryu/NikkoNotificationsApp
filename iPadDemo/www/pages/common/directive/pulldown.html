@@ -1,0 +1,11 @@
+
+<label for="" class="dropdownArea_selectWrap entypo-down-open-mini" id="{{id}}" ng-style="{'width':width}">
+    <div class="dropdownArea_btnGroup">
+        <button class="dropdownArea_toggle" data-toggle="dropdown" ng-class="{dropdownArea_selectedColor: isSelected}" ng-disabled="disabled">{{disabled ? '' :label}}</button>
+        <ul class="dropdownArea_menu dropdown-menu" role="menu">
+            <li class="dropdownArea_option" ng-repeat="item in list" ng-class="{'dropdown_item-last':$last}">
+                <a ng-click="selectChange($event,item)">{{item[labelProperty]}}</a>
+            </li>
+        </ul>
+    </div>
+</label>

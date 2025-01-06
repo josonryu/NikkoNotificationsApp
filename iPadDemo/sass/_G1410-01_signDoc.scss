@@ -1,0 +1,197 @@
+
+/*
+    G1410-01_signDoc
+    電子帳票画面
+*/
+ 
+#G1410-01{
+    .scrollArea{
+        -webkit-overflow-scrolling: touch;
+        overflow-y: scroll;
+        height: 680px;      // Xcode9+iOS12だと設定しないと署名時にバック画面がタッチ有効に
+    }
+
+    .mainBody{
+        margin-left: 15px;
+        margin-right: 15px;
+        margin-top: 70px;
+        margin-bottom: 20px;
+    }
+
+    .imageArea {
+        overflow-y: scroll;
+        width: 100%;
+        height: 100%;
+        margin:0 auto;
+        position: relative;
+
+        .canvas_main {
+            position: relative;
+            z-index: 1;
+            width: 992px;
+            height: 1403px;
+            background-color: $color-white;
+            border:none;
+        }
+    }
+    .consentCheck {
+        position: absolute;
+        z-index: 2;
+    }
+
+    .consentCheck_870_1 {
+        top: 398px;
+        left: 300px;
+    }
+    .consentCheck_870_2 {
+        top: 398px;
+        left: 478px;
+    }
+
+	input[type="radio"] {
+		-webkit-appearance: none;
+		background-image: url("../images/a_icon_checkbox.svg");
+		background-color: rgba(255, 255, 255, 0);
+		background-repeat: no-repeat;
+		background-size: contain;
+        border-top-left-radius: 0%;
+        border-top-right-radius: 0%;
+        border-bottom-left-radius: 0%;
+        border-bottom-right-radius: 0%;
+		height: 30px;
+		width: 30px;
+		border: none;
+	}
+
+	input[type="radio"]:checked {
+		background-image: url("../images/icon_checkbox_checked.svg");
+	}
+}
+
+#G1410-02 {
+    font-weight: bold;
+
+    &.signModal {
+        background: none;
+        color: $color-white;
+        display: none;
+        font-size: 23px;
+        height: 492px;
+        left: 0;
+        margin: 0;
+        padding: 0 20px;
+        position: fixed;
+        text-align: center;
+        top: 316px;
+        width: 100%;
+        z-index: 1002;
+    }
+
+    .signModal {
+        &_row-center {
+            height: 60px;
+            margin: auto 0;
+        }
+
+        &_label {
+            font-size: $fontsize-extraLarge;
+            font-weight: normal;
+            height: 60px;
+            line-height: 60px;
+            padding-left: 20px;
+            text-align: center;
+            color: $color-white;
+        }
+
+        &_handwriteTabelBox {
+            background-color: $color-white;
+            border: 0;
+            height: 292px;
+            margin-bottom: 10px;
+        }
+
+        &_titleRow {
+            background-color: $color-gray400;
+            height: 54px;
+        }
+
+        &_row-bottom {
+            height: 60px;
+            margin: auto 0;
+        }
+
+        &_backBtn {
+            @extend .btn_large;
+            background-color: $color-bluegray;
+            border: 1px solid $color-white;
+            margin: 10px;
+        }
+
+        &_confirmBtn {
+            @extend .btn_large;
+            background-color: $button-confirm-color-bg;
+            border: 1px solid $color-white;
+            margin: 10px;
+        }
+
+        &_confirmBtn_disabled {
+            @extend .btn_large;
+            background-color: $button-next-color-bg-disabled;
+            color: $button-color-font-disabled;
+            margin: 10px;
+        }
+
+        &_BtnArea {
+            position: absolute;
+            right: 35px;
+        }
+
+        &_allDeleteBtn {
+            @extend .btn_middle;
+            background-color: $color-white;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            color: $color-baseColor1;
+            border-radius: 10px;
+            height: 34px;
+            width: 150px;
+        }
+
+        &_allclearIcon {
+            background-image: url(../images/icon_delete.svg);
+            background-size: 15px 15px;
+            display: inline-block;
+            height: 15px;
+            margin: 2px 5px 5px 0px;
+            vertical-align: middle;
+            width: 15px;
+        }
+    }
+}
+
+#G1410-03{
+    @include modal(s);
+    .modalBack{
+        &_body{
+            $h:80px;
+            $f: $fontsize-large;
+            text-align: center;
+            font-size: $fontsize-large;
+            font-weight: bold;
+            color: $color-gray900;
+        }
+        &_yesBtn{@extend .btn_yes;}
+        &_noBtn{@extend .btn_no;}
+    }
+}
+
+#signDocModal-overlay{
+    background-color: $color-blueGray900;
+    display: none;
+    height: 452px;
+    left: 0;
+    position: fixed;
+    top: 316px;
+    width: 100%;
+    z-index: 1001;
+}

@@ -1,0 +1,38 @@
+<div id="G1270-03" ng-init="init()">
+
+    <!--ヘッダー-->
+    <header ng-include="'pages/common/header.html'"></header>
+
+    <main class="mainArea">
+
+        <!--営業員専用画面注意喚起-->
+        <div class="staffOnly">
+            <div class="staffOnly_caution"></div>
+            <span class="staffOnly_text">この画面は営業員専用の画面です</span>
+        </div>
+
+        <div class="mainArea_mainText">
+
+            <!--未送信案件ありのメッセージタイトル-->
+            <div>
+                <span class="mainArea_cautionIcon"></span>
+                未送信案件があります。
+            </div>
+
+            <!--未送信案件ありのメッセージ内容-->
+            <span class="mainArea_subText mainArea_subText-accent">
+                通信環境を確保してホーム画面より再送信してください。<br>
+            </span>
+            <span class="mainArea_subText mainArea_subText-accent">
+                ＊{{LOGIN_SYRY_ZKK}}（最終ログイン時間）を過ぎると、申込データは抹消されます。
+            </span>
+
+        </div>
+
+        <button class="mainArea_backHomeBtn mainArea_backHomeBtn_error" id="btnHome" ng-click="returnHome()">ホームへ戻る</button>
+    </main>
+
+</div>
+
+<!--ホーム遷移確認-->
+<div ng-include="'pages/G1270-04_applicationCompReturnHomeModal.html'"></div>

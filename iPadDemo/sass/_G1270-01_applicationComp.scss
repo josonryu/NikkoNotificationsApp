@@ -1,0 +1,75 @@
+/*
+G1270-01 applicationComp
+申込み内容受付機能 
+*/
+
+#G1270-01{
+    .mainArea{
+        position: absolute;
+        background-color: $main-color-bg;
+        padding-left: 30px;
+        padding-right: 30px;
+        height: 680px;
+        width: 1024px;
+        text-align: center;
+        color: $color-gray900;
+        margin-top: 60px;
+        &_mainText{
+            margin-top: 130px;
+            font-size: $fontsize-extraLarge;
+            font-weight: bold;
+        }
+        &_subText{
+            margin-top: 10px;
+            font-size: $fontsize-large;
+            font-weight: normal;
+        }
+        // 受付中...
+        &_caution{
+            color: $color-gray900;
+            margin-top: 20px;
+            font-size: $fontsize-extraLarge;
+            font-weight: normal;
+            &-fixed{
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+                padding: 0 0 0 80px;
+                text-align: left;
+                width: 600px;
+            }
+            &-notice{
+                font-size: $fontsize-large;
+                margin: 0 20px;
+                &-accent {
+                    color: $color-accent;
+                    margin-bottom: 10px;
+                }
+            }
+        }
+        &_cautionIcon{
+            background: {
+                image: url("../images/icon_alert.svg");
+                repeat: no-repeat;
+                size: contain;
+            }
+            display: inline-block;
+            margin-bottom: -4px;
+            height: 20px;
+            width: 20px;
+        }
+    }
+    // 受付中インジケータ
+    .loadingCircle {
+        animation: load 0s linear 0s 1 forwards;
+        -webkit-animation:  load 0s linear 0s 1 forwards;
+        position: relative;
+        margin-top: 40px;
+        margin-bottom: 50px;
+        margin-left: auto;
+        margin-right: auto;
+        width: 38px;
+        height: 38px;
+ 
+    }
+}

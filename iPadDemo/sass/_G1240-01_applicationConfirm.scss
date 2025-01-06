@@ -1,0 +1,562 @@
+/*
+G1240-01_applicationConfirm
+お客様確認画面
+*/
+#G1240-01 {
+
+    // 固有スタイル
+    .confirmArea {
+        min-height: 615px;
+        padding-bottom: 70px;
+        width: 100%;
+        color: $color-gray900;
+    }
+
+    .scrollArea {
+        -webkit-overflow-scrolling: touch;
+        overflow-y: scroll;
+        height: 688px;
+        padding-bottom: 70px;
+    }
+
+    .noBorder {
+        border-bottom: none;
+        .blockRow {
+            border-bottom: none;
+        }
+    }
+
+    .nullHeight {
+        min-height: 68px;
+    }
+
+    .blockArea .baseArea {
+        padding-bottom: 0;
+    }
+
+    .pageTitle, .areaTitle, .topErrMsgBlock {
+        +* .blockTitle {
+            margin-top: $title-margin-top-first;
+        }
+    }
+
+    .err-message {
+        display: flex;
+        min-height: 28px;
+        align-items: center;
+    }
+
+    .errLeft {
+        padding-left: 20px;
+    }
+    
+    .errBgcolor {
+        background-color: rgba(197, 17, 98, 0.1);
+    }
+
+    .errText {
+        color: $color-accent;
+        font-size: 15px;
+        font-weight: normal;
+        line-height: 28px;
+    }
+
+    .editButton {
+        @extend .btn_middle;
+        background-color: $button-modify-color-bg;
+        border: $button-modify-boder;
+        color: $button-modify-color-font;
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: $button-modify-width;
+        height: $button-modify-height;
+        padding: 0;
+    }
+
+    .noEditButton {
+        @extend .btn_middle;
+        background-color: $button-modify-color-bg;
+        border: $button-modify-boder;
+        color: $button-modify-color-font;
+        position: absolute;
+        right: 0;
+        top: -48px;
+        width: $button-modify-width;
+        height: $button-modify-height;
+        padding: 0;
+    }
+
+    .pinButton {
+        @extend .btn_large;
+        width: 190px;
+        background-color: $button-confirm-color-bg;
+        border-radius: 5px;
+        font-weight: normal;
+        margin-left: 15px;
+        right: 260px;
+        position: absolute;
+        top: 2px;
+    }
+
+    .editFont {
+        color: $color-baseColor1;
+        font-weight: bold;
+    }
+
+    .blockArea.directive {
+
+        &.confrimBefore {
+            padding: 40px 30px 20px 40px;
+        }
+
+        &.confrimAfter {
+            padding: 40px 30px 20px 40px;
+        }   
+    }
+
+    .areaTitle {
+        margin-top: 150px;
+        font-size: $fontsize-28;
+        line-height: 28px;
+        color: $color-gray900;
+        letter-spacing: 2px;
+
+        &_noEditTitle {
+            margin-top: $title-margin-top-first;
+        } 
+    }
+
+    .blockRow {
+        align-items: flex-start;
+        min-height: 28px;
+        .rowLabel {
+            display: inline-block;
+            line-height: 28px;
+        }
+    }
+
+    .block2Rows {
+        .blockRow {
+            .rowLabel {
+                line-height: 20px;
+            }
+        }
+    }
+
+    .blockRowCenter {
+        .blockRow {
+            align-items: center;
+        }
+    }
+    
+    .ruitouBlockRow{
+        margin: 20px 10px 0 0;
+        text-align: center;
+        min-height: 28px;
+    }
+
+    .rowMsg {
+        font-size: $fontsize-middle;
+        line-height: 27px;
+    }
+
+    .topErrMsgBlock {
+        padding:10px 15px;
+    }
+
+    .blockArea {
+
+        &.before {
+            margin: 0 0 0 0;
+            padding: 40px 0 0 0;
+            border-top: none;
+            background-color: $color-nikko-19;
+            box-shadow: none;
+            border-radius: 6px;
+            position: relative;
+
+            &::before {
+                @include blockNewBefore;
+                content: '変更前';
+                background-color: $color-nikko-24;
+            }
+
+            &::after {
+                content: '';
+                background-image: url(../images/icon_step_down_green.svg);
+                background-repeat: no-repeat;
+                background-size: auto 40px;
+                background-position: center center;
+                width: 40px;
+                height: 40px;
+        
+                position: absolute;
+                bottom: -40px - 15px;
+                left: (1024px - 2 * 30px - 40px) / 2;
+                z-index: 1;
+            }
+        }
+
+        &.after {
+            margin: 70px 0 0 0;
+            padding: 40px 0 0 0;
+            border: 1px solid $color-nikko-4;
+            border-top: 0;
+            border-radius: 6px;
+            position: relative;
+            
+            &::before {
+                @include blockNewBefore;
+                width: calc(100% + 2px);
+                left: -1px;
+                content: '変更後';
+                background-color: $color-baseColor2;
+            }
+        }
+    }
+
+    //入力ブロック共通
+    .confirmDataArea {
+        padding: 10px 30px 10px 40px;
+        border-top: solid 1px $color-gray400;
+
+        >:first-child {
+            border-top: none;
+        }
+
+        &_row {
+            display: flex;
+            align-items: flex-start;
+            padding: 10px 0;
+            position: relative;
+        }
+
+        &_label {
+            color: $color-gray900;
+            font-size: 15px;
+            line-height: 1.2;
+            font-weight: bold;
+            text-align: right;
+            width: 145px;
+            display: inline-block;
+            flex-shrink: 0;
+            letter-spacing: -0.5px;
+            line-height: 28px;
+        }
+
+        &_beforeData {
+            font-size: $fontsize-large;
+            display: flex;
+            align-items: center;
+            margin-left: 70px;
+            color: $color-gray900;
+            word-break: break-all;
+            width: 700px;
+            display: inline-block;
+        }
+
+        &_afterData {
+            font-size: $fontsize-large;
+            display: flex;
+            align-items: center;
+            margin-left: 70px;
+            color: $color-baseColor1;
+            font-weight: bold;
+            word-break: break-all;
+            width: 700px;
+            display: inline-block;
+        }
+
+        &_editBtn {
+            @extend .btn_middle;
+            background-color: $button-modify-color-bg;
+            border: $button-modify-boder;
+            color: $button-modify-color-font;
+            width: $button-modify-width;
+            height: $button-modify-height;
+            position: absolute;
+            right: 0px;
+            padding: 0;
+        }
+
+        &_borderTop {
+            border-top: solid 1px $color-gray400;
+        }
+    }
+
+    .rowInfo {
+        word-break: break-all;
+        width: 700px;
+        display: inline-block;
+    }
+
+    .firstRow {
+        word-break: break-all;
+        width: 560px;
+        display: inline-flex;
+        line-height: 28px;
+    }
+    
+
+    .fillFormTable {
+        overflow: hidden;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        padding: 0 45px 35px;
+        
+
+        &_box {
+            display: flex;
+            flex-flow: column;
+            align-items: center;
+        }
+
+        &_label {
+            font-size: $fontsize-middle;
+            font-weight: bold;
+            padding: 13px 0;
+        }
+
+        // 撮影画像表示枠(1書面分)
+        .fillFormImageBox {
+            background: none;
+            border: 5px solid transparent;
+            color: $color-gray400;
+            text-align: center;
+            width: 410px;
+            justify-content: center;
+            display: flex;
+
+            &_noImage {
+                border-radius: 8px;
+                color: $color-white;
+                font-size: $fontsize-extraLarge;
+                font-weight: bold;
+                width: 400px;
+                height: 250px;
+                padding-top: 180px;
+                background-image: url(../images/noImage.svg);
+                background-repeat: no-repeat;
+                background-size: 30%;
+                background-position: 50% 40%;
+                background-color: $color-nikko-13;
+            }
+
+            &_fillImage {
+                display: block;
+                height: 250px;
+                max-width: 100%;
+            }
+        }
+    }
+
+    .fileSendMsg {
+        font-size: $fontsize-large;
+        font-weight: bold;
+        display: flex;
+        height: 100px;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .alarm {
+        text-align: center;
+        margin-top: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-bottom: 13px;
+
+        &_icon {
+            display: inline-block;
+            height: 24px;
+            width: 50px;
+            $imageWidht: 24px;
+            background-image: url(../images/icon_alert.svg);
+            background-size: auto $imageWidht;
+            background-repeat: no-repeat;
+        }
+
+        &_msg {
+            font-size: $fontsize-large;
+            color: $color-accent;
+            font-weight: bold;
+            letter-spacing: -1px;
+        }
+    }
+
+    .sign {
+        &_row {
+            display: flex;
+            align-items: center;
+            padding: 13px 0;
+            margin: 0 20px;
+            min-height: 54px;
+            justify-content: center;
+        }
+
+        &_btn {
+            @extend .btn_large;
+            background-image: none;
+            position: unset;
+            width: 150px;
+            background-color: $color-baseColor1;
+            color: $color-white;
+            border-radius: 5px;
+            font-weight: normal;
+        }
+
+        &_data {
+            width: 924px;
+            height: 230px;
+        }
+    }
+
+    .blockTitle {
+        .signTwoRows {
+            display: grid;
+        }
+
+        .signText {
+            font-size: $title-edittext-fontsize;
+            font-weight: normal;
+            color: $title-edittext-color;
+        }
+    }
+}
+
+/*
+G1240-02_applicationConfirm
+お客様確認（署名）画面
+*/
+#G1240-02{
+    font-weight: bold;
+    &.signModal {
+        background: none;
+        color: $color-white;
+        display: none;
+        font-size: 23px;
+        height: 492px;
+        left: 0;
+        margin: 0;
+        padding: 0 20px;
+        position: fixed;
+        text-align: center;
+        top: 316px;
+        width: 100%;
+        z-index: 1002;
+    }
+
+    .signModal {
+        &_row-center {
+            height: 60px;
+            margin: auto 0;
+        }
+
+        &_label {
+            font-size: $fontsize-extraLarge;
+            font-weight: normal;
+            height: 60px;
+            line-height: 60px;
+            padding-left: 20px;
+            text-align: center;
+            color: $color-white;
+        }
+
+        &_handwriteTabelBox {
+            background-color: $color-white;
+            border: 0;
+            height: 292px;
+            margin-bottom: 10px;
+        }
+
+        &_titleRow {
+            background-color: $color-gray400;
+            height: 54px;
+        }
+
+        &_row-bottom {
+            height: 60px;
+            margin: auto 0;
+        }
+
+        &_backBtn {
+            @extend .btn_large;
+            background-color: $color-bluegray;
+            border:1px solid $color-white;
+            margin: 10px;
+        }
+
+        &_confirmBtn {
+            @extend .btn_large;
+            background-color: $button-confirm-color-bg;
+            border:1px solid $color-white;
+            margin: 10px;
+        }
+
+        &_confirmBtn_disabled {
+            @extend .btn_large;
+            background-color: $button-next-color-bg-disabled;
+            color: $button-color-font-disabled;
+            margin: 10px;
+        }
+
+        &_BtnArea {
+            position: absolute;
+            right: 35px;
+        }
+
+        &_allDeleteBtn {
+            @extend .btn_middle;
+            background-color: $color-white;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            color: $color-baseColor1;
+            border-radius: 10px;
+            height: 34px;
+            width: 150px;
+            padding: 0;
+        }
+
+        &_allclearIcon {
+            background-image: url(../images/icon_delete.svg);
+            background-size: 15px 15px;
+            display: inline-block;
+            height: 15px;
+            margin: 2px 5px 5px 0px;
+            vertical-align: middle;
+            width: 15px;
+        }
+    }
+}
+#signModal-overlay {
+    background-color: $color-blueGray900;
+    display: none;
+    height: 452px;
+    left: 0;
+    position: fixed;
+    top: 316px;
+    width: 100%;
+    z-index: 1001;
+}
+
+/*
+G1240-03_applicationConfirm
+申込内容修正への遷移確認画面
+*/
+#G1240-03 {
+    @include modal(s);
+    .modalBack {
+        &_body {
+            text-align: center;
+            font-size: $fontsize-large;
+            font-weight: bold;
+            color: $color-gray900;
+        }
+        &_yesBtn {@extend .btn_yes;}
+        &_noBtn {@extend .btn_no;}
+    }
+}

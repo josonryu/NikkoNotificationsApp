@@ -1,0 +1,432 @@
+/*
+G1190-01_cameraResultCheckMyno
+撮影結果確認画面（種類別／確認チェック）※個人番号カード
+*/
+
+@mixin commonButton{
+    border: none;
+    background-color: $color-baseColor1;
+    background-repeat: no-repeat;
+    border-radius: 12px;
+
+    &:active{
+        @extend .button-active;
+    }
+}
+
+@mixin baseButton{
+    @include commonButton;
+    background-size: 25px;
+    background-position: center;
+    margin: 0 auto 20px auto;
+    width: 45px;
+    height: 45px;
+    display: block;
+}
+
+@mixin baseButtonRow{
+    @include commonButton;
+    font-size: 15px;
+    font-weight: normal;
+    color: #ffffff;
+    width: 110px;
+    height: 40px;
+    background-size: auto 35%;
+    background-position: 15px 12px;
+}
+
+// 画像表示枠(1書面分)
+@mixin Imagebox($container:"fillForm"){
+    .#{$container}PieceLabel{
+        display: inline-block;
+        position: absolute;
+        top: 20px;
+        left: 180px;
+        font-size: $fontsize-extraLarge;
+        color: $color-gray900;
+    }
+    .#{$container}ImageBox {
+        &_frame{
+            position: relative;
+            height: if($container == "thumbs", 80px, 250px);
+            width: if($container == "thumbs", 128px, 400px);
+            margin: auto;
+            &_noImage {
+                border-radius: 8px;
+                color: $color-white;
+                font-size: $fontsize-extraLarge;
+                font-weight: bold;
+                width: if($container == "thumbs", 128px, 100%);
+                height: 100%;
+                padding-top: if($container == "thumbs", 0, 180px);
+                background-image: url(../images/noImage.svg);
+                background-repeat: no-repeat;
+                background-size: if($container == "thumbs", 40%, 30%);
+                background-position: if($container == "thumbs", 50%, 50% 40%);
+                background-color: $color-nikko-13;
+                text-align: center;
+            }
+        }
+        &_fillImage{
+            display: block;
+            height: 100%;
+            max-width: 100%;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        // ボタン表示領域
+        &_borderBottom {
+            padding: 30px 0;
+            width: 400px;
+            text-align: center;
+            /* 再撮影ボタン */
+            &-retake {
+                @include baseButtonRow;
+                padding-left: 30px;
+                background-image: url(../images/icon_photo.svg);
+                &:disabled {
+                    background-color: $color-nikko-13;
+                    color: $button-color-font-disabled;
+                }
+            }
+            /* 画像拡大ボタン */
+            &-img-big {
+                @include baseButtonRow;
+                margin-left: 50px;
+                padding-left: 30px;
+                background-image: url(../images/icon_full_view.svg);
+            }
+        }
+
+        // サイドボタン表示領域
+        &_sideContainer {
+            display: inline-block;
+            // width: 60px;
+            width: 70px;
+            height: 250px;
+            position: relative;
+            top: -250px;
+            left: 750px;
+            text-align: center;
+            /* 再撮影ボタン */
+            &-retake {
+                @include baseButton;
+                background-image: url(../images/icon_photo.svg);
+                &:disabled {
+                    background-color: $color-nikko-13;
+                    color: $button-color-font-disabled;
+                }
+            }
+            /* 画像拡大ボタン */
+            &-img-big {
+                @include baseButton;
+                background-image: url(../images/icon_full_view.svg);
+            }
+        }
+
+        
+    }
+}
+    
+
+@mixin fillFormTable(){
+    margin: 0;
+
+    &_box {
+        float: left;
+        margin-top: 20px;
+        &-left {
+            margin-left: 55px;
+        }
+        &-right {
+            margin-left: 54px;
+        }
+    }
+    &_checkBox {
+        padding: 20px 0 20px 25px;
+        border-top: solid 1px $color-gray400;
+        float: left;
+        width: 100%;
+        .checkBoxForm {
+            &_title {
+                font-size: $fontsize-extraLarge;
+                font-weight: bold;
+                color: $color-gray900;
+            }
+        }
+    }
+    /* 選択画像表示枠 */
+    @include Imagebox();
+    /* サムネイル表示枠 */
+    @include Imagebox("thumbs");    
+}
+
+#G1190-01, #G1190-02 {
+    // コンテンツ部
+    main {
+        .blockTitle{
+            position: relative;
+            .switch{
+                &_wrapper{
+                    display: block;
+                    color: $color-nikko-14;
+                    position: absolute;
+                    top: 0;
+                    left: 795px;
+                }
+                &_box{
+                    width: 170px;
+                }
+                &_label{
+                    font-size: 20px;
+                    color: $color-nikko-14;
+                }
+            }
+        }
+        .fillFormArea {
+            background-color: $main-color-bg;
+            width: 100%;
+
+             // 画像表示エリア
+            .fillFormTable {
+                @include fillFormTable();
+            }
+        }
+    }
+    
+    // 進捗率40%
+    .progressCircle {
+        @include progressCircle(40);
+    }
+    // 進捗率40%
+    .progressCircle40 {
+        @include progressCircle(40);
+    }
+    .checkArea {
+        padding-top: 10px;
+        width: 100%;
+    }
+
+
+
+    //■■■■　スイッチコントロール　■■■■
+    .form-switch {
+        position: relative;
+        display: inline-block;
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+        top: 2px;
+        right: -20px;
+
+        .separetor {
+        position: relative;
+        display: inline-block;
+        margin-right: .5rem;
+        width: 46px;
+        height: 26px;
+        background-color: #e6e6e6;
+        border-radius: 23px;
+        vertical-align: text-bottom;
+        transition: all 0.3s linear;
+
+            &::before {
+                content: "";
+                position: absolute;
+                left: 0;
+                width: 42px;
+                height: 22px;
+                background-color: #f2f2f2;
+                border-radius: 11px;
+                transform: translate3d(2px,2px,0) scale3d(1,1,1);
+            }
+
+            &::after {
+                content: "";
+                position: absolute;
+                left: 0;
+                width: 22px;
+                height: 22px;
+                background-color: #fff;
+                border-radius: 11px;
+                box-shadow: 1px 2px 2px rgba(0,0,0,0.24);
+                transform: translate3d(2px,2px,0);
+                transition: all 0.2s ease-in-out;
+            }
+        }
+
+        &:active {
+            .separetor::after {
+                width: 28px;
+                transform: translate3d(2px,2px,0);
+            }
+
+            .fakeInput{
+                &:checked + .separetor::after {
+                transform: translate3d(16px,2px,0);
+                }
+            }
+        }
+
+        .fakeInput{
+        position: absolute;
+        opacity: 0;
+        pointer-events: none;
+
+            &:checked + .separetor {
+                background-color: $color-baseColor2;
+
+                &::before {
+                    transform: translate3d(18px,2px,0) scale3d(0,0,0);
+                }
+
+                &::after {
+                    transform: translate3d(22px,2px,0);
+                }
+            }
+        }
+    }
+
+    //■■■■　横スクロール　■■■■
+    .swiper{
+        &-contaier {
+            width: 100%;
+        }
+        &-button{
+            &-next{
+                right: 255px;
+                background-image: url(../images/arrow_nextImageBtn.svg);
+            }
+            &-prev{
+                left: 255px;
+                background-image: url(../images/arrow_backImageBtn.svg);
+            }
+            &-disabled{
+                display: none;
+            }
+        }
+        &_label{
+            position: absolute;
+            top: 30px;
+            left: 20px;
+            font-size: $fontsize-large;
+            color: $color-gray900;
+        }
+    }
+    .gallery{
+        &-top{
+            height: 280px;
+            padding: 20px 0 10px 0;
+        }
+        &-thumbs{
+            display: flex;
+            justify-content: center;
+            height: 100px;
+            width: 640px;
+            margin-bottom: 20px;
+            padding: 5px 0;
+            background-color: $color-lightgreen;
+            border-radius: 11px;
+
+            .swiper-wrapper{
+                width: auto;
+                transform: translate3d(0, 0, 0) !important;
+                -webkit-transform: translate3d(0, 0, 0) !important;
+            }
+
+            .swiper-slide{
+                width: auto;
+                opacity: 0.6;
+                margin-right: 20px;
+                padding: 5px;
+                &-thumb-active{
+                    opacity: 1;
+                    padding: 0;
+                    border: solid 5px $color-baseColor1;
+                    background-color: $color-baseColor1;
+                }
+            }
+        }
+    }
+}
+
+/* 拡大表示 */
+#G1200-01{
+    .header{
+        background: $color-cameraHeader;
+        width: 100%;                  
+        height: 46px;
+        text-align: center;
+    }
+    .modal-title {
+        margin-top: 10px;
+        font-weight: bold;
+        color:#ffffff;
+        font-size: 26px;
+    }
+
+    .main-space {
+        margin-top: -1px;
+        background-color: #474849;
+        width: 100%;
+        text-align: center;
+        height: 649px;
+    }
+    
+    .expansionImg {
+        margin-top: 40px;
+        position: relative;
+    }
+    .img-responsive {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #ffffff;
+        border: $modal-border;
+        border-radius: 10px;
+        background-size: 100% auto;
+        background-repeat: no-repeat;
+        background-position: center;
+        height: 540px;
+        max-width: 864px;
+    }
+    .fillImg-responsive {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 6px;
+        background-size: 100% auto;
+        background-repeat: no-repeat;
+        background-position: center;
+        height: 540px;
+        max-width: 864px;
+    }
+
+    // 共通スタイル上書き
+    .fixedFooter{
+        grid-template-columns: 1fr;
+        .nextBtn {
+            grid-column-start: 1;
+            background-image: none;
+        }
+    }
+}
+/* 書類選択へ戻る確認モーダル */
+#G1190-03{
+    @include modal(s);
+
+    .modalBack{
+        &_body{
+            $f: $fontsize-large;
+
+            text-align: center;
+            font-size: $fontsize-large;
+            font-weight: bold;
+            color: $color-gray900;
+        }
+
+        &_yesBtn{@extend .btn_yes;}
+        &_noBtn{@extend .btn_no;}
+    }
+}

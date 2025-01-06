@@ -1,0 +1,83 @@
+/*
+G1180_resultCamera
+撮影結果表示画面
+*/
+
+body.is-modal-open {
+    #G1180-01, #G1180-02, #G1180-03{
+        .G1180-header{
+            filter: blur(6px);
+        }
+    }
+}
+
+#G1180-01, #G1180-02, #G1180-03{
+
+    .G1180-header{
+        background: $color-cameraHeader;
+        height: 46px;
+        text-align: center;
+        width: 100%;                  
+    }
+
+    .G1180-title{
+        color: $color-white;
+        font-size: $fontsize-extraLarge;
+        font-weight: bold;
+        margin-top: 10px;
+    }
+
+    .G1180-main-space {
+        background-color: #474849;
+        height: 649px;
+        margin-top: -1px;
+        text-align: center;
+        width: 100%;
+    }
+
+    .G1180-confirm-title {
+        color: $color-white;
+        font-size: $fontsize-extraLarge;
+        font-weight: bold;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        height: 37px;
+    }
+
+// 01-2022-06-224 本人確認書類撮影画面のガード対応 開始 20221031
+    .matcherr {
+        color: $color-accent;
+        text-align: left;
+        margin-left: 150px;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        height: 67px;
+    }
+// 01-2022-06-224 本人確認書類撮影画面のガード対応 終了 20221031
+
+    .G1180-divimg {
+        background-color: $color-white;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 100% auto;
+        border: $modal-border;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        max-width: 864px;
+        // 撮影画像
+        &_frame{
+            align-items: center;
+            display: flex;
+            justify-content: center;
+            height: 540px;
+            &_noImage {
+                color: $color-gray400;
+                font-size: $fontsize-extraLarge;
+                text-align: center;
+                vertical-align: middle;
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+    }
+}

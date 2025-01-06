@@ -1,0 +1,224 @@
+<!-- 
+    画面名：機微情報の塗りつぶし画面
+    画面id：G1210-01~03
+-->
+<div id="G1210-01" ng-init="init()">
+
+    <!--固定ヘッダー ブロック-->
+    <header ng-include src="'pages/common/header.html'"></header>
+
+    <!--画面メインブロック-->
+    <main class="scrollArea main">
+        <!--パンくず ブロック-->
+        <div class="pankuzu" ng-include="'pages/common/pankuzu.html'" ng-init="pankuzuType = pankuzuPatten"></div>
+        
+        <div class="fillFormArea">
+            <!--タイトル-->
+            <div class="pageTitle">
+                <span class="fillFormArea_title-idIcon">「本人確認書類」</span>
+                <span>の個人番号の塗りつぶし</span>
+            </div>
+            <!-- センテンス -->
+            <div class="sub-text">
+                    撮影書類の<span>“個人番号”</span>を塗りつぶしてください。<br>
+                    塗りつぶし完了後、画面下部の塗りつぶし状況確認欄にチェックを行ってください。
+            </div>
+
+            <!-- ブロックタイトル -->
+            <div class="blockTitle firstTitle">
+                <span class="text">{{title}}</span>
+            </div>
+
+            <div class="fillFormTable">
+                <!-- 横スクロールメインコンテナ -->
+                <div class="swiper-container gallery-top">
+                    <div class="swiper-wrapper">
+                        <!--■■■■　1枚目　■■■■-->
+                        <div class="swiper-slide">
+                            <!-- 撮影枚数表示ラベル -->
+                            <span class="fillFormPieceLabel">{{appConst.CAM_DISPLAY_MODAL.FIRST_NAME}}</span>
+                            <!-- 選択画像表示ブロック -->
+                            <div class="fillFormImageBox_frame">
+                                <img ng-src="{{idDocFrontimg}}" id="frontImage" class="fillFormImageBox_fillImage" alt="{{title}} {{appConst.CAM_TITLE_SUFF.FIRST_NAME}}" />
+                                <img id="frontImageFill" ng-src="{{frontImageFill}}" class="fillFormImageBox_fillImage" alt="" />
+                            </div>
+                            <!-- サイドコンテナ（撮影画像あり） -->
+                            <div class="fillFormImageBox_sideContainer">
+                                <span>塗りつぶし</span>
+                                <button type="button" class=" fillFormImageBox_sideContainer-mask" ng-click="maskBtnClick('front')"></button>
+                            </div>
+                        </div>
+                        <!--■■■■　2枚目　■■■■-->
+                        <div class="swiper-slide">
+                            <!-- 撮影枚数表示ラベル -->
+                            <span class="fillFormPieceLabel">{{appConst.CAM_DISPLAY_MODAL.SECOND_NAME}}</span>
+                            <!-- 選択画像表示ブロック -->
+                            <div class="fillFormImageBox_frame">
+                                <img ng-src="{{idDocBackimg}}" id="G1190-rightOcrImage" class="fillFormImageBox_fillImage" alt="{{title}} {{appConst.CAM_TITLE_SUFF.SECOND_NAME}}" ng-if="backImageExist" />
+                                <img id="backImageFill" ng-src="{{backImageFill}}" class="fillFormImageBox_fillImage" alt="" ng-if="backImageExist" />
+                                <div class="fillFormImageBox_frame_noImage" ng-if="!backImageExist">撮影をスキップしました</div>
+                            </div>
+                            <!-- サイドコンテナ（撮影画像あり） -->
+                            <div class="fillFormImageBox_sideContainer" ng-show="backImageExist">
+                                <span>塗りつぶし</span>
+                                <button type="button" class=" fillFormImageBox_sideContainer-mask" ng-click="maskBtnClick('back')"></button>
+                            </div>
+                        </div>
+                        <!--■■■■　3枚目　■■■■-->
+                        <div class="swiper-slide">
+                            <!-- 撮影枚数表示ラベル -->
+                            <span class="fillFormPieceLabel">{{appConst.CAM_DISPLAY_MODAL.THIRD_NAME}}</span>
+                            <!-- 選択画像表示ブロック -->
+                            <div class="fillFormImageBox_frame">
+                                <img ng-src="{{idDocThirdimg}}" id="G1190-rightOcrImage" class="fillFormImageBox_fillImage" alt="{{title}} {{appConst.CAM_TITLE_SUFF.THIRD_NAME}}"  ng-if="thirdImageExist" />
+                                <img id="backImageFill" ng-src="{{thirdImageFill}}" class="fillFormImageBox_fillImage" alt="" ng-if="thirdImageExist" />
+                                <div class="fillFormImageBox_frame_noImage" ng-if="!thirdImageExist">撮影をスキップしました</div>
+                            </div>
+                            <!-- サイドコンテナ（撮影画像あり） -->
+                            <div class="fillFormImageBox_sideContainer" ng-show="thirdImageExist">
+                                <span>塗りつぶし</span>
+                                <button type="button" class=" fillFormImageBox_sideContainer-mask" ng-click="maskBtnClick('third')"></button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ガイド -->
+                    <div class="swiper-button-next swiper-button-white"></div>
+                    <div class="swiper-button-prev swiper-button-white"></div>
+                </div>
+
+                <!-- サムネイルコンテナ -->
+                <div class="swiper-container gallery-thumbs">
+                    <div ng-if="!backImageExist && !thirdImageExist" class="swiper_label">全1枚</div>
+                    <div ng-if="backImageExist && !thirdImageExist" class="swiper_label">全2枚</div>
+                    <div ng-if="backImageExist && thirdImageExist" class="swiper_label">全3枚</div>
+                    <div class="swiper-wrapper">
+                        <!--■■■■　1枚目　■■■■-->
+                        <div class="swiper-slide">
+                            <div class="thumbsImageBox_frame">
+                                <img ng-src="{{idDocFrontimg}}" id="G1190-leftOcrImage" class="thumbsImageBox_fillImage" alt="{{title}} {{appConst.CAM_TITLE_SUFF.FIRST_NAME}}" />
+                                <img id="frontImageFill" ng-src="{{frontImageFill}}" class="thumbsImageBox_fillImage" alt="" />
+                            </div>
+                        </div>
+                        <!--■■■■　2枚目　■■■■-->
+                        <div class="swiper-slide" ng-if="!isMynumber">
+                            <div class="thumbsImageBox_frame">
+                                <img ng-src="{{idDocBackimg}}" id="G1190-rightOcrImage" class="thumbsImageBox_fillImage" alt="{{title}} {{appConst.CAM_TITLE_SUFF.SECOND_NAME}}"  ng-if="backImageExist" />
+                                <img id="backImageFill" ng-src="{{backImageFill}}" class="thumbsImageBox_fillImage" alt="" ng-if="backImageExist" />
+                                <div class="thumbsImageBox_frame_noImage" ng-if="!backImageExist"></div>
+                            </div>
+                        </div>
+                        <!--■■■■　3枚目　■■■■-->
+                        <div class="swiper-slide">
+                            <div class="thumbsImageBox_frame">
+                                <img ng-src="{{idDocThirdimg}}" id="G1190-rightOcrImage" class="thumbsImageBox_fillImage" alt="{{title}} {{appConst.CAM_TITLE_SUFF.THIRD_NAME}}"  ng-if="thirdImageExist" />
+                                <img id="thirdImageFill" ng-src="{{thirdImageFill}}" class="thumbsImageBox_fillImage" alt="" ng-if="thirdImageExist" />
+                                <div class="thumbsImageBox_frame_noImage" ng-if="!thirdImageExist"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="fillFormTable_checkBox">
+                    <div class="checkBoxForm">
+                        <div class="checkBoxForm_title">以下の内容を確認のうえチェックしてください</div>
+                        <div class="checkArea">
+                            <checkbox label="書面内に個人番号の記載があるものは、記載が塗りつぶされている" id="G1210-checkboxConfirm1" value="1" data="checkboxConfirm1"></checkbox>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!--固定フッター ブロック-->
+    <footer>
+        <div class="fixedFooter">
+            <button class="backBtn" ng-click="btnBackClick()">戻る</button>
+            <button class="nextBtn" ng-click="btnNextClick()" ng-disabled="btnNextDisabled">{{btnDisplay?"確認画面へ":"次へ"}}</button>
+        </div>
+    </footer>
+
+</div>
+
+<!-- 機微情報の塗りつぶし画面モーダル -->
+<div id="G1210-02" class="modal fade" data-backdrop="static">
+    <!-- Modal shown イベントで必要な部品 -->
+    <div class="modal-dialog hidden"></div>
+    <div class="modalHead">
+        <div class="modalHead_title">個人番号の塗りつぶし</div>
+    </div>
+
+    <div class="modalBody">
+        <div style="position: relative;" ng-show="canvasFrontShow" id="canvasModalScroll" ng-class="(fillImageClass.isScaleMode() == true) ? 'modalBody_canvas-bigScale' : 'modalBody_canvas'">
+            <canvas style="position: absolute;" id="canvasForStLine" ng-class="{'mainCanvas-normalScaleHeight':(fillImageClass.isScaleMode() == false) && (fillImageClass.getCanvasRatioType() == 1),
+                                'mainCanvas-normalScaleWidth ':(fillImageClass.isScaleMode() == false) && (fillImageClass.getCanvasRatioType() == 2),
+                                'mainCanvas-bigScaleHeight':(fillImageClass.isScaleMode() == true) && (fillImageClass.getCanvasRatioType() == 1),
+                                'mainCanvas-bigScaleWidth':(fillImageClass.isScaleMode() == true) && (fillImageClass.getCanvasRatioType() == 2)}"></canvas>
+            <canvas style="position: absolute;" id="canvas" ng-class="{'mainCanvas-normalScaleHeight':(fillImageClass.isScaleMode() == false) && (fillImageClass.getCanvasRatioType() == 1),
+                                 'mainCanvas-normalScaleWidth ':(fillImageClass.isScaleMode() == false) && (fillImageClass.getCanvasRatioType() == 2),
+                                 'mainCanvas-bigScaleHeight':(fillImageClass.isScaleMode() == true) && (fillImageClass.getCanvasRatioType() == 1),
+                                 'mainCanvas-bigScaleWidth':(fillImageClass.isScaleMode() == true) && (fillImageClass.getCanvasRatioType() == 2)}"></canvas>
+            <canvas id="canvasOrg" ng-class="{'mainCanvas-normalScaleHeight':(fillImageClass.isScaleMode() == false) && (fillImageClass.getCanvasRatioType() == 1),
+                                 'mainCanvas-normalScaleWidth ':(fillImageClass.isScaleMode() == false) && (fillImageClass.getCanvasRatioType() == 2),
+                                 'mainCanvas-bigScaleHeight':(fillImageClass.isScaleMode() == true) && (fillImageClass.getCanvasRatioType() == 1),
+                                 'mainCanvas-bigScaleWidth':(fillImageClass.isScaleMode() == true) && (fillImageClass.getCanvasRatioType() == 2)}"></canvas>
+        </div>
+        <div style="position: relative;" ng-show="canvasBackShow" id="canvasBackModalScroll" ng-class="(fillImageClass.isScaleMode() == true) ? 'modalBody_canvas-bigScale' : 'modalBody_canvas'">
+            <canvas style="position: absolute;" id="canvasBackForStLine" ng-class="{'mainCanvas-normalScaleHeight':(fillImageClass.isScaleMode() == false) && (fillImageClass.getCanvasRatioType() == 1),
+                                 'mainCanvas-normalScaleWidth ':(fillImageClass.isScaleMode() == false) && (fillImageClass.getCanvasRatioType() == 2),
+                                 'mainCanvas-bigScaleHeight':(fillImageClass.isScaleMode() == true) && (fillImageClass.getCanvasRatioType() == 1),
+                                 'mainCanvas-bigScaleWidth':(fillImageClass.isScaleMode() == true) && (fillImageClass.getCanvasRatioType() == 2)}"></canvas>
+            <canvas style="position: absolute;" id="canvasBack" ng-class="{'mainCanvas-normalScaleHeight':(fillImageClass.isScaleMode() == false) && (fillImageClass.getCanvasRatioType() == 1),
+                                 'mainCanvas-normalScaleWidth ':(fillImageClass.isScaleMode() == false) && (fillImageClass.getCanvasRatioType() == 2),
+                                 'mainCanvas-bigScaleHeight':(fillImageClass.isScaleMode() == true) && (fillImageClass.getCanvasRatioType() == 1),
+                                 'mainCanvas-bigScaleWidth':(fillImageClass.isScaleMode() == true) && (fillImageClass.getCanvasRatioType() == 2)}"></canvas>
+            <canvas id="canvasBackOrg" ng-class="{'mainCanvas-normalScaleHeight':(fillImageClass.isScaleMode() == false) && (fillImageClass.getCanvasRatioType() == 1),
+                                 'mainCanvas-normalScaleWidth ':(fillImageClass.isScaleMode() == false) && (fillImageClass.getCanvasRatioType() == 2),
+                                 'mainCanvas-bigScaleHeight':(fillImageClass.isScaleMode() == true) && (fillImageClass.getCanvasRatioType() == 1),
+                                 'mainCanvas-bigScaleWidth':(fillImageClass.isScaleMode() == true) && (fillImageClass.getCanvasRatioType() == 2)}"></canvas>
+        </div>
+        <div style="position: relative;" ng-show="canvasThirdShow" id="canvasThirdModalScroll" ng-class="(fillImageClass.isScaleMode() == true) ? 'modalBody_canvas-bigScale' : 'modalBody_canvas'">
+            <canvas style="position: absolute;" id="canvasThirdForStLine" ng-class="{'mainCanvas-normalScaleHeight':(fillImageClass.isScaleMode() == false) && (fillImageClass.getCanvasRatioType() == 1),
+                                 'mainCanvas-normalScaleWidth ':(fillImageClass.isScaleMode() == false) && (fillImageClass.getCanvasRatioType() == 2),
+                                 'mainCanvas-bigScaleHeight':(fillImageClass.isScaleMode() == true) && (fillImageClass.getCanvasRatioType() == 1),
+                                 'mainCanvas-bigScaleWidth':(fillImageClass.isScaleMode() == true) && (fillImageClass.getCanvasRatioType() == 2)}"></canvas>
+            <canvas style="position: absolute;" id="canvasThird" ng-class="{'mainCanvas-normalScaleHeight':(fillImageClass.isScaleMode() == false) && (fillImageClass.getCanvasRatioType() == 1),
+                                 'mainCanvas-normalScaleWidth ':(fillImageClass.isScaleMode() == false) && (fillImageClass.getCanvasRatioType() == 2),
+                                 'mainCanvas-bigScaleHeight':(fillImageClass.isScaleMode() == true) && (fillImageClass.getCanvasRatioType() == 1),
+                                 'mainCanvas-bigScaleWidth':(fillImageClass.isScaleMode() == true) && (fillImageClass.getCanvasRatioType() == 2)}"></canvas>
+            <canvas id="canvasThirdOrg" ng-class="{'mainCanvas-normalScaleHeight':(fillImageClass.isScaleMode() == false) && (fillImageClass.getCanvasRatioType() == 1),
+                                 'mainCanvas-normalScaleWidth ':(fillImageClass.isScaleMode() == false) && (fillImageClass.getCanvasRatioType() == 2),
+                                 'mainCanvas-bigScaleHeight':(fillImageClass.isScaleMode() == true) && (fillImageClass.getCanvasRatioType() == 1),
+                                 'mainCanvas-bigScaleWidth':(fillImageClass.isScaleMode() == true) && (fillImageClass.getCanvasRatioType() == 2)}"></canvas>
+        </div>
+        <div class="modalBody_menu" ng-class="(fillImageClass.isScaleMode() == true || (canvasFrontShow == false && canvasBackShow == false && canvasThirdShow == false)) ? 'hidden' : ''">
+            <button class="menu_button" type="button" ng-click="allClearBtnClick(); tooltipDestroy();">全て<br>クリア</button><br>
+
+            <div class="menu_descript">線の種類</div>
+            <div class="menu_freeLineButton" ng-class="(fillImageClass.getLineMode() == 1) && (fillImageClass.isEraserMode() == false) ? 'menu_freeLineButton-active' : ''" ng-click="freeLineBtnClick(); tooltipDestroy();"></div>
+            <div class="menu_straightLineButton" ng-class="(fillImageClass.getLineMode() == 2) && (fillImageClass.isEraserMode() == false) ? 'menu_straightLineButton-active' : ''" ng-click="stLineBtnClick(); tooltipDestroy();"></div>
+
+            <div class="menu_descript">消しゴム</div>
+            <div class="menu_eraserButton" ng-class="{'menu_eraserButton-active':(fillImageClass.isEraserMode() == true)}" ng-click="eraserModeBtnClick(); tooltipDestroy();"></div>
+
+            <div class="menu_descript" ng-class="{'invisible ':(fillImageClass.isEraserMode() == true)}">線の太さ</div>
+            <div class="menu_smallLineButton" ng-class="{'menu_smallLineButton-active':(fillImageClass.getLineWidthID() == 1), 'invisible ':(fillImageClass.isEraserMode() == true)}" ng-click="lineSmallBtnClick(); tooltipDestroy();"></div>
+            <div class="menu_normalLineButton" ng-class="{'menu_normalLineButton-active':(fillImageClass.getLineWidthID() == 2), 'invisible ':(fillImageClass.isEraserMode() == true)}" ng-click="lineNormalBtnClick(); tooltipDestroy();"></div>
+            <div class="menu_boldLineButton" ng-class="{'menu_boldLineButton-active':(fillImageClass.getLineWidthID() == 3), 'invisible ':(fillImageClass.isEraserMode() == true)}" ng-click="lineBoldBtnClick(); tooltipDestroy();"></div>
+
+            <div class="menu_descript" ng-class="{'invisible ':(fillImageClass.isEraserMode() == true) || !autoMaskShow}">自動<br>塗りつぶし</div>
+            <div class="menu_autoMaskButton" ng-class="{'invisible ':(fillImageClass.isEraserMode() == true) || !autoMaskShow}" ng-click="autoMaskBtnClick(); tooltipDestroy();" data-toggle="tooltip" data-placement="left" title="自動塗りつぶしが使用できます"></div>
+            <button class="menu_button" type="button" ng-click="imageScaleBtnClick(); tooltipDestroy();">画像<br>拡大</button><br>
+
+        </div>
+    </div>
+
+    <div class="parent-fixed">
+        <div class="fixedFooter">
+                <button class="backBtn" ng-class="(fillImageClass.isScaleMode() == true) ? 'hidden' : ''" ng-click="cancelBtnClick();tooltipDestroy();">キャンセル</button>
+                <button class="backBtn" ng-class="(fillImageClass.isScaleMode() == true) ? '' : 'hidden'" ng-click="modalBackBtnClick()">戻る</button>
+                <button class="nextBtn" ng-class="(fillImageClass.isScaleMode() == true) ? 'hidden' : ''" ng-click="closeBtnClick();tooltipDestroy();">確定</button>
+            <!--</div>-->
+        </div>
+    </div>
+</div>
+

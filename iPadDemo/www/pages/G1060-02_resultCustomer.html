@@ -1,0 +1,132 @@
+<!-- 
+    画面名：お客さま検索結果画面
+    画面id：G1060-02
+-->
+<div id="G1060-02" ng-init="init()">
+
+    <!-- 固定ヘッダー ブロック -->
+    <header ng-include="'pages/common/header.html'" ng-init="headerType = 2" >
+    </header>
+
+    <!--スクロールメインブロック-->
+    <main class="main scrollArea"  id="G1060-02-main">
+        <!--営業員専用ブロック-->
+        <div class="staffOnly">
+            <div class="staffOnly_caution"></div>
+            <span class="staffOnly_text">この画面は営業員専用の画面です</span>
+        </div>
+
+        <div class="mainSpace" ng-class="{mainSpace_sign: isSign}">
+            <!--タイトル-->
+            <div class="pageSentence">
+                <span>お客さまの情報であることを確認してください。</span>
+            </div>
+
+            <!-- 検索結果ブロック -->
+            <div class="blockTitle firstTitle">
+                <span class="text">検索結果</span>
+            </div>
+
+            <div class="blockArea">
+                <div>
+                    <div class="confirmDataArea_firstRow">
+                        <label class="confirmDataArea_label">顧客名（漢字）</label>
+                        <span class="confirmDataArea_data">{{customerAttr.KYAKNM_SEI_KNJ}}　{{customerAttr.KYAKNM_MEI_KNJ}}</span>
+                    </div>
+
+                    <div class="confirmDataArea_row">
+                        <label class="confirmDataArea_label">顧客名（カナ）</label>
+                        <span class="confirmDataArea_data">{{customerAttr.KYAKNM_SEI_KANA}}　{{customerAttr.KYAKNM_MEI_KANA}}</span>
+                    </div>
+
+                    <div class="confirmDataArea_row">
+                        <label class="confirmDataArea_label">生年月日</label>
+                        <span class="confirmDataArea_data" ng-show="showSeinen">{{SEINEN_G}} {{SEINEN_Y}}年 {{SEINEN_M}}月 {{SEINEN_D}}日</span>
+                    </div>
+
+                    <div class="confirmDataArea_row">
+                        <label class="confirmDataArea_label">性別</label>
+                        <span class="confirmDataArea_data" ng-show="showSex">{{SEX_N}}</span>
+                    </div>
+
+                    <div class="confirmDataArea_row">
+                        <label class="confirmDataArea_label">住所①</label>
+                        <span class="confirmDataArea_data">{{customerAttr.KYAK_ADDR_KNJ}}</span>
+                    </div>
+
+                    <div class="confirmDataArea_row">
+                        <label class="confirmDataArea_label">住所②</label>
+                        <span class="confirmDataArea_data">{{customerAttr.KYAK_HOSK_ADDR_KNJ}}</span>
+                    </div>
+
+                    <div class="confirmDataArea_row">
+                        <label class="confirmDataArea_label">住所③</label>
+                        <span class="confirmDataArea_data">{{customerAttr.KYAK_HOUSENM_KNJ}}</span>
+                    </div>
+                    
+                    <div ng-show="!isSign">
+                        <div class="confirmDataArea_row">
+                            <label class="confirmDataArea_label">個人番号</label>
+                            <span class="confirmDataArea_data" ng-show="showMyNo">{{KKCH_N}}</span>
+                        </div>
+
+                        <div class="confirmDataArea_row">
+                            <label class="confirmDataArea_label">加入者情報<br>拡張登録</label>
+                            <span class="confirmDataArea_data">
+                                <p ng-show="expansionUser && !expansionCode && !expansionAddr" >{{customerAttr.KAKU_KYAKNM_KNJ}}</p>
+                                <p ng-show="!expansionUser && expansionCode && !expansionAddr" >{{YUBIN_NO}}</p>
+                                <p ng-show="!expansionUser && !expansionCode && expansionAddr" >{{customerAttr.KAKU_ADDR}}</p>
+
+                                <p ng-show="expansionUser && expansionCode && !expansionAddr" >{{customerAttr.KAKU_KYAKNM_KNJ}}<br>{{YUBIN_NO}}</p>
+                                <p ng-show="expansionUser && !expansionCode && expansionAddr" >{{customerAttr.KAKU_KYAKNM_KNJ}}<br>{{customerAttr.KAKU_ADDR}}</p>
+                                <p ng-show="!expansionUser && expansionCode && expansionAddr" >{{YUBIN_NO}}　{{customerAttr.KAKU_ADDR}}</p>
+
+                                <p ng-show="expansionUser && expansionCode && expansionAddr" >{{customerAttr.KAKU_KYAKNM_KNJ}}<br>{{YUBIN_NO}}　{{customerAttr.KAKU_ADDR}}</p>
+                                <p ng-show="!expansionUser && !expansionCode && !expansionAddr" >拡張登録なし</p>
+                            </span>
+                        </div>
+
+                        <div class="confirmDataArea_row">
+                            <label class="confirmDataArea_label">特定口座開設日</label>
+                            <span class="confirmDataArea_data">{{OPEN_YMD}}</span>
+                        </div>
+
+                        <div class="confirmDataArea_row">
+                            <label class="confirmDataArea_label">源泉徴収</label>
+                            <span class="confirmDataArea_data">{{GNSN_N}}</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 注意喚起 -->
+    <div class="alarmArea" ng-show="dispNote[0] && !isSign">
+        <div class="alarmArea_icon"></div>
+        <div class="alarmArea_text">
+            <ol style="list-style:none">
+                <li ng-show="dispNote[0]">{{msgNote[0]}}</li>
+                <li ng-show="dispNote[1]">{{msgNote[1]}}</li>
+                <li ng-show="dispNote[2]">{{msgNote[2]}}</li>
+            </ol>
+        </div>
+        <div class="alarmArea_textRight">
+            <ol style="list-style:none">
+                <li ng-show="dispNote[3]">{{msgNote[3]}}</li>
+                <li ng-show="dispNote[4]">{{msgNote[4]}}</li>
+                <li ng-show="dispNote[5]">{{msgNote[5]}}</li>
+            </ol>
+        </div>
+    </div>
+
+    <!-- 固定フッター ブロック -->
+    <footer class="fixedFooter">
+        <button class="backBtn" ng-click="backBtnClick()">戻る</button>
+        <button class="nextBtn" id="btnNext" ng-click="nextBtnClick()">次へ</button>
+    </footer>
+
+</div>
+
+

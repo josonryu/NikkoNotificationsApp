@@ -1,0 +1,218 @@
+
+/*
+    画面名：撮影書面表示画面/撮影書面表示（スキップ時）画面
+    画面id：G1160-01/G1160-02
+*/
+
+#G1160-01, #G1160-02{
+    @include modal(m);
+    @mixin common-img-position($url, $width: 250px, $height: 150px, $top: 40px){
+        background-image: url(../images/#{$url});
+        background-size: 100% auto;
+        background-repeat: no-repeat;
+        background-position: center;
+        width: $width;
+        height: $height;
+        margin-top: $top;
+    }
+    @mixin G1160-modal{
+        text-align: center;
+
+        &-title{
+            color: $color-gray900;
+            margin-top: 20px;
+
+            .plarge{
+                font-size: $fontsize-large;
+                font-weight: bold;
+                line-height: 22px;
+            }
+            .pmid{
+                font-size: $fontsize-middle;
+                line-height: 16px;
+            }
+            .strong{
+                color: $color-accent;
+            }
+        }
+
+        .modal-body{
+            .form-group{
+                margin-top: 25px;
+                height: 160px;
+            }
+        }
+
+        .form-group{
+            text-align: -webkit-center;
+            .carousel-control-skip{
+                bottom: 0;
+                left: auto;
+                position: absolute;
+                right: 0;
+                text-align: center;
+                background-color: $color-bluegray;
+                font-size: $fontsize-middle;
+                border-top-left-radius: 20px;
+                border-bottom-left-radius: 20px;
+                color: $color-white;
+                font-weight: bold;
+                height: 54px;
+                width: 22%;
+                border: 0;
+                top: 170px;
+            }
+        }
+
+        // 個人番号カード
+        .G1160-a_mynumber-img-front{
+            @include common-img-position($url: "a_mynumber.svg", $height: 160px, $top: 35px);
+        }
+        // 運転免許証
+        .G1160-a_driver-img-front{
+            @include common-img-position($url: "a_driver.svg", $height: 160px, $top: 35px);
+        }
+        .G1160-b_driver-img-back{
+            @include common-img-position($url: "b_driver.svg", $height: 160px, $top: 0);
+        }
+        // パスポート
+        .G1160-a_passport-img-front{
+            @include common-img-position($url: "a_passport.svg", $width: 219px, $height: 160px, $top: 35px);
+        }
+        .G1160-b_passport-img-back{
+            @include common-img-position($url: "b_passport.svg", $width: 160px, $height: 220px, $top: 35px);
+            -webkit-transform: rotate(270deg);
+            position: relative;
+            top: -30px;
+        }
+        // 在留カード
+        .G1160-a_resident-img-front{
+            @include common-img-position($url: "a_resident.svg", $height: 160px, $top: 35px);
+        }
+        .G1160-b_resident-img-back{
+            @include common-img-position($url: "b_resident.svg", $height: 160px, $top: 0);
+        }
+        // 特別永住者証明書
+        .G1160-a_special-img-front{
+            @include common-img-position($url: "a_special.svg", $height: 160px, $top: 35px);
+        }
+        .G1160-b_special-img-back{
+            @include common-img-position($url: "b_special.svg", $height: 160px, $top: 0);
+        }
+        // 各種福祉手帳
+        .G1160-book-img-front{
+            @include common-img-position($url: "book.svg", $width: 200px);
+        }
+        .G1160-book-img-back{
+            @include common-img-position($url: "book.svg", $width: 200px, $top: 30px);
+        }
+        // 住民票
+        .G1160-residential_certificate-img-front{
+            @include common-img-position($url: "residential_certificate.svg", $width: 230px, $height: 160px, $top: 35px);
+        }
+        .G1160-residential_certificate-img-back{
+            @include common-img-position($url: "residential_certificate.svg", $width: 230px, $height: 160px, $top: 0);
+        }
+        .G1160-residential_certificate-img-third{
+            @include common-img-position($url: "residential_certificate.svg", $width: 230px, $height: 160px, $top: 0);
+        }
+        // 健康保険証
+        .G1160-a_insurance-img-front{
+            @include common-img-position($url: "a_insurance.svg", $width: 240px, $height: 160px);
+        }
+        .G1160-b_insurance-img-back{
+            @include common-img-position($url: "b_insurance.svg", $width: 240px, $height: 160px, $top: 0);
+        }
+        // その他（顔写真あり）/その他１（顔写真なし）/その他２（顔写真あり
+        .G1160-c_document-arrow_turn{
+            margin: 30px 0 0 210px !important;
+        }
+        .G1160-c_document-img-front{
+            @include common-img-position($url: "c_document.svg", $width: 200px, $height: 160px, $top: 35px);
+            -webkit-transform: rotate(180deg);
+        }
+        .G1160-c_document-img-back{
+            @include common-img-position($url: "c_document.svg", $width: 200px, $height: 160px, $top: 0);
+            -webkit-transform: rotate(180deg);
+        }
+        .G1160-c_document-img-third{
+            @include common-img-position($url: "c_document.svg", $width: 200px, $height: 160px, $top: 0);
+            -webkit-transform: rotate(180deg);
+        }
+        // 運転経歴証明書
+        .G1160-a_card_else-img-front{
+            @include common-img-position($url: "a_card_else.svg", $width: 245px, $height: 160px, $top: 35px);
+        }
+        .G1160-c_card_else-img-back{
+            @include common-img-position($url: "c_card_else.svg", $width: 245px, $height: 160px, $top: 0);
+        }
+        // 印鑑登録証明書
+        .G1160-b_document-arrow_turn{
+            margin: 30px 0 0 210px !important;
+        }
+        .G1160-a_document-img-front{
+            @include common-img-position($url: "a_document.svg", $width: 200px, $height: 160px, $top: 35px);
+            -webkit-transform: rotate(180deg);
+        }
+        .G1160-b_document-img-back{
+            @include common-img-position($url: "b_document.svg", $width: 200px, $height: 160px, $top: 0);
+            -webkit-transform: rotate(180deg);
+        }
+
+        .G1160-arrow_turn{
+            background-image: url(../images/arrow_turn.svg);
+            background-size: 100% auto;
+            background-repeat: no-repeat;
+            background-position: center;
+            float: left;
+            height: 100px;
+            width: 100px;
+            position: relative;
+            z-index: 10000;
+        }
+        .turn_card{
+            margin: 30px 0 0 180px;
+        }
+        .turn_other{
+            margin: 30px 0 0 185px;
+        }
+
+        .modal-cancel-btn{
+            @extend .btn_no;
+        }
+        .modal-confirm-btn{
+            @extend .btn_yes;
+        }
+    }
+    // 表面撮影開始画面
+    .G1160-modal {
+        @include G1160-modal;
+        .modal-body{
+            height: 291px;
+        }        
+    }
+    .G1160-modal-otherDoc{
+        @include G1160-modal;
+        .modal-body{
+            height: 331px;
+        }
+    }
+    // 裏面撮影開始画面
+    .G1160-modal-back {
+        @include G1160-modal;
+        .modal-body{
+            height: 331px;
+        }
+    }
+    .G1160-modal-back-otherDoc {
+        @include G1160-modal;
+        .modal-body{
+            height: 371px;
+        }
+        .form-group{
+            .carousel-control-skip{
+                top: 200px;
+            }
+        }
+    }
+}

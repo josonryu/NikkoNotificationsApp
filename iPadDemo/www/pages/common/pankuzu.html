@@ -1,0 +1,12 @@
+<!--パンくずブロック-->
+<div ng-class="{'pankuzu_step{{$index + 1}}-inactive': (pankuzuType < {{$index + 1}}),
+                'pankuzu_step{{$index + 1}}-active': (pankuzuType == {{$index + 1}}), 
+                'pankuzu_step{{$index + 1}}-done': (pankuzuType > {{$index + 1}})}" 
+    ng-repeat="stepInfo in ['変更内容の入力', '個人番号の入力', '本人確認書類の撮影', '内容の確認／署名']">
+    <div class="pankuzu_content">
+        <span ng-class="{'pankuzu_icon-inactive{{$index + 1}}': (pankuzuType < {{$index + 1}}), 
+                        'pankuzu_icon-active{{$index + 1}}': (pankuzuType == {{$index + 1}}), 
+                        'pankuzu_icon-done': (pankuzuType > {{$index + 1}})}"></span>
+        <span class="pankuzu_text">{{stepInfo}}</span>
+    </div>
+</div>

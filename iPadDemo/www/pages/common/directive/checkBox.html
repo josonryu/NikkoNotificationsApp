@@ -1,0 +1,9 @@
+<!-- <div class="checkArea_div" ng-style="{'width':width}"> -->
+    <div class="checkArea_div">
+        <label class="checkArea_labelJust checkbox" ng-class="{'selected': {{value}} == data, 'disabled': disabled}">
+            <span ng-bind-html="label |chgLine"></span>
+            <input type="checkbox" class="checkArea_radio" id="{{id}}" ng-model="data" ng-true-value="{{value}}" ng-false-value="{{falseValue}}" ng-click="click({$event: $event, value: data})" ng-disabled="disabled">
+            <span class="checkArea_hint" ng-show="hint">{{hint}}</span>
+        </label>
+    </div>
+    

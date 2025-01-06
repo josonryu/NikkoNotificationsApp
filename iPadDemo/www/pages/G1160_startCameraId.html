@@ -1,0 +1,69 @@
+<!--
+    画面名：撮影書面表示画面/撮影書面表示（スキップ時）画面
+    画面id：G1160-01/G1160-02
+-->
+<!-- 撮影開始モーダル 本人確認書類 -->
+<!-- 表面 -->
+    <div class="modal-dialog" ng-init="initG1160()">
+        <div class="modal-content" ng-class="(kind === 'book')? 'G1160-modal-otherDoc' : 'G1160-modal'" ng-if="popupMode == 'FRONT'">
+            <div class="modal-body">
+                <div class="G1160-modal-title">
+                    <p class="plarge" ng-bind-html="titleG1160"></p>
+                    <p class="pmid" ng-show="isBookFlg" ng-bind-html="bookFrontMessage"></p>
+                </div>
+                <div class="form-group">
+                    <div class="G1160-{{kind}}-img-front"></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-cancel-btn" data-dismiss="modal" ng-click="G1160BtnBackClick()">戻る</button>
+                <button class="modal-confirm-btn" id="btnTakePictStart" ng-disabled="noneInitCamFlg || noneInitCamOcrFlg" ng-click="btnTakePictStartClick()">撮影開始</button>
+            </div>
+        </div>
+
+<!-- 裏面 -->
+        <div class="modal-content" ng-class="(kind === 'book') ? 'G1160-modal-back-otherDoc' : (isPassportFlg) ? 'G1160-modal' : 'G1160-modal-back'" ng-if="popupMode == 'BACK'">
+            <div class="modal-body">
+                <div class="G1160-modal-title">
+                    <p class="plarge" ng-bind-html="titleG1160"></p>
+                    <p ng-if="!isPassportFlg" class="pmid" ng-bind-html="skipMessage">
+                    </p>
+                    <p class="pmid" ng-show="isBookFlg" ng-bind-html="bookBackMessage"></p>
+                </div>
+                <div class="form-group">
+                    <div ng-if="!isPassportFlg" class="G1160-{{kind}}-arrow_turn G1160-arrow_turn {{kind === 'driver_b'||kind === 'resident_b'||kind === 'special_b'||kind === 'insurance_b'||kind === 'card_else_c'? 'turn_card':'turn_other'}}"></div>
+                    <div class="G1160-{{kind}}-img-back"></div>
+                    <button ng-if="!isPassportFlg" class="right carousel-control-skip" ng-click="skipBtnClick()">
+                        撮影を<br>スキップする
+                    </button>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-cancel-btn" data-dismiss="modal" ng-click="G1160BtnBackClick()">戻る</button>
+                <button class="modal-confirm-btn" id="btnTakePictStart" ng-disabled="noneInitCamFlg" ng-click="btnTakePictStartClick()">
+                    撮影開始</button> 
+            </div>
+        </div>
+
+<!-- 3枚目 -->
+        <div class="modal-content" ng-class="(kind === 'book') ? 'G1160-modal-back-otherDoc' : 'G1160-modal-back'" ng-if="popupMode == 'THIRD'">
+            <div class="modal-body">
+                <div class="G1160-modal-title">
+                    <p class="plarge" ng-bind-html="titleG1160"></p>
+                    <p class="pmid" ng-bind-html="skipMessage"></p>
+                </div>
+                <div class="form-group">
+                    <div class="G1160-{{kind}}-arrow_turn G1160-arrow_turn turn_other"></div>
+                    <div class="G1160-{{kind}}-img-third"></div>
+                    <button class="right carousel-control-skip" ng-click="skipBtnClick()">
+                        撮影を<br>スキップする
+                    </button>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-cancel-btn" ng-click="G1160BtnBackClick()">戻る</button>
+                <button class="modal-confirm-btn" id="btnTakePictStart" ng-disabled="noneInitCamFlg" ng-click="btnTakePictStartClick()">
+                    撮影開始</button> 
+            </div>
+        </div>
+    </div>
